@@ -3,25 +3,31 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{% block title %}Default Title{% endblock title %}</title>
+		<title>{% block title %}Unstyled{% endblock title %}</title>
 		<link rel="shortcut icon" href="/public/img/favicon.ico" type="image/ico">
 		<link rel="icon" href="/public/img/favicon.ico" type="image/ico">
 
 		{% block css %}
-
 		<!-- build:css(src) /public/css/app.min.css -->
 			<link rel="stylesheet" href="/public/css/base.css">
 		<!-- endbuild -->
 		{% endblock css %}
 	</head>
 	<body>
-
-		<div class="site-container">
-
+		<header role="banner" class="header">
+			<div class="header-inner">
+				<a href="/">Unstyleguide</a>
+			</div>
+		</header>
+		<main class="main">
 			{% block content %}
 			{% endblock content %}
-
-		</div>
+		</main>
+		<footer class="footer">
+			<div class="footer-inner">
+				&copy; Copyright 2017.
+			</div>
+		</footer>
 
 		{% block script %}
 		<!-- build:js(src) /public/js/app.min.js -->

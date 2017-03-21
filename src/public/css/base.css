@@ -1,9 +1,86 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
-	background-color: #999;
+	font-family: 'Open sans', helvetica, arial, sans-serif;
+    text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+    font-size: 62.5%;
+    font-size: 100%;
+}
+
+a:link,
+a:visited {
+	color: #222;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+.header {
+	background-color: #fafafa;
+}
+
+.header-inner {
+	overflow: hidden;
+	padding: 20px;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.footer {
+	padding: 20px;
+	overflow: hidden;
+}
+
+.footer-inner {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+.main {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .wifi-icon {
 	padding-left: 135px;
 	height: 128px;
 	background: transparent url( /public/img/wifi_icon.png ) 0 0 no-repeat;
+}
+
+.example {
+	position: relative;
+    overflow: hidden;
+    border: 1px solid #bfc1c3;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 30px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.example:before {
+	content: "Example";
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.2105263158em 0.7894736842em 0.2105263158em 0.7894736842em;
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 12px;
+    line-height: 1.25;
+    background: #bfc1c3;
+    color: white;
 }

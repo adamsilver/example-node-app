@@ -14,6 +14,6 @@ module.exports = {
         workers: env( 'SERVER_WORKERS', 1 )
     },
     views: {
-        cache: env( 'CACHE_VIEWS', true )
+        cache: env( 'CACHE_VIEWS', false )
     }
 };
