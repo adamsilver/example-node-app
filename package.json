@@ -41,9 +41,8 @@
     "nunjucks": "*"
   },
   "devDependencies": {
-    "nodemon": "*",
     "grunt": "*",
-    "load-grunt-tasks": "*",
+    "grunt-cli": "1.2.0",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "*",
     "grunt-contrib-concat": "*",
@@ -57,7 +56,9 @@
     "jasmine-core": "*",
     "karma": "*",
     "karma-chrome-launcher": "*",
-    "karma-jasmine": "*"
+    "karma-jasmine": "*",
+    "load-grunt-tasks": "*",
+    "nodemon": "*"
   },
   "optionalDependencies": {
     "fsevents": "*"
