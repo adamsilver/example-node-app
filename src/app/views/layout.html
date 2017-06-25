@@ -15,19 +15,13 @@
 	</head>
 	<body>
 		<header role="banner" class="header">
-			<div class="header-inner">
-				<a href="/">Unstyleguide</a>
-			</div>
+			<div class="logo">Pattern library</div>
+			{% include "partials/nav.html" %}
 		</header>
 		<main class="main">
 			{% block content %}
 			{% endblock content %}
 		</main>
-		<footer class="footer">
-			<div class="footer-inner">
-				&copy; Copyright 2017.
-			</div>
-		</footer>
 
 		{% block script %}
 		<!-- build:js(src) /public/js/app.min.js -->

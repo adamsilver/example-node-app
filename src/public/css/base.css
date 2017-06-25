@@ -11,61 +11,29 @@ body {
     font-size: 100%;
 }
 
-a:link,
-a:visited {
-	color: #222;
-}
-
-a:hover,
-a:focus {
-	text-decoration: none;
-}
 
 .header {
-	background-color: #fafafa;
+	background-color: #222;
+	padding: 20px 40px;
 }
 
-.header-inner {
-	overflow: hidden;
-	padding: 20px;
-	max-width: 700px;
-	margin: 0 auto;
+.logo {
+	font-size: 1.8em;
+	color: #fff;
+	font-weight: bold;
+	margin-bottom: 10px;
 }
 
-.footer {
-	padding: 20px;
-	overflow: hidden;
-}
-
-.footer-inner {
-	max-width: 700px;
-	margin: 0 auto;
-}
 
 .main {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	max-width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding: 20px 40px;
 }
 
 h1 {
-	font-size: 1.88em;
+	font-size: 1.8em;
 	line-height: 1.2;
-	margin-bottom: 20px;
-	padding-left: 20px;
-	padding-right: 20px;
 	color: #222;
 	letter-spacing: -1px;
-}
-
-@media(min-width: 37.5em) {
-	h1 {
-		font-size: 2.8em;
-	}
 }
 
 .wifi-icon {
@@ -95,8 +63,27 @@ h1 {
     font-family: "nta", Arial, sans-serif;
     font-weight: 400;
     text-transform: none;
-    font-size: 12px;
+    font-size: 1em;
     line-height: 1.25;
     background: #bfc1c3;
     color: white;
+}
+
+nav ul {
+	list-style: none;
+}
+
+nav li {
+	display: inline-block;
+	font-size: 1.2em;
+	margin-right: 10px;
+}
+
+nav a {
+	color: #fff;
+}
+
+.active {
+	font-weight: bold;
+	text-decoration: none;
 }
