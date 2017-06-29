@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% set nav = "forms" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/buttons.html" as buttons %}
+
+{% block content %}
+
+	{{headings.h1('Form validation')}}
+
+	<div class="example">
+		{{formElements.textbox('email', 'Email address')}}
+
+		{{formElements.radioButtons('choice', 'Do you love me?', [{
+			label: 'Yes',
+			id: 'choice'
+		}, {
+			label: 'No',
+			id: 'choice1'
+		}])}}
+
+		{{buttons.primaryButton('Save')}}
+	</div>
+
+{% endblock content %}

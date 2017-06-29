@@ -1,0 +1,40 @@
+{% macro textbox(name, label, options) %}
+	<div class="field {% if options.error %}field-hasError{%endif%}">
+		<label for="{{name}}">
+			<span class="field-label">{{label}}</span>
+			{% if options.hint %}
+				<span class="field-hint">{{options.hint}}</span>
+			{% endif %}
+			{% if options.error %}
+				<span class="field-error">{{options.error}}</span>
+			{% endif %}
+		</label>
+		<input class="field-textBox" type="text" id="{{name}}" name="{{name}}" value="{{options.value}}">
+	</div>
+{% endmacro %}
+
+{% macro radioButtons(name, legend, choices, options) %}
+	<div class="field {% if options.error%}field-hasError{% endif %}">
+		<fieldset>
+			<legend>
+				<span class="field-legend">{{legend}}</span>
+				{% if hint %}
+					<span class="field-hint">{{options.hint}}</span>
+				{% endif %}
+				{% if error %}
+					<span class="field-error">{{options.error}}</span>
+				{% endif %}
+			</legend>
+			{% for choice in choices %}
+				<div class="field-radioButton">
+					<label for="{{choice.id}}">
+						<input type="radio" name="{{name}}" value="{{choice.value}}" id="{{choice.id}}">
+						{{choice.label}}
+					</label>
+				</div>
+			{% endfor %}
+		</fieldset>
+	</div>
+{% endmacro %}
+
+
