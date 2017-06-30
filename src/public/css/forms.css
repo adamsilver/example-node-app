@@ -155,6 +155,55 @@ fieldset {
 }
 
 /**************************************
-* Checkboxes
+* Error summary
 **************************************/
+
+.errorSummary {
+	border: 5px solid #B10E1E;
+	padding: 20px;
+	margin-bottom: 40px;
+	max-width: 40em;
+}
+
+.errorSummary-isHidden {
+	display: none;
+}
+
+.errorSummary h2 {
+	margin-bottom: 10px;
+}
+
+.errorSummary ul {
+	color: #B10E1E;
+	list-style: none;
+}
+
+.errorSummary li {
+	font-size: 1.2em;
+}
+
+.errorSummary a {
+	color: #B10E1E;
+	font-weight: bold;
+}
+
+/**************************************
+* Primary button
+**************************************/
+
+.primaryButton {
+	background-color: #00823B;
+	border: none;
+	appearance: none;
+	-webkit-appearance: none;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 10px 25px;
+	border-radius: 6px;
+}
+
+.primaryButton:hover {
+	background-color: #006435;
+}
 

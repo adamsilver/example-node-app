@@ -26,14 +26,22 @@ body {
 
 
 .main {
-	padding: 20px 40px;
+	padding: 40px 40px;
 }
 
 h1 {
-	font-size: 1.8em;
+	font-size: 2.2em;
 	line-height: 1.2;
 	color: #222;
 	letter-spacing: -1px;
+	margin-bottom: 40px;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1.1;
+	color: #222;
+	margin-bottom: 20px;
 }
 
 .wifi-icon {

@@ -1,4 +1,6 @@
-{% macro textbox(name, label, options) %}
+{% import "macros/headings.html" as headings %}
+
+{% macro textBox(name, label, options) %}
 	<div class="field {% if options.error %}field-hasError{%endif%}">
 		<label for="{{name}}">
 			<span class="field-label">{{label}}</span>
@@ -13,15 +15,34 @@
 	</div>
 {% endmacro %}
 
+{% macro selectBox(name, label, choices, options) %}
+	<div class="field {% if options.error %}field-hasError{% endif %}">
+		<label for="{{name}}">
+			<span class="field-label">{{label}}</span>
+			{% if options.hint %}
+				<span class="field-hint">{{options.hint}}</span>
+			{% endif %}
+			{% if options.error %}
+				<span class="field-error">{{options.error}}</span>
+			{% endif %}
+		</label>
+		<select id="{{name}}" name="{{name}}" class="field-selectBox">
+			{% for choice in choices %}
+				<option value="{{choice.value}}" {% if choice.selected%}selected{% endif %}>{{choice.text}}</option>
+			{% endfor %}
+		</select>
+	</div>
+{% endmacro %}
+
 {% macro radioButtons(name, legend, choices, options) %}
 	<div class="field {% if options.error%}field-hasError{% endif %}">
 		<fieldset>
 			<legend>
 				<span class="field-legend">{{legend}}</span>
-				{% if hint %}
+				{% if options.hint %}
 					<span class="field-hint">{{options.hint}}</span>
 				{% endif %}
-				{% if error %}
+				{% if options.error %}
 					<span class="field-error">{{options.error}}</span>
 				{% endif %}
 			</legend>
@@ -34,6 +55,43 @@
 				</div>
 			{% endfor %}
 		</fieldset>
+	</div>
+{% endmacro %}
+
+{% macro checkboxes(name, legend, choices, options) %}
+	<div class="field {% if options.error%}field-hasError{% endif %}">
+		<fieldset>
+			<legend>
+				<span class="field-legend">{{legend}}</span>
+				{% if options.hint %}
+					<span class="field-hint">{{options.hint}}</span>
+				{% endif %}
+				{% if options.error %}
+					<span class="field-error">{{options.error}}</span>
+				{% endif %}
+			</legend>
+			{% for choice in choices %}
+				<div class="field-checkbox">
+					<label for="{{choice.id}}">
+						<input type="checkbox" name="{{name}}" value="{{choice.value}}" id="{{choice.id}}">
+						{{choice.label}}
+					</label>
+				</div>
+			{% endfor %}
+		</fieldset>
+	</div>
+{% endmacro %}
+
+{% macro errorSummary(heading, errors) %}
+	<div class="errorSummary {% if not errors %}errorSummary-isHidden{%endif%}">
+		{% if errors %}
+			{{headings.h2(heading)}}
+			<ul>
+				{% for error in errors %}
+					<li><a href="#{{error.fieldName}}">{{error.message}}</a></li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 	</div>
 {% endmacro %}
 

@@ -10,17 +10,38 @@
 	{{headings.h1('Form validation')}}
 
 	<div class="example">
-		{{formElements.textbox('email', 'Email address')}}
+		{{formElements.errorSummary('Fix the following errors', [{fieldName: 'email', message: 'You need to enter the ‘at’ symbol (@).'}])}}
 
-		{{formElements.radioButtons('choice', 'Do you love me?', [{
-			label: 'Yes',
+		{{formElements.textBox('email', 'Email address', {error: 'You need to enter the ‘at’ symbol (@).'})}}
+
+		{{formElements.radioButtons('choice', 'Favourite colour', [{
+			label: 'Blue',
 			id: 'choice'
 		}, {
-			label: 'No',
+			label: 'Red',
 			id: 'choice1'
-		}])}}
+		}], {error: 'You need to choose an answer.'})}}
 
-		{{buttons.primaryButton('Save')}}
+		{{formElements.checkboxes('things', 'Things you like', [{
+			label: 'Chocolate',
+			id: 'things'
+		}, {
+			label: 'Money',
+			id: 'things1'
+		},  {
+			label: 'Sleep',
+			id: 'things2'
+		}], {error: 'You need to choose an answer.'})}}
+
+		{{formElements.selectBox('country', 'Country',[{
+			text: 'Select',
+			value: ''
+		}, {
+			text: 'Brazil',
+			value: 'Brazil'
+		}], {error: 'You need to choose a country'})}}
+
+		{{buttons.primaryButton('Continue')}}
 	</div>
 
 {% endblock content %}
