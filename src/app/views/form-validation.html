@@ -10,7 +10,19 @@
 	{{headings.h1('Form validation')}}
 
 	<div class="example">
-		{{formElements.errorSummary('Fix the following errors', [{fieldName: 'email', message: 'You need to enter the ‘at’ symbol (@).'}])}}
+		{{formElements.errorSummary('Fix the following errors', [{
+			fieldName: 'email', 
+			message: 'You need to enter the ‘at’ symbol (@) in the email address.'
+		}, {
+			fieldName: 'choice', 
+			message: 'You need to choose your favourite colour.'
+		}, {
+			fieldName: 'things', 
+			message: 'You need to choose at least 1 thing you like.'
+		}, {
+			fieldName: 'country', 
+			message: 'You need to choose a country.'
+		}])}}
 
 		{{formElements.textBox('email', 'Email address', {error: 'You need to enter the ‘at’ symbol (@).'})}}
 
@@ -20,7 +32,7 @@
 		}, {
 			label: 'Red',
 			id: 'choice1'
-		}], {error: 'You need to choose an answer.'})}}
+		}], {error: 'You need to choose your favourite colour.'})}}
 
 		{{formElements.checkboxes('things', 'Things you like', [{
 			label: 'Chocolate',
@@ -31,7 +43,7 @@
 		},  {
 			label: 'Sleep',
 			id: 'things2'
-		}], {error: 'You need to choose an answer.'})}}
+		}], {error: 'You need to choose at least 1 thing you like.'})}}
 
 		{{formElements.selectBox('country', 'Country',[{
 			text: 'Select',
@@ -39,7 +51,7 @@
 		}, {
 			text: 'Brazil',
 			value: 'Brazil'
-		}], {error: 'You need to choose a country'})}}
+		}], {error: 'You need to choose a country.'})}}
 
 		{{buttons.primaryButton('Continue')}}
 	</div>
