@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% set nav = "components" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/buttons.html" as buttons %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block content %}
+	{{navigation.breadcrumb([{
+		text: 'Components'
+	}])}}
+
+	{{headings.h1('Components')}}
+
+	{{headings.h2('Forms')}}
+
+	<ul>
+		<li><a href="/components/forms/validation">Validation</a></li>
+	</ul>
+
+{% endblock content %}

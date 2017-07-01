@@ -201,6 +201,40 @@ fieldset {
 	font-size: 1.2em;
 	padding: 10px 25px;
 	border-radius: 6px;
+
+
+
+
+	-webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
+    background-color: #00823B;
+    color: #fff;
+    border-width: 0;
+    border-style: solid;
+    border-color: transparent;
+    display: inline-block;
+    padding: 1.0625em 1.875em;
+    border-width: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 1.133;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transition: 150ms ease;
+    transition: 150ms ease;
+    -webkit-transition-property: background-color border-color color;
+    transition-property: background-color border-color color;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .primaryButton:hover {

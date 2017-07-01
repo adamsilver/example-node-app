@@ -4,23 +4,31 @@
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/buttons.html" as buttons %}
+{% import "macros/navigation.html" as navigation %}
 
 {% block content %}
 
-	{{headings.h1('Form validation')}}
+	{{navigation.breadcrumb([{
+		text: 'Components',
+		href: '/Components'
+	}, {
+		text: 'Forms'
+	}])}}
+
+	{{headings.h1('Validation')}}
 
 	<div class="example">
 		{{formElements.errorSummary('Fix the following errors', [{
-			fieldName: 'email', 
+			fieldName: 'email',
 			message: 'You need to enter the ‘at’ symbol (@) in the email address.'
 		}, {
-			fieldName: 'choice', 
+			fieldName: 'choice',
 			message: 'You need to choose your favourite colour.'
 		}, {
-			fieldName: 'things', 
+			fieldName: 'things',
 			message: 'You need to choose at least 1 thing you like.'
 		}, {
-			fieldName: 'country', 
+			fieldName: 'country',
 			message: 'You need to choose a country.'
 		}])}}
 

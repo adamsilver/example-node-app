@@ -5,9 +5,14 @@ module.exports = function( express, app ){
 		res.render( 'index.html' );
 	} );
 
-	app.get( '/form-validation', function( req, res ){
+	app.get( '/components', function( req, res ){
 
-		res.render( 'form-validation.html' );
+		res.render( 'components/index.html' );
+	} );
+
+	app.get( '/components/forms/validation', function( req, res ){
+
+		res.render( 'components/forms/validation.html' );
 	} );
 
 	app.get( '/colours', function( req, res ){
