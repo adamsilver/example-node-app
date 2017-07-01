@@ -4,8 +4,8 @@ module.exports = function( express, app ){
 		res.render('index.html');
 	});
 
-	app.get( '/colours', function( req, res ){
-		res.render('colours.html');
+	app.get( '/components/colours', function( req, res ){
+		res.render('components/colours.html');
 	});
 
 	app.get('/components', function(req, res ){

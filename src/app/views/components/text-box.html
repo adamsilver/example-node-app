@@ -7,30 +7,55 @@
 {% block content %}
 
 	{{navigation.breadcrumb([{
-		text: 'Components',
-		href: '/components'
-	}, {
-		text: 'Validation'
+		text: 'Text box'
 	}])}}
 
 	{{headings.h1('Text box')}}
 
 	{{headings.h2('Standard')}}
 
+	{% raw %}
+		{{formElements.textBox('email', 'Email address')}}
+	{% endraw %}
+
 	<div class="example">
 		{{formElements.textBox('email', 'Email address')}}
 	</div>
 
-	{{headings.h2('With error')}}
-
-	<div class="example">
-		{{formElements.textBox('email', 'Email address', {error: 'You need to enter the ‘at’ symbol (@).'})}}
-	</div>
-
 	{{headings.h2('With hint')}}
 
+	{% raw %}
+		{{formElements.textBox('email2', 'Email address', {hint: 'Some hint'})}}
+	{% endraw %}
+
 	<div class="example">
-		{{formElements.textBox('email', 'Email address', {hint: 'Some hint'})}}
+		{{formElements.textBox('email2', 'Email address', {hint: 'Some hint'})}}
+	</div>
+
+	{{headings.h2('With error')}}
+
+	{% raw %}
+		{{formElements.textBox('email3', 'Email address', {error: 'You need to enter the ‘at’ symbol (@) for the email address.'})}}
+	{% endraw %}
+
+	<div class="example">
+		{{formElements.textBox('email3', 'Email address', {error: 'You need to enter the ‘at’ symbol (@) for the email address.'})}}
+	</div>
+
+	{{headings.h2('With hint and error')}}
+
+	{% raw %}
+		{{formElements.textBox('email4', 'Email address', {
+			hint: 'Some hint',
+			error: 'You need to enter the ‘at’ symbol (@) in the email address.'
+		})}}
+	{% endraw %}
+
+	<div class="example">
+		{{formElements.textBox('email4', 'Email address', {
+			hint: 'Some hint',
+			error: 'You need to enter the ‘at’ symbol (@) in the email address.'
+		})}}
 	</div>
 
 {% endblock content %}
