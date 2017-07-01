@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block content %}
+
+	{{navigation.breadcrumb([{
+		text: 'Components',
+		href: '/components'
+	}, {
+		text: 'Validation'
+	}])}}
+
+	{{headings.h1('Text box')}}
+
+	{{headings.h2('Standard')}}
+
+	<div class="example">
+		{{formElements.textBox('email', 'Email address')}}
+	</div>
+
+	{{headings.h2('With error')}}
+
+	<div class="example">
+		{{formElements.textBox('email', 'Email address', {error: 'You need to enter the ‘at’ symbol (@).'})}}
+	</div>
+
+	{{headings.h2('With hint')}}
+
+	<div class="example">
+		{{formElements.textBox('email', 'Email address', {hint: 'Some hint'})}}
+	</div>
+
+{% endblock content %}

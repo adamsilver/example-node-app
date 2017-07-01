@@ -1,5 +1,5 @@
 {% macro breadcrumb(items) %}
-	<p>
+	<div>
 		<a href="/">Home</a>
 		{% for item in items %}
 			{% if loop.first %}
@@ -14,5 +14,5 @@
 				>
 			{% endif %}
 		{% endfor %}
-	</p>
+	</div>
 {% endmacro %}

@@ -81,6 +81,15 @@ h2 {
 	margin-bottom: 20px;
 }
 
+p {
+	margin-bottom: 40px;
+}
+
+ul {
+	margin-bottom: 40px;
+	margin-left: 25px;
+}
+
 .wifi-icon {
 	padding-left: 135px;
 	height: 128px;
@@ -121,6 +130,8 @@ header nav {
 
 nav ul {
 	list-style: none;
+	margin-bottom: 0;
+	margin-left: 0;
 }
 
 nav li {
