@@ -14,14 +14,16 @@
 
 	{{headings.h2('Standard')}}
 
-	{% raw %}
-		{{formElements.textBox('email', 'Email address')}}
-	{% endraw %}
-	<br>
-	{{(""+headings.h2('Typography') )}}
-
 	<div class="example">
 		{{formElements.textBox('email', 'Email address')}}
+	</div>
+
+	<div class="example example--html">
+		<pre><code>{% raw %}formElements.textBox('email', 'Email address'){% endraw %}</code></pre>
+	</div>
+
+	<div class="example example--html">
+		<pre><code>{{(""+formElements.textBox('email', 'Email address') )}}</code></pre>
 	</div>
 
 	{{headings.h2('With hint')}}
