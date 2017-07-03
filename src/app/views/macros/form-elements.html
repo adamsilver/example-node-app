@@ -83,7 +83,7 @@
 {% endmacro %}
 
 {% macro errorSummary(heading, errors) %}
-	<div class="errorSummary {% if not errors %}errorSummary-isHidden{%endif%}">
+	<div tabindex="0" role="alert" class="errorSummary {% if not errors %}errorSummary-isHidden{%endif%}">
 		{% if errors %}
 			{{headings.h2(heading)}}
 			<ul>
