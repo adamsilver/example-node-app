@@ -7,7 +7,9 @@
 {% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
-	<script src="/public/js/FormValidator.js"></script>
+	<!-- build:js(src) /public/js/formvalidator.min.js -->
+		<script src="/public/js/FormValidator.js"></script>
+	<!-- endbuild -->
 	<script>
 		var validator = new FormValidator(document.forms[0]);
 		validator.addValidator('email', [{

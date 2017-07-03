@@ -56,7 +56,7 @@ module.exports = function( grunt ){
 		},
 
 		useminPrepare: {
-			html: 'dist/app/views/layout.html'
+			html: 'dist/app/views/**/*.html'
 		},
 
 		usemin: {
