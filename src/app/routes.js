@@ -19,4 +19,8 @@ module.exports = function( express, app ){
 	app.get('/components/text-box', function( req, res ){
 		res.render('components/text-box.html');
 	});
+
+	app.get('/components/date-field', function( req, res ){
+		res.render('components/date-field.html');
+	});
 };
