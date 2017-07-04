@@ -160,3 +160,8 @@ ul {
 	margin-bottom: 5px;
 	font-weight: bold;
 }
+
+.componentNav ul {
+	list-style: none;
+	margin-left: 0;
+}
