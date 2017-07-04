@@ -1,40 +1,16 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set nav = "home" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block content %}
+{% block mainContent %}
 
 	{{headings.h1('Components')}}
 
-	{{headings.h2('Forms')}}
-
-	<ul>
-		<li><a href="/components/text-box">Text box</a></li>
-		<li><a href="/components/date-field">Date field</a></li>
-		<li><a href="/components/validation">Validation</a></li>
-	</ul>
-
-	{{headings.h2('Colour')}}
-	<ul>
-		<li><a href="/components/colours">Palette</a></li>
-	</ul>
-
-	{{headings.h2('Typography')}}
-	<p>Coming soon.</p>
-
-	{{headings.h2('Navigation')}}
-	<p>Coming soon.</p>
-
-	{{headings.h2('Buttons and links')}}
-	<p>Coming soon.</p>
-
-	{{headings.h2('Tables')}}
-	<p>Coming soon.</p>
-
-	{{headings.h2('Lists')}}
-	<p>Coming soon.</p>
+	<p>Coming soon</p>
 
 
-{% endblock content %}
+
+
+{% endblock mainContent %}

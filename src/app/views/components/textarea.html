@@ -1,17 +1,9 @@
 {% extends 'layouts/component.html' %}
+{% set cnav = "textarea" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
-
-{% block pageScript %}
-	<!-- build:js(src) /public/js/charsindicator.min.js -->
-		<script src="/public/js/CharactersIndicator.js"></script>
-	<!-- endbuild -->
-	<script>
-		var ci = new CharactersIndicator(document.getElementById('notes'));
-	</script>
-{% endblock pageScript %}
 
 {% block mainContent %}
 

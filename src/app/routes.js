@@ -27,4 +27,8 @@ module.exports = function( express, app ){
 	app.get('/components/date-field', function( req, res ){
 		res.render('components/date-field.html');
 	});
+
+	app.get('/components/characters-remaining', function( req, res ){
+		res.render('components/characters-remaining.html');
+	});
 };

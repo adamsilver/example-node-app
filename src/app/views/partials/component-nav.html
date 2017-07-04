@@ -1,16 +1,28 @@
 <nav class="componentNav">
+
+	<p>Buttons</p>
+	<ul>
+		<li><a {% if cnav == 'primary-button'%}class="active"{%endif%} href="/components/button">Primary button</a></li>
+	</ul>
+
+
 	<p>Form elements</p>
 	<ul>
-		<li><a href="/components/text-box">Text box</a></li>
-		<li><a href="/components/text-box">Select box</a></li>
-		<li><a href="/components/text-box">Text area</a></li>
-		<li><a href="/components/text-box">Radio buttons</a></li>
-		<li><a href="/components/text-box">Checkbox group</a></li>
-		<li><a href="/components/date-field">Date field</a></li>
-		<li><a href="/components/text-box">Autocomplete</a></li>
-		<li><a href="/components/text-box">Characters remaining</a></li>
+		<li><a {% if cnav == 'text-box'%}class="active"{%endif%} href="/components/text-box">Text box</a></li>
+		<li><a {% if cnav == 'select-box'%}class="active"{%endif%} href="/components/text-box">Select box</a></li>
+		<li><a {% if cnav == 'textarea'%}class="active"{%endif%} href="/components/textarea">Textarea</a></li>
+		<li><a {% if cnav == 'radio-buttons'%}class="active"{%endif%} href="/components/text-box">Radio buttons</a></li>
+		<li><a {% if cnav == 'checkbox-group'%}class="active"{%endif%} href="/components/text-box">Checkbox group</a></li>
+		<li><a {% if cnav == 'date-field'%}class="active"{%endif%} href="/components/date-field">Date field</a></li>
+		<li><a {% if cnav == 'autocomplete'%}class="active"{%endif%} href="/components/text-box">Autocomplete</a></li>
+		<li><a {% if cnav == 'characters-remaining'%}class="active"{%endif%} href="/components/characters-remaining">Characters remaining</a></li>
+	</ul>
+
+	<p>Forms</p>
+	<ul>
 		<li><a href="/components/validation">Validation</a></li>
 	</ul>
+
 
 	<p>Colours</p>
 	<ul>
