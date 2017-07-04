@@ -20,6 +20,10 @@ module.exports = function( express, app ){
 		res.render('components/text-box.html');
 	});
 
+	app.get('/components/textarea', function( req, res ){
+		res.render('components/textarea.html');
+	});
+
 	app.get('/components/date-field', function( req, res ){
 		res.render('components/date-field.html');
 	});
