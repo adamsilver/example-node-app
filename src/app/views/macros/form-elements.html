@@ -82,8 +82,42 @@
 	</div>
 {% endmacro %}
 
+{% macro dateField(legend, options) %}
+	<div class="field {% if options.error %}field-hasError{% endif %}">
+		<fieldset>
+			<legend>
+				<span class="field-legend">{{legend}}</span>
+				{% if options.hint %}
+					<span class="field-hint">{{options.hint}}</span>
+				{% endif %}
+				{% if options.error %}
+					<span class="field-error">{{options.error}}</span>
+				{% endif %}
+			</legend>
+			{% if options.day %}
+				<div class="field-dayWrapper">
+					<label for="{{options.day.name}}">{{options.day.label}}</label>
+					<input class="field-dayBox" type="number" pattern="[0-9]*" name="{{options.day.name}}" value="{{options.day.value}}" id="{{options.day.name}}" min="0" max="31">
+				</div>
+			{% endif %}
+			{% if options.month %}
+				<div class="field-monthWrapper">
+					<label for="{{options.month.name}}">{{options.month.label}}</label>
+					<input class="field-monthBox" type="number" pattern="[0-9]*" name="{{options.month.name}}" value="{{options.month.value}}" id="{{options.month.name}}" min="0" max="12">
+				</div>
+			{% endif %}
+			{% if options.year %}
+				<div class="field-yearWrapper">
+					<label for="{{options.year.name}}">{{options.year.label}}</label>
+					<input class="field-yearBox" type="number" pattern="[0-9]*" name="{{options.year.name}}" value="{{options.year.valye}}" id="{{options.year.name}}" min="0" max="2050">
+				</div>
+			{% endif %}
+		</fieldset>
+	</div>
+{% endmacro %}
+
 {% macro errorSummary(heading, errors) %}
-	<div class="errorSummary {% if not errors %}errorSummary-isHidden{%endif%}">
+	<div tabindex="0" role="alert" class="errorSummary {% if not errors %}errorSummary-isHidden{%endif%}">
 		{% if errors %}
 			{{headings.h2(heading)}}
 			<ul>

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block content %}
+
+	{{navigation.breadcrumb([{
+		text: 'Date field'
+	}])}}
+
+	{{headings.h1('Date field')}}
+
+	<div class="example">
+		{{formElements.dateField('Date of birth', {
+			day: {
+				name: 'day',
+				label: "Day"
+			},
+			month: {
+				name: 'month',
+				label: "Month"
+			},
+			year: {
+				name: 'year',
+				label: "Year"
+			},
+			hint: 'DD MM YYYY',
+			error: 'Enter your date of birth.'
+		})}}
+	</div>
+
+{% endblock content %}

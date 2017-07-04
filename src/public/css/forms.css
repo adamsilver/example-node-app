@@ -176,6 +176,8 @@ fieldset {
 .errorSummary ul {
 	color: #B10E1E;
 	list-style: none;
+    margin-left: 0;
+    margin-bottom: 0;
 }
 
 .errorSummary li {
