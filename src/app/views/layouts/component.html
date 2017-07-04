@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% set nav = "home" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block content %}
+
+<div style="overflow: hidden">
+	<div style="float: left;">
+		{% include "partials/component-nav.html" %}
+	</div>
+	<div style="float: left;">
+		{% block mainContent %}
+		{% endblock%}
+	</div>
+</div>
+
+{% endblock content %}

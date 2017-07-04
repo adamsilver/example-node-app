@@ -126,28 +126,37 @@ ul {
 	content: "HTML";
 }
 
-header nav {
+.primaryNav {
 	float: right;
 	margin-top: 0.4em;
 }
 
-nav ul {
+.primaryNav ul {
 	list-style: none;
 	margin-bottom: 0;
 	margin-left: 0;
 }
 
-nav li {
+.primaryNav li {
 	display: inline-block;
 	font-size: 1em;
 	margin-right: 5px;
 }
 
-nav a {
+.primaryNav a {
 	color: #fff;
 }
 
 .active {
 	font-weight: bold;
 	text-decoration: none;
+}
+
+.componentNav {
+	width: 200px;
+}
+
+.componentNav p {
+	margin-bottom: 5px;
+	font-weight: bold;
 }
