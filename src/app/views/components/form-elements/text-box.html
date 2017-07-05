@@ -13,21 +13,34 @@
 
 	{{headings.h1('Text box')}}
 
-	{{headings.h2('Standard')}}
-
 	<div class="example">
-		{{formElements.textBox('email', 'Email address')}}
+		{{formElements.textBox('email', 'Email address', type='email')}}
 	</div>
 
-	<div class="example example--html">
+	{{headings.h2('Description')}}
+	<p>Use this when you need to store a piece of text such as first name.</p>
+
+	{{headings.h2('HTML')}}
+	<div class="html">
+	<pre>{{(""+formElements.textBox('email', 'Email address', type='email') )}}</pre>
+	</div>
+
+	{{headings.h2('Variants')}}
+	<ul>
+		<li><a href="">With hint</a></li>
+		<li><a href="">With error</a></li>
+		<li><a href="">With hint and error</a></li>
+	</ul>
+
+	<!-- <div class="example example--html">
 		<pre><code>{% raw %}formElements.textBox('email', 'Email address'){% endraw %}</code></pre>
 	</div>
 
 	<div class="example example--html">
 		<pre><code>{{(""+formElements.textBox('email', 'Email address') )}}</code></pre>
-	</div>
+	</div> -->
 
-	{{headings.h2('With hint')}}
+	<!-- {{headings.h2('With hint')}}
 
 	{% raw %}
 		{{formElements.textBox('email2', 'Email address', {hint: 'Some hint'})}}
@@ -35,9 +48,9 @@
 
 	<div class="example">
 		{{formElements.textBox('email2', 'Email address', {hint: 'Some hint'})}}
-	</div>
+	</div> -->
 
-	{{headings.h2('With error')}}
+	<!-- {{headings.h2('With error')}}
 
 	{% raw %}
 		{{formElements.textBox('email3', 'Email address', {error: 'You need to enter the ‘at’ symbol (@) for the email address.'})}}
@@ -61,6 +74,6 @@
 			hint: 'Some hint',
 			error: 'You need to enter the ‘at’ symbol (@) in the email address.'
 		})}}
-	</div>
+	</div> -->
 
 {% endblock mainContent %}

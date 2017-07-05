@@ -5,7 +5,7 @@ module.exports = function( express, app ){
 	});
 
 	app.get( '/components/colours', function( req, res ){
-		res.render('components/colours.html');
+		res.render('components/colour/colours.html');
 	});
 
 	app.get('/components', function(req, res ){
@@ -13,22 +13,22 @@ module.exports = function( express, app ){
 	});
 
 	app.get('/components/validation', function( req, res ){
-		res.render('components/validation.html');
+		res.render('components/forms/validation.html');
 	});
 
 	app.get('/components/text-box', function( req, res ){
-		res.render('components/text-box.html');
+		res.render('components/form-elements/text-box.html');
 	});
 
 	app.get('/components/textarea', function( req, res ){
-		res.render('components/textarea.html');
+		res.render('components/form-elements/textarea.html');
 	});
 
 	app.get('/components/date-field', function( req, res ){
-		res.render('components/date-field.html');
+		res.render('components/form-elements/date-field.html');
 	});
 
 	app.get('/components/characters-remaining', function( req, res ){
-		res.render('components/characters-remaining.html');
+		res.render('components/form-elements/characters-remaining.html');
 	});
 };
