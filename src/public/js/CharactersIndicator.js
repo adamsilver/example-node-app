@@ -1,14 +1,18 @@
 function CharactersIndicator(field, options) {
 	this.field = $(field);
+	this.status = $('<div class="indicator" role="alert" aria-live="polite" />');
+	this.setOptions(options);
+	this.updateStatus(this.options.maxLength);
+	this.field.parent().append(this.status);
+	this.field.on("keydown", $.proxy(this, 'onFieldChange'));
+};
+
+CharactersIndicator.prototype.setOptions = function(options) {
 	this.options = {
 		maxLength: 100,
 		message: 'You have %count% characters remaining.',
-		status: $('<div class="indicator" role="alert" aria-live="polite" />')
 	};
 	this.options = $.extend(this.options, options);
-	this.updateStatus(this.options.maxLength);
-	this.field.parent().append(this.options.status);
-	this.field.on("keydown", $.proxy(this, 'onFieldChange'));
 };
 
 CharactersIndicator.prototype.onFieldChange = function(e) {
@@ -18,5 +22,5 @@ CharactersIndicator.prototype.onFieldChange = function(e) {
 
 CharactersIndicator.prototype.updateStatus = function(remaining) {
 	var message = this.options.message.replace(/%count%/, remaining);
-	this.options.status.html(message);
+	this.status.html(message);
 };
