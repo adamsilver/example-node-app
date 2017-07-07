@@ -1,6 +1,5 @@
 {% extends 'layouts/component.html' %}
-{% set cnav = "date-field" %}
-
+{% set cnav = "radio-buttons" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
@@ -9,27 +8,19 @@
 {% block mainContent %}
 
 	{{navigation.breadcrumb([{
-		text: 'Date field'
+		text: 'Radio buttons'
 	}])}}
 
-	{{headings.h1('Date field')}}
+	{{headings.h1('Radio buttons')}}
 
 	<div class="example">
-		{{formElements.dateField('Date of birth', {
-			day: {
-				name: 'day',
-				label: "Day"
-			},
-			month: {
-				name: 'month',
-				label: "Month"
-			},
-			year: {
-				name: 'year',
-				label: "Year"
-			},
-			hint: 'DD MM YYYY'
-		})}}
+		{{formElements.radioButtons('choice', 'Favourite colour', [{
+			label: 'Blue',
+			id: 'choice'
+		}, {
+			label: 'Red',
+			id: 'choice1'
+		}])}}
 	</div>
 
 {% endblock mainContent %}

@@ -16,12 +16,28 @@ module.exports = function( express, app ){
 		res.render('components/forms/validation.html');
 	});
 
+	app.get('/components/payment', function( req, res ){
+		res.render('components/forms/payment.html');
+	});
+
 	app.get('/components/text-box', function( req, res ){
 		res.render('components/form-elements/text-box.html');
 	});
 
+	app.get('/components/select-box', function( req, res ){
+		res.render('components/form-elements/select-box.html');
+	});
+
 	app.get('/components/textarea', function( req, res ){
 		res.render('components/form-elements/textarea.html');
+	});
+
+	app.get('/components/radio-buttons', function( req, res ){
+		res.render('components/form-elements/radio-buttons.html');
+	});
+
+	app.get('/components/checkbox-group', function( req, res ){
+		res.render('components/form-elements/checkbox-group.html');
 	});
 
 	app.get('/components/date-field', function( req, res ){

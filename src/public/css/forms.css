@@ -8,7 +8,7 @@ fieldset {
 }
 
 .field {
-	max-width: 25em;
+	max-width: 32em;
 	margin-bottom: 2em;
 }
 
@@ -262,3 +262,21 @@ fieldset {
 	background-color: #006435;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/**************************************
+* Width overrides
+**************************************/
+
+#expiry {
+	width: 5em;
+}
+
+#cvc {
+	width: 4em;
+}

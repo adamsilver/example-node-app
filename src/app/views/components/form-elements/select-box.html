@@ -1,6 +1,5 @@
 {% extends 'layouts/component.html' %}
-{% set cnav = "date-field" %}
-
+{% set cnav = "select-box" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
@@ -9,27 +8,20 @@
 {% block mainContent %}
 
 	{{navigation.breadcrumb([{
-		text: 'Date field'
+		text: 'Select box'
 	}])}}
 
-	{{headings.h1('Date field')}}
+	{{headings.h1('Select box')}}
+
 
 	<div class="example">
-		{{formElements.dateField('Date of birth', {
-			day: {
-				name: 'day',
-				label: "Day"
-			},
-			month: {
-				name: 'month',
-				label: "Month"
-			},
-			year: {
-				name: 'year',
-				label: "Year"
-			},
-			hint: 'DD MM YYYY'
-		})}}
+		{{formElements.selectBox('country', 'Country',[{
+				text: 'Select',
+				value: ''
+			}, {
+				text: 'Brazil',
+				value: 'Brazil'
+			}])}}
 	</div>
 
 {% endblock mainContent %}

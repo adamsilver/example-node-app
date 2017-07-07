@@ -1,0 +1,64 @@
+{% extends 'layouts/component.html' %}
+{% set cnav = "validation" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/buttons.html" as buttons %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block pageScript %}
+	<!-- build:js(src) /public/js/formvalidator.min.js -->
+		<script src="/public/js/FormValidator.js"></script>
+	<!-- endbuild -->
+	<!--<script>
+		var validator = new FormValidator(document.forms[0]);
+		validator.addValidator('email', [{
+		 	method: function(field) {
+		    	return field.value.trim().length > 0;
+			},
+			message: 'Enter your email address.'
+		},{
+			method: function(field) {
+		    	return (field.value.indexOf('@') > -1);
+		  	},
+			message: 'You need to enter the “at” symbol in the email address.'
+		}]);
+	</script>-->
+{% endblock pageScript %}
+
+{% block mainContent %}
+
+	{{navigation.breadcrumb([{
+		text: 'Payment'
+	}])}}
+
+	{{headings.h1('Payment')}}
+
+	<div class="example">
+		<form novalidate>
+			{{formElements.textBox('nameoncard', 'Name on card', {
+
+			})}}
+			{{formElements.textBox('cardnumber', 'Card number', type='number', {
+
+			})}}
+			{{formElements.textBox('expiry', 'Expiry date', type='number', {
+				hint: 'MMYY'
+			})}}
+			{{formElements.textBox('cvc', 'Security code', type='number', {
+				hint: 'The last 3 numbers on the back of your card.'
+			})}}
+
+			{{formElements.checkboxes('things', 'Is your billing address the same as delivery?', [{
+				label: 'Yes, my billing address is the same',
+				id: 'things',
+				checked: true
+			}])}}
+
+
+
+			{{buttons.primaryButton('Continue')}}
+		</form>
+	</div>
+
+{% endblock mainContent %}
