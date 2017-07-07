@@ -280,3 +280,7 @@ input::-webkit-inner-spin-button {
 #cvc {
 	width: 4em;
 }
+
+#postcode {
+    width: 8em;
+}

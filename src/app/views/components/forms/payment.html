@@ -7,23 +7,14 @@
 {% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
-	<!-- build:js(src) /public/js/formvalidator.min.js -->
+	<!-- build:js(src) /public/js/payment.min.js -->
 		<script src="/public/js/FormValidator.js"></script>
+		<script src="/public/js/CheckboxCollapser.js"></script>
 	<!-- endbuild -->
-	<!--<script>
+	<script>
 		var validator = new FormValidator(document.forms[0]);
-		validator.addValidator('email', [{
-		 	method: function(field) {
-		    	return field.value.trim().length > 0;
-			},
-			message: 'Enter your email address.'
-		},{
-			method: function(field) {
-		    	return (field.value.indexOf('@') > -1);
-		  	},
-			message: 'You need to enter the “at” symbol in the email address.'
-		}]);
-	</script>-->
+		var collapser = new CheckboxCollapser(document.getElementById('same'), document.getElementsByClassName('billingAddress')[0]);
+	</script>
 {% endblock pageScript %}
 
 {% block mainContent %}
@@ -49,13 +40,17 @@
 				hint: 'The last 3 numbers on the back of your card.'
 			})}}
 
-			{{formElements.checkboxes('things', 'Is your billing address the same as delivery?', [{
+			{{formElements.checkboxes('same', 'Is your billing address the same as delivery?', [{
 				label: 'Yes, my billing address is the same',
-				id: 'things',
+				id: 'same',
 				checked: true
 			}])}}
 
-
+			<div class="billingAddress">
+				{{formElements.textBox('address1', 'Street')}}
+				{{formElements.textBox('address2', 'Town')}}
+				{{formElements.textBox('postcode', 'Postcode')}}
+			</div>
 
 			{{buttons.primaryButton('Continue')}}
 		</form>
