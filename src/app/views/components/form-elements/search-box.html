@@ -1,0 +1,28 @@
+{% extends 'layouts/component.html' %}
+{% set cnav = "search-box" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block mainContent %}
+
+	{{navigation.breadcrumb([{
+		text: 'Search box'
+	}])}}
+
+	{{headings.h1('Search box')}}
+
+	<div class="example">
+		{{formElements.textBox('search', 'Search products', type='search')}}
+	</div>
+
+	{{headings.h2('Description')}}
+	<p>Use this when the user needs to search for something with a huge amount of dynamic results.</p>
+
+	{{headings.h2('HTML')}}
+	<div class="html">
+	<pre>{{(""+formElements.textBox('search', 'Search products', type='search') )}}</pre>
+	</div>
+
+{% endblock mainContent %}

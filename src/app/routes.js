@@ -28,6 +28,10 @@ module.exports = function( express, app ){
 		res.render('components/form-elements/select-box.html');
 	});
 
+	app.get('/components/search-box', function( req, res ){
+		res.render('components/form-elements/search-box.html');
+	});
+
 	app.get('/components/textarea', function( req, res ){
 		res.render('components/form-elements/textarea.html');
 	});
@@ -42,6 +46,10 @@ module.exports = function( express, app ){
 
 	app.get('/components/date-field', function( req, res ){
 		res.render('components/form-elements/date-field.html');
+	});
+
+	app.get('/components/autocomplete', function( req, res ){
+		res.render('components/form-elements/autocomplete.html');
 	});
 
 	app.get('/components/characters-remaining', function( req, res ){
