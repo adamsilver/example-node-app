@@ -1,3 +1,4 @@
+//France (1 of 2) is selected
 function Autocomplete(control) {
 	this.control = control;
 	this.controlId = control.id;
@@ -358,7 +359,6 @@ Autocomplete.prototype.createButton = function() {
 };
 
 Autocomplete.prototype.onButtonClick = function(e) {
-	window.clearTimeout(this.timeout);
 	this.clearOptions();
 	var options = this.getAllOptions();
 	this.buildOptions(options);
