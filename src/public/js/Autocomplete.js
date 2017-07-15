@@ -168,15 +168,12 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 		options = this.getAllOptions();
 		this.buildOptions(options);
 		this.showOptionsPanel();
-		// this.optionsUl.focus();
 	// Chars typed
 	} else {
 		options = this.getOptions(this.textBox.val().trim());
 		if(options.length > 0) {
 			this.buildOptions(options);
 			this.showOptionsPanel();
-
-			// this.optionsUl.focus();
 		}
 	}
 	option = this.getFirstOption();
@@ -241,7 +238,7 @@ Autocomplete.prototype.highlightOption = function(option) {
 	option.addClass('autocomplete-option-isActive');
 	option.attr('aria-selected', 'true');
 
-	if(!isVisible(option.parent(), option)) {
+	if(!this.isElementVisible(option.parent(), option)) {
 		option.parent().scrollTop(option.parent().scrollTop() + option.position().top);
 	}
 
@@ -376,7 +373,7 @@ Autocomplete.prototype.createOptionsUl = function() {
 	this.addSuggestionEvents();
 };
 
-function isVisible(container, element) {
+Autocomplete.prototype.isElementVisible = function(container, element) {
 	var containerHeight = $(container).height();
 	var elementTop = $(element).offset().top;
 	var containerTop = $(container).offset().top;
@@ -386,10 +383,10 @@ function isVisible(container, element) {
     var visible;
 
     if ((elementTop - containerTop < 0) || (elementTop - containerTop + elementHeight > containerHeight)) {
-      visible = false;
+		visible = false;
     }
     else {
-      visible = true;
+		visible = true;
     }
     return visible;
-}
+};
