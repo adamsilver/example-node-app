@@ -19,6 +19,8 @@
 		if(!supportsDateInput()) {
 			new DatePicker(document.getElementById('date'));
 		}
+
+		new DatePicker(document.getElementById('tdate'));
 	</script>
 {% endblock pageScript %}
 
@@ -32,6 +34,10 @@
 
 	<div class="example">
 		{{formElements.textBox('date', 'Date', type='date')}}
+	</div>
+
+	<div class="example">
+		{{formElements.textBox('tdate', 'Date', type='text')}}
 	</div>
 
 	{{headings.h2('Description')}}

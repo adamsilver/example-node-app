@@ -402,9 +402,10 @@ input[type=date] {
 }
 
 .calendarControl {
-	border-left: 6px solid #ccc;
+	border-left: 6px solid #222;
 	padding: 10px;
 	max-width: 400px;
+	margin-top: 1em;
 }
 
 .calendarControl-wrapper {
@@ -482,6 +483,11 @@ input[type=date] {
 	padding: 9px 0px;
 	text-align: center;
 	border: 1px solid #ccc;
+}
+
+.calendarControl td .hid {
+	position: absolute;
+	left: -9999em;
 }
 
 .calendarControlWrapper input {

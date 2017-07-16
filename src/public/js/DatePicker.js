@@ -68,21 +68,21 @@ DatePicker.prototype.getCalendarHtml = function(year, month) {
 	var html = '<div class="'+this.options.calendarClass+'-wrapper">';
 	html +=		'<div class="'+this.options.calendarClass+'-actions">';
 	html +=			'<button aria-label="Previous month" type="button" class="'+this.options.calendarClass+'-back">&#10094;</button>';
-	html += 		'<div aria-label="Currently viewing month:" id="somePrefix_label" role="heading" aria-live="assertive" and aria-atomic="true" class="'+this.options.calendarClass+'-title">';
+	html += 		'<div aria-label="Currently viewing month:" id="somePrefix_label" class="'+this.options.calendarClass+'-title">';
 	html += 			this.monthNames[month] + " " + year;
 	html += 		'</div>';
 	html +=			'<button aria-label="Next month" type="button" class="'+this.options.calendarClass+'-next">&#10095;</button>';
 	html +=		'</div>';
-	html += 	'<table aria-role="grid" aria-activedescendant="'+this.getActiveDescendantId()+'" aria-labelledby="somePrefix_label" tabindex="0">';
+	html += 	'<table ria-labelledby="somePrefix_label">';
 	html += 		'<thead>';
 	html += 			'<tr>';
-	html += 				'<th role="columnheader"><abbr title="Sunday">Sun</abbr></th>';
-	html += 				'<th role="columnheader"><abbr title="Monday">Mon</abbr></th>';
-	html += 				'<th role="columnheader"><abbr title="Tuesday">Tue</abbr></th>';
-	html += 				'<th role="columnheader"><abbr title="Wednesday">Wed</abbr></th>';
-	html += 				'<th role="columnheader"><abbr title="Thursday">Thu</abbr></th>';
-	html += 				'<th role="columnheader"><abbr title="Friday">Fri</abbr></th>';
-	html += 				'<th role="columnheader"><abbr title="Saturday">Sat</abbr></th>';
+	html += 				'<th><abbr title="Sunday">Sun</abbr></th>';
+	html += 				'<th><abbr title="Monday">Mon</abbr></th>';
+	html += 				'<th><abbr title="Tuesday">Tue</abbr></th>';
+	html += 				'<th><abbr title="Wednesday">Wed</abbr></th>';
+	html += 				'<th><abbr title="Thursday">Thu</abbr></th>';
+	html += 				'<th><abbr title="Friday">Fri</abbr></th>';
+	html += 				'<th><abbr title="Saturday">Sat</abbr></th>';
 	html += 			'</tr>';
 	html += 		'</thead>';
 	html += 		'<tbody>';
@@ -90,10 +90,6 @@ DatePicker.prototype.getCalendarHtml = function(year, month) {
 	html += 		'</tbody>';
 	html += 	'</table>';
 	return html;
-};
-
-DatePicker.prototype.getActiveDescendantId = function() {
-	return this.control.id + '_day_' + this.selectedDate.getDate();
 };
 
 DatePicker.prototype.getFirstDateOfMonth = function(month, year) {
@@ -127,7 +123,7 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 
 	while (d.getMonth() == month) {
 		if (i % 7 === 0) {
-			html += '</tr><tr aria-role="row">';
+			html += '</tr><tr>';
 		}
 
 		ariaSelected = 'false';
@@ -142,7 +138,7 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 			ariaSelected = 'true';
 		}
 
-		html += this.getCellHtml(d, tdClass, ariaSelected);
+		html += this.getCellHtml(d, tdClass, ariaSelected, d.getTime() === this.selectedDate.getTime());
 
 		d.setDate( d.getDate()+1 );
 
@@ -159,9 +155,29 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 	return html;
 };
 
-DatePicker.prototype.getCellHtml = function(date, tdClass, ariaSelected) {
+DatePicker.prototype.getCellHtml = function(date, tdClass, ariaSelected, selected) {
 	var label = date.getDate() + ' ' + this.monthNames[date.getMonth()] + ', ' + date.getFullYear();
-	return '<td aria-role="gridcell" aria-selected="'+ariaSelected+'" aria-label="'+label+'" data-date="'+date.toString()+'" id="'+this.control.id+'_day_'+date.getDate()+'" class="'+tdClass+'">' + '' + date.getDate() + '' + '</td>';
+	var shortLabel = ' ' + this.monthNames[date.getMonth()] + ', ' + date.getFullYear();
+	var html = '';
+	html += '<td';
+
+	if(selected) {
+		html += ' tabindex="0" ';
+	} else {
+		html += ' tabindex="-1" ';
+	}
+
+	html += ' aria-selected="'+ariaSelected+'" ';
+	html += ' aria-label="'+label+'" ';
+	html += ' data-date="'+date.toString()+'" ';
+	html += ' id="'+this.control.id+'_day_'+date.getDate()+'" ';
+	html += ' class="'+tdClass+'" ';
+
+	html += '>';
+	html += '<span aria-hidden="true">' + date.getDate() + '</span>';
+	html += '</td>'
+
+	return html;
 };
 
 DatePicker.prototype.buildCalendar = function() {
@@ -270,7 +286,6 @@ DatePicker.prototype.onDayUpSpacePressed = function(e) {
 	e.preventDefault();
 	this.updateTextBoxDate(this.selectedDate);
 	this.hide();
-	debugger;
 	this.focusTextBox();
 };
 
@@ -358,7 +373,6 @@ DatePicker.prototype.updateCalendarHtml = function(year, month) {
 DatePicker.prototype.selectDate = function(date) {
 	this.unhighlightSelectedDate(this.selectedDate);
 	this.highlightSelectedDate(date);
-	this.updateActiveDescendant();
 };
 
 DatePicker.prototype.updateTextBoxDate = function(date) {
@@ -373,19 +387,16 @@ DatePicker.prototype.unhighlightSelectedDate = function(date) {
 	var cell = this.getDayCell(date);
 	cell.removeClass(this.options.calendarClass+'-dayActivator-isSelected');
 	cell.attr('aria-selected', 'false');
-	// cell.removeAttr('tabindex');
+	cell.removeAttr('tabindex');
 	this.selectedDate = null;
-};
-
-DatePicker.prototype.updateActiveDescendant = function() {
-	this.calendar.find('table').attr('aria-activedescendant', this.getActiveDescendantId());
 };
 
 DatePicker.prototype.highlightSelectedDate = function(date) {
 	var cell = this.getDayCell(date);
-	// cell.attr('tabindex', '0');
+	cell.attr('tabindex', '0');
 	cell.addClass(this.options.calendarClass+'-dayActivator-isSelected');
 	cell.attr('aria-selected', 'true');
+	cell.focus();
 	this.selectedDate = date;
 };
 
