@@ -1,5 +1,5 @@
 {% extends 'layouts/component.html' %}
-{% set cnav = "date-field" %}
+{% set cnav = "memorable-date-field" %}
 
 
 {% import "macros/headings.html" as headings %}
@@ -9,13 +9,13 @@
 {% block mainContent %}
 
 	{{navigation.breadcrumb([{
-		text: 'Date field'
+		text: 'Memorable date field'
 	}])}}
 
-	{{headings.h1('Date field')}}
+	{{headings.h1('Memorable date field')}}
 
 	<div class="example">
-		{{formElements.dateField('Date of birth', {
+		{{formElements.memorableDateField('Date of birth', {
 			day: {
 				name: 'day',
 				label: "Day"

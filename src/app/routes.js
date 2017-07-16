@@ -44,8 +44,12 @@ module.exports = function( express, app ){
 		res.render('components/form-elements/checkbox-group.html');
 	});
 
-	app.get('/components/date-field', function( req, res ){
-		res.render('components/form-elements/date-field.html');
+	app.get('/components/memorable-date-field', function( req, res ){
+		res.render('components/form-elements/memorable-date-field.html');
+	});
+
+	app.get('/components/date-picker-field', function( req, res ){
+		res.render('components/form-elements/date-picker-field.html');
 	});
 
 	app.get('/components/autocomplete', function( req, res ){

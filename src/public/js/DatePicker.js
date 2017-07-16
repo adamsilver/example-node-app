@@ -1,6 +1,10 @@
 function DatePicker(control, options) {
 	this.control = control;
 	this.container = $(control).parent();
+	this.wrapper = $('<div class="datepicker"></div>');
+	this.container.append(this.wrapper);
+	this.wrapper.append(this.control);
+	options = options || {};
 	this.setupOptions(options);
 	this.setupKeys();
 	this.setupMonthNames();
@@ -56,7 +60,7 @@ DatePicker.prototype.setupOptions = function(options) {
 	options.endDate = options.endDate || defaults.dateEnd;
 	options.currentDate = options.currentDate || defaults.currentDate;
 	options.calendarClass = options.calendarClass || 'calendarControl';
-	options.startHidden = options.startHidden || false;
+	options.startHidden = options.startHidden || true;
 	this.options = options;
 };
 
@@ -170,7 +174,7 @@ DatePicker.prototype.buildCalendar = function() {
 
 	this.calendar.html(this.getCalendarHtml(this.selectedDate.getFullYear(), this.selectedDate.getMonth()));
 	this.addEventListeners();
-	this.container.append(this.calendar);
+	this.wrapper.append(this.calendar);
 };
 
 DatePicker.prototype.addEventListeners = function() {
@@ -182,8 +186,8 @@ DatePicker.prototype.addEventListeners = function() {
 };
 
 DatePicker.prototype.createToggleButton = function() {
-	this.toggleButton = $('<button class="'+this.options.calendarClass+'-toggleButton" type="button">View calendar</button>');
-	this.container.append(this.toggleButton);
+	this.toggleButton = $('<button class="'+this.options.calendarClass+'-toggleButton" type="button">Choose</button>');
+	this.wrapper.append(this.toggleButton);
 	this.toggleButton.on('click', $.proxy(this, 'onToggleButtonClick'));
 };
 

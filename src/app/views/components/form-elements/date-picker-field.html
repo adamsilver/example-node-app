@@ -1,0 +1,32 @@
+{% extends 'layouts/component.html' %}
+{% set cnav = "date-picker-field" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block pageScript %}
+	<!-- build:js(src) /public/js/dp.min.js -->
+	<script src="/public/js/DatePicker.js"></script>
+	<!-- endbuild -->
+	<script>
+		new DatePicker(document.getElementById('date'));
+	</script>
+{% endblock pageScript %}
+
+{% block mainContent %}
+
+	{{navigation.breadcrumb([{
+		text: 'Date picker field'
+	}])}}
+
+	{{headings.h1('Date picker field')}}
+
+	<div class="example">
+		{{formElements.textBox('date', 'Date', type='date')}}
+	</div>
+
+	{{headings.h2('Description')}}
+	<p>Use this when...</p>
+
+{% endblock mainContent %}
