@@ -10,7 +10,15 @@
 	<script src="/public/js/DatePicker.js"></script>
 	<!-- endbuild -->
 	<script>
-		new DatePicker(document.getElementById('date'));
+		function supportsDateInput() {
+			var el = document.createElement('input')
+			el.type = "date";
+			return el.type == "date";
+		}
+
+		if(!supportsDateInput()) {
+			new DatePicker(document.getElementById('date'));
+		}
 	</script>
 {% endblock pageScript %}
 
