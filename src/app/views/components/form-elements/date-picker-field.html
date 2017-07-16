@@ -11,8 +11,12 @@
 	<!-- endbuild -->
 	<script>
 		function supportsDateInput() {
-			var el = document.createElement('input')
-			el.type = "date";
+			var el = document.createElement('input');
+			try {
+				el.type = "date";
+			} catch(e) {
+
+			}
 			return el.type == "date";
 		}
 
