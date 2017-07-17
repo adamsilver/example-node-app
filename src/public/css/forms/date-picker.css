@@ -102,26 +102,14 @@ input[type=date] {
 
 .calendarControl td,
 .calendarControl th {
+	padding: 9px 0px;
 	text-align: center;
 	border: 1px solid #ccc;
 }
 
-.calendarControl td button {
-	display: block;
-	width: 100%;
-	padding-top: 9px;
-	padding-bottom: 9px;
-	-webkit-appearance: none;
-	appearance: none;
-	border: none;
-	background: none;
-	font-size: 1em;
-}
-
-.calendarControl-dayActivator-isSelected button {
-	background-color: #005EA5;
-    border-color: #005EA5;
-    color: white;
+.calendarControl td .hid {
+	position: absolute;
+	left: -9999em;
 }
 
 .calendarControlWrapper input {
