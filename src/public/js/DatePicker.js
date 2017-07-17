@@ -73,7 +73,7 @@ DatePicker.prototype.getCalendarHtml = function(year, month) {
 	html += 		'</div>';
 	html +=			'<button aria-label="Next month" type="button" class="'+this.options.calendarClass+'-next">&#10095;</button>';
 	html +=		'</div>';
-	html += 	'<table ria-labelledby="somePrefix_label">';
+	html += 	'<table role="application">';
 	html += 		'<thead>';
 	html += 			'<tr>';
 	html += 				'<th><abbr title="Sunday">Sun</abbr></th>';
@@ -157,24 +157,21 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 
 DatePicker.prototype.getCellHtml = function(date, tdClass, ariaSelected, selected) {
 	var label = date.getDate() + ' ' + this.monthNames[date.getMonth()] + ', ' + date.getFullYear();
-	var shortLabel = ' ' + this.monthNames[date.getMonth()] + ', ' + date.getFullYear();
-	var html = '';
-	html += '<td';
-
+	var tabindex = '-1';
 	if(selected) {
-		html += ' tabindex="0" ';
-	} else {
-		html += ' tabindex="-1" ';
+		tabindex = '0';
 	}
 
+	var html = '';
+	html += '<td';
+	// html += ' role="application"';
 	html += ' aria-selected="'+ariaSelected+'" ';
 	html += ' aria-label="'+label+'" ';
 	html += ' data-date="'+date.toString()+'" ';
 	html += ' id="'+this.control.id+'_day_'+date.getDate()+'" ';
 	html += ' class="'+tdClass+'" ';
-
 	html += '>';
-	html += '<span aria-hidden="true">' + date.getDate() + '</span>';
+	html += '<button aria-label="'+label+'" role="button" tabindex="'+tabindex+'">' + date.getDate() + '</button>';
 	html += '</td>'
 
 	return html;
@@ -197,7 +194,7 @@ DatePicker.prototype.addEventListeners = function() {
 	this.calendar.on('click', '.'+this.options.calendarClass+'-back', $.proxy(this, 'onBackClick'));
 	this.calendar.on('click', '.'+this.options.calendarClass+'-next', $.proxy(this, 'onNextClick'));
 	this.calendar.on('click', '.'+this.options.calendarClass+'-dayActivator', $.proxy(this, 'onDayClick'));
-	this.calendar.on('keydown', 'table', $.proxy(this, 'onGridKeyDown'));
+	this.calendar.on('keydown', 'button', $.proxy(this, 'onButtonKeyDown'));
 	this.calendar.on('keydown', $.proxy(this, 'onCalendarKeyDown'));
 };
 
@@ -261,7 +258,7 @@ DatePicker.prototype.onCalendarKeyDown = function(e) {
 	}
 };
 
-DatePicker.prototype.onGridKeyDown = function(e) {
+DatePicker.prototype.onButtonKeyDown = function(e) {
 	switch(e.keyCode) {
 		case this.keys.down:
 			this.onDayDownPressed(e);
@@ -387,16 +384,18 @@ DatePicker.prototype.unhighlightSelectedDate = function(date) {
 	var cell = this.getDayCell(date);
 	cell.removeClass(this.options.calendarClass+'-dayActivator-isSelected');
 	cell.attr('aria-selected', 'false');
-	cell.removeAttr('tabindex');
+	// cell.removeAttr('tabindex');
+	cell.find('button').attr('tabindex', '-1');
 	this.selectedDate = null;
 };
 
 DatePicker.prototype.highlightSelectedDate = function(date) {
 	var cell = this.getDayCell(date);
-	cell.attr('tabindex', '0');
+	// cell.attr('tabindex', '0');
+	cell.find('button').attr('tabindex', '0');
 	cell.addClass(this.options.calendarClass+'-dayActivator-isSelected');
 	cell.attr('aria-selected', 'true');
-	cell.focus();
+	cell.find('button').focus();
 	this.selectedDate = date;
 };
 
