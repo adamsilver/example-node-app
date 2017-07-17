@@ -1,0 +1,19 @@
+/**************************************
+* Primary button
+**************************************/
+
+.primaryButton {
+	background-color: #00823B;
+	border: none;
+	appearance: none;
+	-webkit-appearance: none;
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 10px 25px;
+	border-radius: 6px;
+}
+
+.primaryButton:hover {
+	background-color: #006435;
+}

@@ -1,0 +1,121 @@
+input[type=date] {
+	max-width: 10em;
+}
+
+.calendarControl-toggleButton {
+	font-size: inherit;
+	font-family: inherit;
+	line-height: 1.25;
+	padding: 0.5em;
+	border: 2px solid #333;
+	background: #fff;
+	position: relative;
+	left: -2px;
+	border-radius: 0 10px 10px 0;
+}
+
+.calendarControl-toggleButton:hover {
+	background-color: #333;
+	color: #fff;
+}
+
+.calendarControl-isHidden {
+	display: none;
+}
+
+.calendarControl {
+	border-left: 6px solid #222;
+	padding: 10px;
+	max-width: 400px;
+	margin-top: 1em;
+}
+
+.calendarControl-wrapper {
+	border: 3px solid #222;
+	padding: 10px;
+	max-width: 400px;
+}
+
+.calendarControl-actions {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.calendarControl-title {
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+.calendarControl-back {
+	float: left;
+}
+
+.calendarControl-next {
+	float: right;
+}
+
+.calendarControl-next,
+.calendarControl-back {
+	-webkit-appearance: none;
+    border: none;
+    background-color: #ddd;
+    font-size: 1em;
+    line-height: 1.25;
+    padding: 0.4em 0.9em;
+    vertical-align: bottom;
+    border-radius: 6px;
+}
+
+.calendarControl-next:hover,
+.calendarControl-back:hover {
+    background-color: #ccc;
+}
+
+.calendarControl-dayActivator {
+	border: 2px solid white;
+}
+
+.calendarControl-previousMonthDay {
+	color: #999;
+}
+
+.calendarControl-dayActivator-isToday {
+	background-color: lightyellow;
+}
+
+.calendarControl-dayActivator-isSelected {
+	background-color: #005EA5;
+    border-color: #005EA5;
+    color: white;
+}
+
+.calendarControl-dayActivator:focus {
+    outline: 1px solid #000;
+}
+
+.calendarControl-title {
+	text-align: center;
+}
+
+.calendarControl table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.calendarControl td,
+.calendarControl th {
+	padding: 9px 0px;
+	text-align: center;
+	border: 1px solid #ccc;
+}
+
+.calendarControl td .hid {
+	position: absolute;
+	left: -9999em;
+}
+
+.calendarControlWrapper input {
+	margin-bottom: 10px;
+}
