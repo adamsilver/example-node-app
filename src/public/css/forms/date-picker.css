@@ -65,6 +65,7 @@ input[type=date] {
     padding: 0.4em 0.9em;
     vertical-align: bottom;
     border-radius: 6px;
+    font-weight: bold;
 }
 
 .calendarControl-next:hover,

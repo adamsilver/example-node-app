@@ -67,11 +67,11 @@ DatePicker.prototype.setupOptions = function(options) {
 DatePicker.prototype.getCalendarHtml = function(year, month) {
 	var html = '<div class="'+this.options.calendarClass+'-wrapper">';
 	html +=		'<div class="'+this.options.calendarClass+'-actions">';
-	html +=			'<button aria-label="Previous month" type="button" class="'+this.options.calendarClass+'-back">&#10094;</button>';
-	html += 		'<div aria-label="Currently viewing month:" id="somePrefix_label" class="'+this.options.calendarClass+'-title">';
+	html +=			'<button aria-label="Previous month" type="button" class="'+this.options.calendarClass+'-back">&lt;</button>';
+	html += 		'<div role="status" aria-live="polite" aria-atomic="true" class="'+this.options.calendarClass+'-title">';
 	html += 			this.monthNames[month] + " " + year;
 	html += 		'</div>';
-	html +=			'<button aria-label="Next month" type="button" class="'+this.options.calendarClass+'-next">&#10095;</button>';
+	html +=			'<button aria-label="Next month" type="button" class="'+this.options.calendarClass+'-next">&gt;</button>';
 	html +=		'</div>';
 	html += 	'<table role="application">';
 	html += 		'<thead>';
