@@ -6,6 +6,7 @@ function DatePicker(control, options) {
 	this.wrapper.append(this.control);
 	options = options || {};
 	this.setupOptions(options);
+	this.calendarClass = 'datepicker';
 	this.setupKeys();
 	this.setupMonthNames();
 	this.state = {
@@ -55,23 +56,19 @@ DatePicker.prototype.setupOptions = function(options) {
 	}());
 
 	options = options || {};
-	options.container = options.container || document.body;
-	options.startDate = options.startDate || defaults.dateStart;
-	options.endDate = options.endDate || defaults.dateEnd;
 	options.currentDate = options.currentDate || defaults.currentDate;
-	options.calendarClass = options.calendarClass || 'calendarControl';
 	options.startHidden = options.startHidden || true;
 	this.options = options;
 };
 
 DatePicker.prototype.getCalendarHtml = function(year, month) {
-	var html = '<div class="'+this.options.calendarClass+'-wrapper">';
-	html +=		'<div class="'+this.options.calendarClass+'-actions">';
-	html +=			'<button aria-label="Previous month" type="button" class="'+this.options.calendarClass+'-back">&lt;</button>';
-	html += 		'<div role="status" aria-live="polite" aria-atomic="true" class="'+this.options.calendarClass+'-title">';
+	var html = '<div class="'+this.calendarClass+'-calendar">';
+	html +=		'<div class="'+this.calendarClass+'-actions">';
+	html +=			'<button aria-label="Previous month" type="button" class="'+this.calendarClass+'-back">&lt;</button>';
+	html += 		'<div role="status" aria-live="polite" aria-atomic="true" class="'+this.calendarClass+'-title">';
 	html += 			this.monthNames[month] + " " + year;
 	html += 		'</div>';
-	html +=			'<button aria-label="Next month" type="button" class="'+this.options.calendarClass+'-next">&gt;</button>';
+	html +=			'<button aria-label="Next month" type="button" class="'+this.calendarClass+'-next">&gt;</button>';
 	html +=		'</div>';
 	html += 	'<table role="application">';
 	html += 		'<thead>';
@@ -106,7 +103,7 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 	d.setHours(0,0,0,0);
 	var firstDay = d.getDay();
 	var i = 0;
-	var tdClassDefault = this.options.calendarClass+'-dayActivator';
+	var tdClassDefault = this.calendarClass+'-day';
 	var ariaSelected = 'false';
 	var now = new Date();
 	now.setHours(0,0,0,0);
@@ -130,11 +127,11 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 
 		var tdClass = tdClassDefault;
 		if (d.getTime() === now.getTime()) {
-			tdClass += ' '+this.options.calendarClass+'-dayActivator-isToday';
+			tdClass += ' '+this.calendarClass+'-day-isToday';
 		}
 
 		if (d.getTime() === this.selectedDate.getTime()) {
-			tdClass += ' '+this.options.calendarClass+'-dayActivator-isSelected';
+			tdClass += ' '+this.calendarClass+'-day-isSelected';
 			ariaSelected = 'true';
 		}
 
@@ -148,7 +145,7 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 	while (i % 7 !== 0) {
 		var firstDate = this.getFirstDateOfMonth(month, year);
 		firstDate.setDate(firstDate.getDate()+(i-daysToIgnore));
-		html += '<td class="calendarControl-previousMonthDay">'+firstDate.getDate()+'</td>';
+		html += '<td class="calendarControl-nextMonthDay">'+firstDate.getDate()+'</td>';
 		i++;
 	}
 	html += "</tr>";
@@ -182,7 +179,7 @@ DatePicker.prototype.getCellHtml = function(date, tdClass, ariaSelected, selecte
 };
 
 DatePicker.prototype.buildCalendar = function() {
-	this.calendar = $('<div class="'+this.options.calendarClass+'">');
+	this.calendar = $('<div class="'+this.calendarClass+'-wrapper">');
 	if(this.options.startHidden) {
 		this.hide();
 	} else {
@@ -195,15 +192,15 @@ DatePicker.prototype.buildCalendar = function() {
 };
 
 DatePicker.prototype.addEventListeners = function() {
-	this.calendar.on('click', '.'+this.options.calendarClass+'-back', $.proxy(this, 'onBackClick'));
-	this.calendar.on('click', '.'+this.options.calendarClass+'-next', $.proxy(this, 'onNextClick'));
-	this.calendar.on('click', '.'+this.options.calendarClass+'-dayActivator', $.proxy(this, 'onDayClick'));
+	this.calendar.on('click', '.'+this.calendarClass+'-back', $.proxy(this, 'onBackClick'));
+	this.calendar.on('click', '.'+this.calendarClass+'-next', $.proxy(this, 'onNextClick'));
+	this.calendar.on('click', '.'+this.calendarClass+'-day', $.proxy(this, 'onDayClick'));
 	this.calendar.on('keydown', 'table', $.proxy(this, 'onGridKeyDown'));
 	this.calendar.on('keydown', $.proxy(this, 'onCalendarKeyDown'));
 };
 
 DatePicker.prototype.createToggleButton = function() {
-	this.toggleButton = $('<button class="'+this.options.calendarClass+'-toggleButton" type="button">Choose</button>');
+	this.toggleButton = $('<button class="'+this.calendarClass+'-toggleButton" type="button">Choose</button>');
 	this.wrapper.append(this.toggleButton);
 	this.toggleButton.on('click', $.proxy(this, 'onToggleButtonClick'));
 };
@@ -367,7 +364,7 @@ DatePicker.prototype.getDayCell = function(date) {
 };
 
 DatePicker.prototype.updateCalendarHtml = function(year, month) {
-	this.calendar.find('.'+this.options.calendarClass+'-title').html(this.monthNames[month] + ' ' + year);
+	this.calendar.find('.'+this.calendarClass+'-calendar-title').html(this.monthNames[month] + ' ' + year);
 	this.calendar.find("tbody").html(this.getCalendarTableRows(month, year));
 };
 
@@ -386,7 +383,7 @@ DatePicker.prototype.focusTextBox = function() {
 
 DatePicker.prototype.unhighlightSelectedDate = function(date) {
 	var cell = this.getDayCell(date);
-	cell.removeClass(this.options.calendarClass+'-dayActivator-isSelected');
+	cell.removeClass(this.calendarClass+'-day-isSelected');
 	cell.attr('aria-selected', 'false');
 	cell.removeAttr('tabindex');
 	this.selectedDate = null;
@@ -395,7 +392,7 @@ DatePicker.prototype.unhighlightSelectedDate = function(date) {
 DatePicker.prototype.highlightSelectedDate = function(date) {
 	var cell = this.getDayCell(date);
 	cell.attr('tabindex', '0');
-	cell.addClass(this.options.calendarClass+'-dayActivator-isSelected');
+	cell.addClass(this.calendarClass+'-day-isSelected');
 	cell.attr('aria-selected', 'true');
 	cell.focus();
 	this.selectedDate = date;
@@ -434,14 +431,14 @@ DatePicker.prototype.getNextMonth = function() {
 
 DatePicker.prototype.show = function() {
 	this.calendar.attr('aria-hidden', 'false');
-	this.calendar.removeClass(this.options.calendarClass+'-isHidden');
+	this.calendar.removeClass(this.calendarClass+'-wrapper-isHidden');
 	this.showing = true;
 	this.toggleButton.attr('aria-expanded', 'true');
 };
 
 DatePicker.prototype.hide = function() {
 	this.calendar.attr('aria-hidden', 'true');
-	this.calendar.addClass(this.options.calendarClass+'-isHidden');
+	this.calendar.addClass(this.calendarClass+'-wrapper-isHidden');
 	this.showing = false;
 	this.toggleButton.attr('aria-expanded', 'false');
 };

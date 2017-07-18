@@ -1,8 +1,8 @@
-input[type=date] {
+.datepicker .textBox {
 	max-width: 10em;
 }
 
-.calendarControl-toggleButton {
+.datepicker-toggleButton {
 	font-size: inherit;
 	font-family: inherit;
 	line-height: 1.25;
@@ -14,105 +14,95 @@ input[type=date] {
 	border-radius: 0 10px 10px 0;
 }
 
-.calendarControl-toggleButton:hover {
+.datepicker-toggleButton:hover {
 	background-color: #333;
 	color: #fff;
 }
 
-.calendarControl-isHidden {
-	display: none;
-}
-
-.calendarControl {
+.datepicker-wrapper {
 	border-left: 6px solid #222;
 	padding: 10px;
 	max-width: 400px;
 	margin-top: 1em;
 }
 
-.calendarControl-wrapper {
+.datepicker-wrapper-isHidden {
+	display: none;
+}
+
+.datepicker-calendar {
 	border: 3px solid #222;
 	padding: 10px;
 	max-width: 400px;
 }
 
-.calendarControl-actions {
+.datepicker-actions {
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-.calendarControl-title {
-	margin-bottom: 20px;
+.datepicker-title {
+	margin-top: 4px;
+	margin-bottom: 16px;
 	display: inline-block;
 }
 
-.calendarControl-back {
+.datepicker-back {
 	float: left;
 }
 
-.calendarControl-next {
+.datepicker-next {
 	float: right;
 }
 
-.calendarControl-next,
-.calendarControl-back {
+.datepicker-next,
+.datepicker-back {
 	-webkit-appearance: none;
-    border: none;
-    background-color: #ddd;
+    background: none;
     font-size: 1em;
     line-height: 1.25;
     padding: 0.4em 0.9em;
     vertical-align: bottom;
-    border-radius: 6px;
     font-weight: bold;
+    border: 2px solid #222;
 }
 
-.calendarControl-next:hover,
-.calendarControl-back:hover {
-    background-color: #ccc;
+.datepicker-next:hover,
+.datepicker-back:hover {
+    background-color: #222;
+    color: #fff;
 }
 
-.calendarControl-dayActivator {
+.datepicker-day {
 	border: 2px solid white;
 }
 
-.calendarControl-previousMonthDay {
+.datepicker-previousMonthDay,
+.datepicker-nextMonthDay {
 	color: #999;
 }
 
-.calendarControl-dayActivator-isToday {
+.datepicker-day-isToday {
 	background-color: lightyellow;
 }
 
-.calendarControl-dayActivator-isSelected {
+.datepicker-day:hover,
+.datepicker-day-isSelected {
 	background-color: #005EA5;
     border-color: #005EA5;
     color: white;
 }
 
-.calendarControl-title {
-	text-align: center;
-}
-
-.calendarControl table {
+.datepicker table {
 	table-layout: fixed;
 	width: 100%;
 	border-collapse: collapse;
 }
 
-.calendarControl td,
-.calendarControl th {
+.datepicker td,
+.datepicker th {
 	padding: 9px 0px;
 	text-align: center;
 	border: 1px solid #ccc;
-}
-
-.calendarControl td .hid {
-	position: absolute;
-	left: -9999em;
-}
-
-.calendarControlWrapper input {
-	margin-bottom: 10px;
 }
