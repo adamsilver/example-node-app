@@ -70,7 +70,7 @@ DatePicker.prototype.getCalendarHtml = function(year, month) {
 	html += 		'</div>';
 	html +=			'<button aria-label="Next month" type="button" class="'+this.calendarClass+'-next">&gt;</button>';
 	html +=		'</div>';
-	html += 	'<table role="application">';
+	html += 	'<table role="grid">';
 	html += 		'<thead>';
 	html += 			'<tr>';
 	html += 				'<th><abbr title="Sunday">Sun</abbr></th>';
@@ -97,7 +97,7 @@ DatePicker.prototype.getFirstDateOfMonth = function(month, year) {
 };
 
 DatePicker.prototype.getCalendarTableRows = function(month, year) {
-	var html = "<tr>";
+	var html = '<tr>';
 	var d = new Date();
 	d.setFullYear(year,month,1,0);
 	d.setHours(0,0,0,0);
@@ -148,7 +148,7 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 		html += '<td class="calendarControl-nextMonthDay">'+firstDate.getDate()+'</td>';
 		i++;
 	}
-	html += "</tr>";
+	html += '</tr>';
 	return html;
 };
 
@@ -165,7 +165,6 @@ DatePicker.prototype.getCellHtml = function(date, tdClass, ariaSelected, selecte
 	}
 
 	html += ' aria-selected="'+ariaSelected+'" ';
-	html += ' role="button" ';
 	html += ' aria-label="'+label+'" ';
 	html += ' data-date="'+date.toString()+'" ';
 	html += ' id="'+this.control.id+'_day_'+date.getDate()+'" ';
