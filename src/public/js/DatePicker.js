@@ -364,7 +364,7 @@ DatePicker.prototype.getDayCell = function(date) {
 };
 
 DatePicker.prototype.updateCalendarHtml = function(year, month) {
-	this.calendar.find('.'+this.calendarClass+'-calendar-title').html(this.monthNames[month] + ' ' + year);
+	this.calendar.find('.'+this.calendarClass+'-title').html(this.monthNames[month] + ' ' + year);
 	this.calendar.find("tbody").html(this.getCalendarTableRows(month, year));
 };
 
