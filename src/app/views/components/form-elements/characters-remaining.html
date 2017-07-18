@@ -1,4 +1,4 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 {% set cnav = "characters-remaining" %}
 
 {% import "macros/headings.html" as headings %}
@@ -14,7 +14,7 @@
 	</script>
 {% endblock pageScript %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{navigation.breadcrumb([{
 		text: 'Characters remaining'
@@ -27,4 +27,4 @@
 		{{formElements.textarea('notes', 'Delivery notes')}}
 	</div>
 
-{% endblock mainContent %}
+{% endblock content %}

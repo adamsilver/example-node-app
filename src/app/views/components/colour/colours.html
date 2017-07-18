@@ -1,10 +1,10 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{navigation.breadcrumb([{
 		text: 'Colours'
@@ -18,4 +18,4 @@
 		<div style="display: inline-block;height: 100px; width: 100px; border-radius: 50%; background-color: #fd0ede"></div>
 	</div>
 
-{% endblock mainContent %}
+{% endblock content %}

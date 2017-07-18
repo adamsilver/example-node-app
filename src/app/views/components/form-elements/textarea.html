@@ -1,11 +1,11 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 {% set cnav = "textarea" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{navigation.breadcrumb([{
 		text: 'Textarea'
@@ -18,4 +18,4 @@
 		{{formElements.textarea('notes', 'Delivery notes')}}
 	</div>
 
-{% endblock mainContent %}
+{% endblock content %}

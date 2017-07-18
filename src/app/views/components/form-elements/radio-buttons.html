@@ -1,11 +1,11 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 {% set cnav = "radio-buttons" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{navigation.breadcrumb([{
 		text: 'Radio buttons'
@@ -23,4 +23,4 @@
 		}])}}
 	</div>
 
-{% endblock mainContent %}
+{% endblock content %}

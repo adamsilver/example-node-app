@@ -1,4 +1,4 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 {% set cnav = "validation" %}
 
 {% import "macros/headings.html" as headings %}
@@ -17,7 +17,7 @@
 	</script>
 {% endblock pageScript %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{navigation.breadcrumb([{
 		text: 'Payment'
@@ -56,4 +56,4 @@
 		</form>
 	</div>
 
-{% endblock mainContent %}
+{% endblock content %}

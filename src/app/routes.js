@@ -8,10 +8,6 @@ module.exports = function( express, app ){
 		res.render('components/colour/colours.html');
 	});
 
-	app.get('/components', function(req, res ){
-		res.render('components/index.html');
-	});
-
 	app.get('/components/validation', function( req, res ){
 		res.render('components/forms/validation.html');
 	});

@@ -1,11 +1,11 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 {% set cnav = "search-box" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{navigation.breadcrumb([{
 		text: 'Search box'
@@ -25,4 +25,4 @@
 	<pre>{{(""+formElements.textBox('search', 'Search products', type='search') )}}</pre>
 	</div>
 
-{% endblock mainContent %}
+{% endblock content %}

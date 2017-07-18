@@ -1,16 +1,13 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layout.html' %}
 {% set nav = "home" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block mainContent %}
+{% block content %}
 
 	{{headings.h1('Components')}}
 
-	<p>Coming soon</p>
+	{% include "partials/component-nav.html" %}
 
-
-
-
-{% endblock mainContent %}
+{% endblock content %}
