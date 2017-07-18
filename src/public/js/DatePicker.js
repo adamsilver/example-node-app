@@ -113,7 +113,7 @@ DatePicker.prototype.getCalendarTableRows = function(month, year) {
 
 	while (i < firstDay) {
 		var daysToSubtract = firstDay - i;
-		var paddedDate = new Date();
+		var paddedDate = new Date(year, month);
 		paddedDate.setDate(d.getDate()-daysToSubtract);
 		html += '<td class="calendarControl-previousMonthDay">'+paddedDate.getDate()+'</td>';
 		i++;
