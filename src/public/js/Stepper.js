@@ -11,18 +11,13 @@ function Stepper(input) {
 }
 
 Stepper.prototype.createDecrementButton = function() {
-	this.decrementButton = $('<button class="stepper-decrementButton" type="button">&#45;</button>');
+	this.decrementButton = $('<button tabindex="-1" aria-label="Decrement" class="stepper-decrementButton" type="button">&#45;</button>');
 	this.wrapper.prepend(this.decrementButton);
 };
 
 Stepper.prototype.createIncrementButton = function() {
-	this.incrementButton = $('<button class="stepper-incrementButton" type="button">&#43;</button>');
+	this.incrementButton = $('<button tabindex="-1" aria-label="Increment" class="stepper-incrementButton" type="button">&#43;</button>');
 	this.wrapper.append(this.incrementButton);
-};
-
-Stepper.prototype.onDecrementClick = function(e) {
-	var val = this.getInputValue();
-	this.input.val(val-1);
 };
 
 Stepper.prototype.getInputValue = function() {
@@ -31,6 +26,11 @@ Stepper.prototype.getInputValue = function() {
 		val = 0;
 	}
 	return val;
+};
+
+Stepper.prototype.onDecrementClick = function(e) {
+	var val = this.getInputValue();
+	this.input.val(val-1);
 };
 
 Stepper.prototype.onIncrementClick = function(e) {
