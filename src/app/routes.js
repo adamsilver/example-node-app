@@ -55,4 +55,8 @@ module.exports = function( express, app ){
 	app.get('/components/characters-remaining', function( req, res ){
 		res.render('components/form-elements/characters-remaining.html');
 	});
+
+	app.get('/components/stepper', function( req, res ){
+		res.render('components/form-elements/stepper.html');
+	});
 };

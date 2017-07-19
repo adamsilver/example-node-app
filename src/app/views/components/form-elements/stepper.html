@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% set cnav = "stepper" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block pageScript %}
+	<!-- build:js(src) /public/js/stepper.min.js -->
+		<script src="/public/js/Stepper.js"></script>
+	<!-- endbuild -->
+	<script>
+		new Stepper(document.getElementById('adults'));
+	</script>
+{% endblock pageScript %}
+
+{% block content %}
+
+	{{navigation.breadcrumb([{
+		text: 'Stepper'
+	}])}}
+
+	{{headings.h1('Stepper')}}
+
+	<div class="example">
+		{{formElements.textBox('adults', 'How many people aged 16 and over are flying?', type='number', {
+			value: '0'
+		})}}
+	</div>
+
+	{{headings.h2('Description')}}
+	<p>Use this when.</p>
+
+{% endblock content %}
