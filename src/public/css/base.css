@@ -50,19 +50,19 @@ body {
 
 .header {
 	background-color: #222;
-	padding: 20px 40px;
+	padding: 20px 20px;
 	overflow: hidden;
 }
 
 .logo {
 	font-size: 1.5em;
-	color: #7FDBFF;
+	color: #fff;
 	font-weight: bold;
 	float: left;
 }
 
 .main {
-	padding: 40px 40px;
+	padding: 40px 20px;
 }
 
 h1 {
@@ -140,6 +140,7 @@ ul {
 .primaryNav {
 	float: right;
 	margin-top: 0.4em;
+	display: none;
 }
 
 .primaryNav ul {
@@ -156,7 +157,7 @@ ul {
 }
 
 .primaryNav a {
-	color: #7FDBFF;
+	color: #fff;
 }
 
 .active {

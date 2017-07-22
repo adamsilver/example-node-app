@@ -88,9 +88,49 @@
 			{% for choice in choices %}
 				<div class="field-checkbox">
 					<label for="{{choice.id}}">
-						<input type="checkbox" name="{{name}}" value="{{choice.value}}" id="{{choice.id}}" {% if choice.checked %}checked{% endif%}>
+						<input
+							type="checkbox"
+							name="{{name}}"
+							value="{{choice.value}}"
+							id="{{choice.id}}"
+							{% if choice.disabled %}disabled{% endif%}
+							{% if choice.checked %}checked{% endif%}>
 						{{choice.label}}
 					</label>
+				</div>
+			{% endfor %}
+		</fieldset>
+	</div>
+{% endmacro %}
+
+{% macro seats(name, legend, rows, options) %}
+	<div class="field {% if options.error%}field-hasError{% endif %}">
+		<fieldset>
+			<legend>
+				<span class="field-legend">{{legend}}</span>
+				{% if options.hint %}
+					<span class="field-hint">{{options.hint | safe}}</span>
+				{% endif %}
+				{% if options.error %}
+					<span class="field-error">{{options.error}}</span>
+				{% endif %}
+			</legend>
+			{% for row in rows %}
+				<div class="seat-row">
+					{% for choice in row.seats %}
+						<div class="field-checkbox field-checkbox--seat">
+							<label for="{{choice.id}}">
+								<input
+									type="checkbox"
+									name="{{name}}"
+									value="{{choice.value}}"
+									id="{{choice.id}}"
+									{% if choice.disabled %}disabled{% endif%}
+									{% if choice.checked %}checked{% endif%}>
+								{{choice.label}}
+							</label>
+						</div>
+					{% endfor %}
 				</div>
 			{% endfor %}
 		</fieldset>

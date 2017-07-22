@@ -16,6 +16,11 @@ module.exports = function( express, app ){
 		res.render('components/forms/payment.html');
 	});
 
+	app.get('/components/seat-chooser', function( req, res ){
+		res.render('components/forms/seat-chooser.html');
+	});
+
+
 	app.get('/components/text-box', function( req, res ){
 		res.render('components/form-elements/text-box.html');
 	});

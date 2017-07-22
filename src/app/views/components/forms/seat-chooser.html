@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+{% set cnav = "validation" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/buttons.html" as buttons %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block pageScript %}
+	<!-- build:js(src) /public/js/seatchooser.min.js -->
+		<script src="/public/js/FormValidator.js"></script>
+	<!-- endbuild -->
+	<script>
+
+	</script>
+{% endblock pageScript %}
+
+{% block content %}
+
+	{{navigation.breadcrumb([{
+		text: 'Seat chooser'
+	}])}}
+
+	{{headings.h1('Seat chooser')}}
+
+
+	<form novalidate>
+
+		{{formElements.seats('seat', 'Seat', [{
+			seats: [{
+				label: '1A',
+				id: 'seat',
+				value: '1A'
+			},{
+				label: '1B',
+				id: 'seat1B',
+				value: '1B'
+			},{
+				label: '1C',
+				id: 'seat1C',
+				value: '1C'
+			},{
+				label: '1D',
+				id: 'seat1D',
+				value: '1D'
+			},{
+				label: '1E',
+				id: 'seat1E',
+				value: '1E'
+			},{
+				label: '1F',
+				id: 'seat1F',
+				value: '1F'
+			}]
+		}, {
+			seats: [{
+				label: '2A',
+				id: 'seat2A',
+				value: '2A'
+			},{
+				label: '2B',
+				id: 'seat2B',
+				value: '2B'
+			},{
+				label: '2C',
+				id: 'seat2C',
+				value: '2C'
+			},{
+				label: '2D',
+				id: 'seat2D',
+				value: '2D'
+			},{
+				label: '2E',
+				id: 'seat2E',
+				value: '2E'
+			},{
+				label: '2F',
+				id: 'seat2F',
+				value: '2F'
+			}]
+		}], {
+			hint: 'Numbers represent rows: 1 is at the front. A&amp;F are window seats and C&amp;D are isle seats.'
+		})}}
+
+
+
+
+
+
+		{{buttons.primaryButton('Continue')}}
+	</form>
+
+
+{% endblock content %}

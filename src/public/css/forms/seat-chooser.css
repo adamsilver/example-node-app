@@ -1,0 +1,13 @@
+.seat-row {
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.field-checkbox--seat {
+	float: left;
+	margin-right: 3px;
+}
+
+.field-checkbox--seat label {
+	padding: 0.5em;
+}

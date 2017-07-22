@@ -34,11 +34,10 @@
 
 	{{headings.h1('Validation')}}
 
-	<div class="example">
 		<form novalidate>
 			{{formElements.errorSummary('Fix the following errors', [{
 				fieldName: 'email',
-				message: 'Enter you email address.'
+				message: 'Enter your email address.'
 			}, {
 				fieldName: 'choice',
 				message: 'Choose your favourite colour.'
@@ -81,6 +80,5 @@
 
 			{{buttons.primaryButton('Continue')}}
 		</form>
-	</div>
 
 {% endblock content %}
