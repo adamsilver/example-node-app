@@ -6,9 +6,6 @@
 {% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
-	<!-- build:js(src) /public/js/charsindicator.min.js -->
-		<script src="/public/js/CharactersIndicator.js"></script>
-	<!-- endbuild -->
 	<script>
 		var ci = new CharactersIndicator(document.getElementById('notes'));
 	</script>

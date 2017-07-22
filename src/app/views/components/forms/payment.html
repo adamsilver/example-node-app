@@ -7,10 +7,6 @@
 {% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
-	<!-- build:js(src) /public/js/payment.min.js -->
-		<script src="/public/js/FormValidator.js"></script>
-		<script src="/public/js/CheckboxCollapser.js"></script>
-	<!-- endbuild -->
 	<script>
 		var validator = new FormValidator(document.forms[0]);
 		var collapser = new CheckboxCollapser(document.getElementById('same'), document.getElementsByClassName('billingAddress')[0]);

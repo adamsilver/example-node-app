@@ -6,18 +6,15 @@
 {% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
-	<!-- build:js(src) /public/js/dp.min.js -->
-	<script src="/public/js/DatePicker.js"></script>
-	<!-- endbuild -->
 	<script>
 		function supportsDateInput() {
 			var el = document.createElement('input');
 			try {
-				el.type = "date";
+				el.type = 'date';
 			} catch(e) {
 
 			}
-			return el.type == "date";
+			return el.type == 'date';
 		}
 
 		if(!supportsDateInput()) {
