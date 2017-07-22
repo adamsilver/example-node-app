@@ -6,6 +6,9 @@
 		<title>{% block title %}Unstyled{% endblock title %}</title>
 		<link rel="shortcut icon" href="/public/img/favicon.ico" type="image/ico">
 		<link rel="icon" href="/public/img/favicon.ico" type="image/ico">
+		<script>
+			document.documentElement.className = 'enhanced';
+		</script>
 
 		{% block css %}
 		<!-- build:css(src) /public/css/app.min.css -->
@@ -39,6 +42,7 @@
 			<script src="/public/js/CharactersIndicator.js"></script>
 			<script src="/public/js/Autocomplete.js"></script>
 			<script src="/public/js/DatePicker.js"></script>
+			<script src="/public/js/SeatEnhancer.js"></script>
 		<!-- endbuild -->
 		{% endblock script %}
 

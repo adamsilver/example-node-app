@@ -1,13 +1,49 @@
-.seat-row {
+.plane-row {
 	overflow: hidden;
 	margin-bottom: 10px;
 }
 
-.field-checkbox--seat {
+.plane-seat {
 	float: left;
 	margin-right: 3px;
 }
 
-.field-checkbox--seat label {
+.plane-seat label {
 	padding: 0.5em;
+	margin-bottom: 0;
+	background-color: #eee;
+}
+
+.plane-seat label:hover {
+	background-color: #ddd;
+}
+
+.enhanced .plane-seat input {
+	position: absolute;
+	left: -9999em;
+}
+
+.enhanced .plane-seat label {
+	border-radius: 5px;
+	margin: 5px 1px 3px 0px;
+	border: 3px solid #DDDDDD;
+	border-top: 3px solid #eee;
+	width: 1.3em;
+	padding: 0.3em;
+	text-align: center;
+}
+
+.enhanced .plane-seat label:hover {
+	border-color: #ddd;
+}
+
+.enhanced .plane-seat-isSelected label {
+	background: #111 !important;
+	border-color: #111;
+	color: #fff;
+}
+
+.enhanced .plane-seat-isFocussed label {
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  	border: 3px solid rgba(81, 203, 238, 1);
 }
