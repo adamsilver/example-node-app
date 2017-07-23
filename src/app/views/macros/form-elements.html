@@ -118,7 +118,7 @@
 			{% for row in rows %}
 				<div class="plane-row">
 					{% for choice in row.seats %}
-						<div class="plane-seat">
+						<div class="plane-seat {% if choice.disabled %}plane-seat-isTaken{% endif%}">
 							<label for="{{choice.id}}">
 								<input
 									type="checkbox"

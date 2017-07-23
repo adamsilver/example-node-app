@@ -47,6 +47,10 @@ body {
     font-size: 100%;
 }
 
+a:link, a:visited {
+	color: #0074D9;
+}
+
 
 .header {
 	background-color: #222;
@@ -56,9 +60,13 @@ body {
 
 .logo {
 	font-size: 1.5em;
-	color: #fff;
 	font-weight: bold;
 	float: left;
+}
+
+.logo a {
+	text-decoration: none;
+	color: #fff;
 }
 
 .main {
@@ -66,23 +74,32 @@ body {
 }
 
 h1 {
-	font-size: 3.5em;
-	line-height: 1.2;
+	font-size: 2em;
+	line-height: 1;
 	color: #222;
 	letter-spacing: -1px;
 	margin-bottom: 40px;
 }
 
+@media(min-width: 30em) {
+	h1 {
+		font-size: 3.5em;
+	}
+}
+
 h2 {
-	font-size: 2.5em;
-	line-height: 1.1;
+	font-size: 1.5em;
+	line-height: 1;
 	color: #222;
 	margin-bottom: 20px;
 }
 
-a:link, a:visited {
-	color: #0074D9;
+@media(min-width: 30em) {
+	h2 {
+		font-size: 2.5em;
+	}
 }
+
 
 p {
 	margin-bottom: 40px;
@@ -107,7 +124,13 @@ ul {
     padding-top: 40px;
     padding-right: 15px;
     padding-bottom: 20px;
-    padding-left: 55px;
+    padding-left: 15px;
+}
+
+@media(min-width: 30em) {
+	.example {
+		padding-left: 55px;
+	}
 }
 
 .example:before {
