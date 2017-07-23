@@ -18,10 +18,10 @@
 	background-color: #ddd;
 }
 
-.enhanced .plane-seat input {
+/*.enhanced .plane-seat input {
 	position: absolute;
 	left: -9999em;
-}
+}*/
 
 .enhanced .plane-seat label {
 	border-radius: 5px;

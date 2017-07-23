@@ -8,7 +8,7 @@
 
 {% block pageScript %}
 	<script>
-		new SeatEnhancer();
+		// new SeatEnhancer();
 	</script>
 {% endblock pageScript %}
 
@@ -31,7 +31,8 @@
 			},{
 				label: '1B',
 				id: 'seat1B',
-				value: '1B'
+				value: '1B',
+				disabled: true
 			},{
 				label: '1C',
 				id: 'seat1C',
@@ -78,10 +79,6 @@
 		}], {
 			hint: 'Numbers represent rows: 1 is at the front. A&amp;F are window seats and C&amp;D are isle seats.'
 		})}}
-
-
-
-
 
 
 		{{buttons.primaryButton('Continue')}}
