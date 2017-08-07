@@ -1,5 +1,17 @@
-{% macro primaryButton(text, name, options) %}
+{% macro primaryButton(text, name) %}
 	<input type="submit" class="primaryButton" name="{{name}}" value="{{text}}">
+{% endmacro %}
+
+{% macro secondaryButton(text, name, options) %}
+	<input
+		type="submit"
+		class="secondaryButton"
+		name="{{name}}"
+		value="{{text}}"
+		{% if options.role %}
+			role="{{options.role}}"
+		{% endif %}
+	>
 {% endmacro %}
 
 

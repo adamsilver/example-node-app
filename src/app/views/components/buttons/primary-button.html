@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% set cnav = "primary-button" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/buttons.html" as buttons %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block content %}
+
+	{{headings.h1('Primary button')}}
+
+	<div class="example">
+		{{buttons.primaryButton('Save', 'save')}}
+	</div>
+
+{% endblock content %}

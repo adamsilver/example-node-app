@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% set cnav = "action-menu" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/menus.html" as menus %}
+
+{% block pageScript %}
+	<script>
+		new Menu($('.menu'), { mq: '(min-width: 45em)' });
+	</script>
+{% endblock pageScript %}
+
+{% block content %}
+
+	{{headings.h1('Action menu')}}
+
+	<div class="example">
+		{{menus.actionMenu()}}
+	</div>
+
+{% endblock content %}

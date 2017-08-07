@@ -4,6 +4,14 @@ module.exports = function( express, app ){
 		res.render('index.html');
 	});
 
+	app.get( '/components/menus/action-menu', function( req, res ){
+		res.render('components/menus/action-menu.html');
+	});
+
+	app.get( '/components/buttons/primary-button', function( req, res ){
+		res.render('components/buttons/primary-button.html');
+	});
+
 	app.get( '/components/colours', function( req, res ){
 		res.render('components/colour/colours.html');
 	});
