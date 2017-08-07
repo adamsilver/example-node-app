@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% set cnav = "file-input" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block content %}
+
+	{{navigation.breadcrumb([{
+		text: 'File input'
+	}])}}
+
+	{{headings.h1('File input')}}
+
+	<div class="example">
+		{{formElements.fileInput('file', 'Attach document')}}
+	</div>
+
+	{{headings.h2('Description')}}
+	<p>Use this when you need to upload a file.</p>
+
+	{{headings.h2('HTML')}}
+	<div class="html">
+	<pre>{{(""+formElements.fileInput('file', 'Document') )}}</pre>
+	</div>
+
+{% endblock content %}

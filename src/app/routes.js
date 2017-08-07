@@ -25,6 +25,11 @@ module.exports = function( express, app ){
 		res.render('components/form-elements/text-box.html');
 	});
 
+	app.get('/components/file-input', function( req, res ){
+		res.render('components/form-elements/file-input.html');
+	});
+
+
 	app.get('/components/select-box', function( req, res ){
 		res.render('components/form-elements/select-box.html');
 	});

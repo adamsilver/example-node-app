@@ -15,6 +15,22 @@
 </div>
 {% endmacro %}
 
+
+{% macro fileInput(name, label, options) %}
+<div class="field {% if options.error %}field-hasError{%endif%}">
+	<label for="{{name}}">
+		<span class="field-label">{{label}}</span>
+		{% if options.hint %}
+			<span class="field-hint">{{options.hint}}</span>
+		{% endif %}
+		{% if options.error %}
+			<span class="field-error">{{options.error}}</span>
+		{% endif %}
+	</label>
+	<input class="field-file" type="file" id="{{name}}" name="{{name}}" value="{{options.value}}">
+</div>
+{% endmacro %}
+
 {% macro textarea(name, label, options) %}
 	<div class="field {% if options.error %}field-hasError{%endif%}">
 		<label for="{{name}}">
