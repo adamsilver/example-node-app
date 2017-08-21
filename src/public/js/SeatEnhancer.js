@@ -60,9 +60,3 @@ SeatEnhancer.prototype.getLastCheckedSeat = function() {
 SeatEnhancer.prototype.getCheckedSeats = function() {
 	return this.checkboxes.filter(':checked');
 };
-
-
-
-
-
-

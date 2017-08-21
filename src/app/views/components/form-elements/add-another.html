@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% set cnav = "autocomplete" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/navigation.html" as navigation %}
+{% import "macros/buttons.html" as buttons %}
+
+{% block pageScript %}
+	<script>
+		new AddAnother($('.addAnother'));
+	</script>
+{% endblock pageScript %}
+
+{% block content %}
+
+	{{navigation.breadcrumb([{
+		text: 'Add another'
+	}])}}
+
+	{{headings.h1('Add another')}}
+
+	<div class="example">
+		<form method="post" action="/add-another/">
+			<div class="addAnother">
+				<div class="addAnother-items">
+					<div class="addAnother-item">
+						{{formElements.textBox('thing', 'A thing', { id: 'thing1'})}}
+					</div>
+					<div class="addAnother-item">
+						{{formElements.textBox('thing', 'A thing', { id: 'thing2'})}}
+					</div>
+					<div class="addAnother-item">
+						{{formElements.textBox('thing', 'A thing', { id: 'thing3'})}}
+					</div>
+					<div class="addAnother-item">
+						{{formElements.textBox('thing', 'A thing', { id: 'thing4'})}}
+					</div>
+				</div>
+				<button type="button" class="addAnother-addButton">Add another</button>
+			</div>
+			<br><br>
+			{{buttons.primaryButton('Submit')}}
+		</form>
+	</div>
+
+{% endblock content %}

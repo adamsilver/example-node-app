@@ -20,6 +20,7 @@ function listenForWorkerMessages( worker ){
 function startApp(){
 
 	var express = require( 'express' );
+	var bodyParser = require('body-parser');
 	var routes = require( './routes' );
 	var nunjucks = require( 'nunjucks' );
 	var serveStatic = require( 'serve-static' );
@@ -41,6 +42,10 @@ function startApp(){
 		noCache: !config.views.cache,
 		express: app
 	} );
+
+	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(bodyParser.json());
+	app.use(bodyParser());
 
 	app.use( '/public', serveStatic( pathToPublic ) );
 	app.use( logger( ( isDev ? 'dev' : 'combined' ) ) );

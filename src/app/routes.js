@@ -77,4 +77,13 @@ module.exports = function( express, app ){
 	app.get('/components/stepper', function( req, res ){
 		res.render('components/form-elements/stepper.html');
 	});
+
+	app.get('/components/add-another', function( req, res ){
+		res.render('components/form-elements/add-another.html');
+	});
+
+	app.post('/add-another', function( req, res ){
+		console.log(req.body.thing);
+		res.redirect('/components/add-another');
+	});
 };
