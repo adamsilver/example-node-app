@@ -47,6 +47,10 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 	}, this));
 };
 
+Autocomplete.prototype.onTextBoxClick = function(e) {
+	
+};
+
 Autocomplete.prototype.addSuggestionEvents = function() {
 	this.optionsUl.on('click', 'li', $.proxy(this, 'onSuggestionClick'));
 	this.optionsUl.on('keydown', $.proxy(this, 'onSuggestionsKeyDown'));
@@ -119,8 +123,10 @@ Autocomplete.prototype.onTextBoxType = function(e) {
 			this.buildOptions(options);
 			this.showOptionsPanel();
 		} else {
-			this.hideOptions();
-			this.clearOptions();
+			this.buildNoResultsMenu();
+			this.showOptionsPanel();
+			// this.hideOptions();
+			// this.clearOptions();
 		}
 		this.updateStatus(options.length);
 	}
@@ -174,17 +180,21 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 		options = this.getAllOptions();
 		this.buildOptions(options);
 		this.showOptionsPanel();
+		option = this.getFirstOption();
+		if(option[0]) {
+			this.highlightOption(option);
+		}
 	// Chars typed
 	} else {
 		options = this.getOptions(this.textBox.val().trim());
 		if(options.length > 0) {
 			this.buildOptions(options);
 			this.showOptionsPanel();
+			option = this.getFirstOption();
+			if(option[0]) {
+				this.highlightOption(option);
+			}
 		}
-	}
-	option = this.getFirstOption();
-	if(option[0]) {
-		this.highlightOption(option);
 	}
 };
 
@@ -308,6 +318,13 @@ Autocomplete.prototype.buildOptions = function(options) {
 	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
 };
 
+Autocomplete.prototype.buildNoResultsMenu = function() {
+	this.clearOptions();
+	this.activeOptionId = null;
+	this.optionsUl.append(this.getNoResultsOptionHtml());
+	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
+};
+
 Autocomplete.prototype.buildAllOptions = function() {
 	this.clearOptions();
 	this.activeOptionId = null;
@@ -315,6 +332,10 @@ Autocomplete.prototype.buildAllOptions = function() {
 	for(var i = 0; i < options.length; i++) {
 		this.optionsUl.append(this.getOptionHtml(i, $(options[i]).text()));
 	}
+};
+
+Autocomplete.prototype.getNoResultsOptionHtml = function() {
+	return '<li tabindex="-1" class="autocomplete-option autocomplete-option--noresults" role="option">' + 'No results' + '</li>';
 };
 
 Autocomplete.prototype.getOptionHtml = function(i, text) {
