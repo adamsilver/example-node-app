@@ -8,7 +8,7 @@
 
 {% block pageScript %}
 	<script>
-		new AddAnother($('.addAnother'));
+		// new AddAnother($('.addAnother'));
 	</script>
 {% endblock pageScript %}
 
@@ -20,7 +20,7 @@
 
 	{{headings.h1('Add another')}}
 
-	<div class="example">
+	<!-- <div class="example">
 		<form method="post" action="/add-another/">
 			<div class="addAnother">
 				<div class="addAnother-items">
@@ -42,6 +42,54 @@
 			<br><br>
 			{{buttons.primaryButton('Submit')}}
 		</form>
+	</div> -->
+
+	<div class="example">
+		<form method="post" action="/add-another/">
+			<div class="addAnother">
+				<div class="addAnother-items">
+					<div class="addAnother-item">
+						{{formElements.checkboxes('things', 'Things you like', [{
+							label: 'Chocolate',
+							value: 'chocolate',
+							id: 'things1'
+						}, {
+							label: 'Money',
+							value: 'money',
+							id: 'things2'
+						},  {
+							label: 'Sleep',
+							value: 'sleep',
+							id: 'things3'
+						}])}}
+					</div>
+					<div class="addAnother-item">
+						{{formElements.checkboxes('otherthings', 'Things you like', [{
+							label: 'Chocolate',
+							value: 'chocolate',
+							id: 'otherthings1'
+						}, {
+							label: 'Money',
+							value: 'money',
+							id: 'otherthings2'
+						},  {
+							label: 'Sleep',
+							value: 'sleep',
+							id: 'otherthings3'
+						}])}}
+					</div>
+				</div>
+				<button type="button" class="addAnother-addButton">Add another</button>
+			</div>
+			<br><br>
+			{{buttons.primaryButton('Submit')}}
+		</form>
 	</div>
+
+
+
+
+
+	
 
 {% endblock content %}

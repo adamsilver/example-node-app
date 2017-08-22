@@ -83,7 +83,12 @@ module.exports = function( express, app ){
 	});
 
 	app.post('/add-another', function( req, res ){
-		console.log(req.body.thing);
+		// for(var key in req.body) {
+		// 	console.log(key, req.body);
+		// 	console.log(req.body[key]);
+		// }
+
+		// console.log(require('util').inspect(req.body, {depth: 3}));
 		res.redirect('/components/add-another');
 	});
 };
