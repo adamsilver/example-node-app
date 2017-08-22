@@ -6,7 +6,7 @@ function Autocomplete(control) {
 	this.wrapper = $('<div class="autocomplete"></div>');
 	this.container.append(this.wrapper);
 	this.createTextBox();
-	this.createButton();
+	// this.createButton();
 	this.createOptionsUl();
 	this.removeSelectBox();
 	this.createStatusBox();
@@ -32,6 +32,7 @@ Autocomplete.prototype.setupKeys = function() {
 };
 
 Autocomplete.prototype.addTextBoxEvents = function() {
+	this.textBox.on('click', $.proxy(this, 'onTextBoxClick'));
 	this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'));
 	this.textBox.on('keydown', $.proxy(function(e) {
 		switch (e.keyCode) {
@@ -65,6 +66,10 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			break;
 		case this.keys.tab:
 			this.hideOptions();
+			break;
+		case this.keys.space:
+			// ignore this because otherwise the
+			// the menu will show again.
 			break;
 		case this.keys.enter:
 			// we ignore when the user presses enter here,
@@ -317,7 +322,7 @@ Autocomplete.prototype.getOptionHtml = function(i, text) {
 };
 
 Autocomplete.prototype.createStatusBox = function() {
-	this.status = $('<div aria-live="polite" role="status" aria-atomic="true" class="autocomplete-status" />');
+	this.status = $('<div hidden aria-live="polite" role="status" aria-atomic="true" class="autocomplete-status" />');
 	this.wrapper.append(this.status);
 };
 
