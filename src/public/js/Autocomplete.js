@@ -6,7 +6,7 @@ function Autocomplete(control) {
 	this.wrapper = $('<div class="autocomplete"></div>');
 	this.container.append(this.wrapper);
 	this.createTextBox();
-	// this.createButton();
+	this.createButton();
 	this.createOptionsUl();
 	this.removeSelectBox();
 	this.createStatusBox();
@@ -48,11 +48,15 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 };
 
 Autocomplete.prototype.onTextBoxClick = function(e) {
-	
+	this.clearOptions();
+	var options = this.getAllOptions();
+	this.buildOptions(options);
+	this.updateStatus(options.length);
+	this.showOptionsPanel();
 };
 
 Autocomplete.prototype.addSuggestionEvents = function() {
-	this.optionsUl.on('click', 'li', $.proxy(this, 'onSuggestionClick'));
+	this.optionsUl.on('click', '.autocomplete-option', $.proxy(this, 'onSuggestionClick'));
 	this.optionsUl.on('keydown', $.proxy(this, 'onSuggestionsKeyDown'));
 };
 
@@ -335,7 +339,7 @@ Autocomplete.prototype.buildAllOptions = function() {
 };
 
 Autocomplete.prototype.getNoResultsOptionHtml = function() {
-	return '<li tabindex="-1" class="autocomplete-option autocomplete-option--noresults" role="option">' + 'No results' + '</li>';
+	return '<li class="autocomplete-optionNoResults" role="option">' + 'No results' + '</li>';
 };
 
 Autocomplete.prototype.getOptionHtml = function(i, text) {
@@ -343,7 +347,7 @@ Autocomplete.prototype.getOptionHtml = function(i, text) {
 };
 
 Autocomplete.prototype.createStatusBox = function() {
-	this.status = $('<div hidden aria-live="polite" role="status" aria-atomic="true" class="autocomplete-status" />');
+	this.status = $('<div aria-live="polite" role="status" aria-atomic="true" class="autocomplete-status" />');
 	this.wrapper.append(this.status);
 };
 
@@ -353,9 +357,9 @@ Autocomplete.prototype.updateStatus = function(resultCount) {
 	} else {
 		this.status.text(resultCount + ' results available.');
 	}
-	window.setTimeout(function() {
-		this.status.text('');
-	}.bind(this), 1000);
+	// window.setTimeout($.proxy(function() {
+	// 	this.status.text('');
+	// }, this), 1000);
 };
 
 Autocomplete.prototype.removeSelectBox = function() {
@@ -379,12 +383,25 @@ Autocomplete.prototype.getOptionsId = function() {
 };
 
 Autocomplete.prototype.createButton = function() {
-	this.button = $('<button class="autocomplete-button" type="button" tabindex="-1">&#9662;</button>');
-	this.wrapper.append(this.button);
-	this.button.on('click', $.proxy(this, 'onButtonClick'));
+	// this.button = $('<button class="autocomplete-button" type="button" tabindex="-1"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg></button>');
+	// this.wrapper.append(this.button);
+	// this.button.on('click', $.proxy(this, 'onButtonClick'));
+
+	var arrow = $('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg>');
+	this.wrapper.append(arrow);
+	arrow.on('click', $.proxy(this, 'onArrowClick'));
 };
 
 Autocomplete.prototype.onButtonClick = function(e) {
+	this.clearOptions();
+	var options = this.getAllOptions();
+	this.buildOptions(options);
+	this.updateStatus(options.length);
+	this.showOptionsPanel();
+	this.textBox.focus();
+};
+
+Autocomplete.prototype.onArrowClick = function(e) {
 	this.clearOptions();
 	var options = this.getAllOptions();
 	this.buildOptions(options);
@@ -410,8 +427,7 @@ Autocomplete.prototype.isElementVisible = function(container, element) {
 
     if ((elementTop - containerTop < 0) || (elementTop - containerTop + elementHeight > containerHeight)) {
 		visible = false;
-    }
-    else {
+    } else {
 		visible = true;
     }
     return visible;
