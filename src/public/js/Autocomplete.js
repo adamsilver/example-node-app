@@ -1,4 +1,3 @@
-//France (1 of 2) is selected
 function Autocomplete(control) {
 	this.control = control;
 	this.controlId = control.id;
@@ -6,7 +5,7 @@ function Autocomplete(control) {
 	this.wrapper = $('<div class="autocomplete"></div>');
 	this.container.append(this.wrapper);
 	this.createTextBox();
-	this.createButton();
+	this.createArrowIcon();
 	this.createOptionsUl();
 	this.removeSelectBox();
 	this.createStatusBox();
@@ -382,23 +381,24 @@ Autocomplete.prototype.getOptionsId = function() {
 	return 'autocomplete-options--'+this.controlId;
 };
 
-Autocomplete.prototype.createButton = function() {
-	// this.button = $('<button class="autocomplete-button" type="button" tabindex="-1"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg></button>');
-	// this.wrapper.append(this.button);
-	// this.button.on('click', $.proxy(this, 'onButtonClick'));
+// Autocomplete.prototype.createButton = function() {
+// 	this.button = $('<button class="autocomplete-button" type="button" tabindex="-1"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg></button>');
+// 	this.wrapper.append(this.button);
+// 	this.button.on('click', $.proxy(this, 'onButtonClick'));
+// };
+// Autocomplete.prototype.onButtonClick = function(e) {
+// 	this.clearOptions();
+// 	var options = this.getAllOptions();
+// 	this.buildOptions(options);
+// 	this.updateStatus(options.length);
+// 	this.showOptionsPanel();
+// 	this.textBox.focus();
+// };
 
+Autocomplete.prototype.createArrowIcon = function() {
 	var arrow = $('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg>');
 	this.wrapper.append(arrow);
 	arrow.on('click', $.proxy(this, 'onArrowClick'));
-};
-
-Autocomplete.prototype.onButtonClick = function(e) {
-	this.clearOptions();
-	var options = this.getAllOptions();
-	this.buildOptions(options);
-	this.updateStatus(options.length);
-	this.showOptionsPanel();
-	this.textBox.focus();
 };
 
 Autocomplete.prototype.onArrowClick = function(e) {
