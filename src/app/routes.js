@@ -83,7 +83,6 @@ module.exports = function( express, app ){
 	});
 
 	app.post('/add-another', function( req, res ){
-		// console.log(req.body);
 		var util = require('util');
 		console.log(util.inspect(req.body, { depth: 4 }));
 		res.redirect('/components/add-another');

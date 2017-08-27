@@ -1,4 +1,3 @@
-//France (1 of 2) is selected
 function Autocomplete(control) {
 	this.control = control;
 	this.controlId = control.id;
@@ -6,7 +5,7 @@ function Autocomplete(control) {
 	this.wrapper = $('<div class="autocomplete"></div>');
 	this.container.append(this.wrapper);
 	this.createTextBox();
-	this.createButton();
+	this.createArrowIcon();
 	this.createOptionsUl();
 	this.removeSelectBox();
 	this.createStatusBox();
@@ -32,6 +31,7 @@ Autocomplete.prototype.setupKeys = function() {
 };
 
 Autocomplete.prototype.addTextBoxEvents = function() {
+	this.textBox.on('click', $.proxy(this, 'onTextBoxClick'));
 	this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'));
 	this.textBox.on('keydown', $.proxy(function(e) {
 		switch (e.keyCode) {
@@ -46,8 +46,16 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 	}, this));
 };
 
+Autocomplete.prototype.onTextBoxClick = function(e) {
+	this.clearOptions();
+	var options = this.getAllOptions();
+	this.buildOptions(options);
+	this.updateStatus(options.length);
+	this.showOptionsPanel();
+};
+
 Autocomplete.prototype.addSuggestionEvents = function() {
-	this.optionsUl.on('click', 'li', $.proxy(this, 'onSuggestionClick'));
+	this.optionsUl.on('click', '.autocomplete-option', $.proxy(this, 'onSuggestionClick'));
 	this.optionsUl.on('keydown', $.proxy(this, 'onSuggestionsKeyDown'));
 };
 
@@ -65,6 +73,10 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			break;
 		case this.keys.tab:
 			this.hideOptions();
+			break;
+		case this.keys.space:
+			// ignore this because otherwise the
+			// the menu will show again.
 			break;
 		case this.keys.enter:
 			// we ignore when the user presses enter here,
@@ -114,8 +126,10 @@ Autocomplete.prototype.onTextBoxType = function(e) {
 			this.buildOptions(options);
 			this.showOptionsPanel();
 		} else {
-			this.hideOptions();
-			this.clearOptions();
+			this.buildNoResultsMenu();
+			this.showOptionsPanel();
+			// this.hideOptions();
+			// this.clearOptions();
 		}
 		this.updateStatus(options.length);
 	}
@@ -169,17 +183,21 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 		options = this.getAllOptions();
 		this.buildOptions(options);
 		this.showOptionsPanel();
+		option = this.getFirstOption();
+		if(option[0]) {
+			this.highlightOption(option);
+		}
 	// Chars typed
 	} else {
 		options = this.getOptions(this.textBox.val().trim());
 		if(options.length > 0) {
 			this.buildOptions(options);
 			this.showOptionsPanel();
+			option = this.getFirstOption();
+			if(option[0]) {
+				this.highlightOption(option);
+			}
 		}
-	}
-	option = this.getFirstOption();
-	if(option[0]) {
-		this.highlightOption(option);
 	}
 };
 
@@ -303,6 +321,13 @@ Autocomplete.prototype.buildOptions = function(options) {
 	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
 };
 
+Autocomplete.prototype.buildNoResultsMenu = function() {
+	this.clearOptions();
+	this.activeOptionId = null;
+	this.optionsUl.append(this.getNoResultsOptionHtml());
+	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
+};
+
 Autocomplete.prototype.buildAllOptions = function() {
 	this.clearOptions();
 	this.activeOptionId = null;
@@ -310,6 +335,10 @@ Autocomplete.prototype.buildAllOptions = function() {
 	for(var i = 0; i < options.length; i++) {
 		this.optionsUl.append(this.getOptionHtml(i, $(options[i]).text()));
 	}
+};
+
+Autocomplete.prototype.getNoResultsOptionHtml = function() {
+	return '<li class="autocomplete-optionNoResults" role="option">' + 'No results' + '</li>';
 };
 
 Autocomplete.prototype.getOptionHtml = function(i, text) {
@@ -327,9 +356,9 @@ Autocomplete.prototype.updateStatus = function(resultCount) {
 	} else {
 		this.status.text(resultCount + ' results available.');
 	}
-	window.setTimeout(function() {
-		this.status.text('');
-	}.bind(this), 1000);
+	// window.setTimeout($.proxy(function() {
+	// 	this.status.text('');
+	// }, this), 1000);
 };
 
 Autocomplete.prototype.removeSelectBox = function() {
@@ -352,13 +381,27 @@ Autocomplete.prototype.getOptionsId = function() {
 	return 'autocomplete-options--'+this.controlId;
 };
 
-Autocomplete.prototype.createButton = function() {
-	this.button = $('<button class="autocomplete-button" type="button" tabindex="-1">&#9662;</button>');
-	this.wrapper.append(this.button);
-	this.button.on('click', $.proxy(this, 'onButtonClick'));
+// Autocomplete.prototype.createButton = function() {
+// 	this.button = $('<button class="autocomplete-button" type="button" tabindex="-1"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg></button>');
+// 	this.wrapper.append(this.button);
+// 	this.button.on('click', $.proxy(this, 'onButtonClick'));
+// };
+// Autocomplete.prototype.onButtonClick = function(e) {
+// 	this.clearOptions();
+// 	var options = this.getAllOptions();
+// 	this.buildOptions(options);
+// 	this.updateStatus(options.length);
+// 	this.showOptionsPanel();
+// 	this.textBox.focus();
+// };
+
+Autocomplete.prototype.createArrowIcon = function() {
+	var arrow = $('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg>');
+	this.wrapper.append(arrow);
+	arrow.on('click', $.proxy(this, 'onArrowClick'));
 };
 
-Autocomplete.prototype.onButtonClick = function(e) {
+Autocomplete.prototype.onArrowClick = function(e) {
 	this.clearOptions();
 	var options = this.getAllOptions();
 	this.buildOptions(options);
@@ -384,8 +427,7 @@ Autocomplete.prototype.isElementVisible = function(container, element) {
 
     if ((elementTop - containerTop < 0) || (elementTop - containerTop + elementHeight > containerHeight)) {
 		visible = false;
-    }
-    else {
+    } else {
 		visible = true;
     }
     return visible;
