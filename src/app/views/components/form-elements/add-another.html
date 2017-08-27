@@ -22,23 +22,83 @@
 
 	<div class="example">
 		<form method="post" action="/add-another/">
-			<div class="addAnother">
+
+
+
+				{{formElements.textBox('items[0][name]', 'Name', { id: 'name1'})}}
+
+				{{formElements.checkboxes('items[0][things]', 'Things', [{
+					label: 'Chocolate',
+					id: 'things1',
+					value: 'chocolate'
+				}, {
+					label: 'Money',
+					id: 'things2',
+					value: 'money'
+				}])}}
+
+
+				{{formElements.textBox('items[1][name]', 'Name', { id: 'name2'})}}
+
+				{{formElements.checkboxes('items[1][things]', 'Things', [{
+					label: 'Chocolate',
+					id: 'things3',
+					value: 'chocolate'
+				}, {
+					label: 'Money',
+					id: 'things4',
+					value: 'money'
+				}])}}
+
+
+
+			<!-- <div class="addAnother">
 				<div class="addAnother-items">
 					<div class="addAnother-item">
-						{{formElements.textBox('thing', 'A thing', { id: 'thing1'})}}
+						{{formElements.textBox('thing[].name', 'A thing', { id: 'thing1'})}}
 					</div>
 					<div class="addAnother-item">
-						{{formElements.textBox('thing', 'A thing', { id: 'thing2'})}}
+						{{formElements.textBox('thing[].name', 'A thing', { id: 'thing2'})}}
 					</div>
 					<div class="addAnother-item">
-						{{formElements.textBox('thing', 'A thing', { id: 'thing3'})}}
+						{{formElements.textBox('thing[].name', 'A thing', { id: 'thing3'})}}
 					</div>
 					<div class="addAnother-item">
-						{{formElements.textBox('thing', 'A thing', { id: 'thing4'})}}
+						{{formElements.textBox('thing[].name', 'A thing', { id: 'thing4'})}}
 					</div>
 				</div>
 				<button type="button" class="addAnother-addButton">Add another</button>
-			</div>
+			</div> -->
+
+
+			<!-- {{formElements.checkboxes('food[0]', 'Things you like', [{
+				label: 'Chocolate',
+				id: 'things',
+				value: 'chocolate'
+			}, {
+				label: 'Money',
+				id: 'things1',
+				value: 'money'
+			},  {
+				label: 'Sleep',
+				id: 'things2',
+				value: 'sleep'
+			}])}}
+
+			{{formElements.checkboxes('food[1]', 'Things you like', [{
+				label: 'Chocolate',
+				id: 'things3',
+				value: 'chocolate'
+			}, {
+				label: 'Money',
+				id: 'things4',
+				value: 'money'
+			},  {
+				label: 'Sleep',
+				id: 'things5',
+				value: 'sleep'
+			}])}} -->
+
 			<br><br>
 			{{buttons.primaryButton('Submit')}}
 		</form>
