@@ -1,8 +1,8 @@
 module.exports = function( express, app ){
 
-	app.get('/', function( req, res ){
-		res.render('index.html');
-	});
+	// app.get('/', function( req, res ){
+	// 	res.render('index.html');
+	// });
 
 	app.get( '/components/menus/action-menu', function( req, res ){
 		res.render('components/menus/action-menu.html');

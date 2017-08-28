@@ -1,5 +1,5 @@
-{% extends 'layout.html' %}
-{% set cnav = "validation" %}
+{% extends 'layouts/component.html' %}
+{% set cnav = "payment" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
@@ -13,13 +13,11 @@
 	</script>
 {% endblock pageScript %}
 
-{% block content %}
+{% block pageHeader %}
+	{{headings.h1('Payment form')}}
+{% endblock pageHeader %}
 
-	{{navigation.breadcrumb([{
-		text: 'Payment'
-	}])}}
-
-	{{headings.h1('Payment')}}
+{% block mainContent %}
 
 		<form novalidate>
 			{{formElements.textBox('nameoncard', 'Name on card', {
@@ -50,4 +48,4 @@
 			{{buttons.primaryButton('Continue')}}
 		</form>
 
-{% endblock content %}
+{% endblock mainContent %}

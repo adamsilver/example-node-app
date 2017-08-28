@@ -1,17 +1,15 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "radio-buttons" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Radio buttons'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Radio buttons')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
 
 	<div class="example">
 		{{formElements.radioButtons('choice', 'Favourite colour', [{
@@ -23,4 +21,4 @@
 		}])}}
 	</div>
 
-{% endblock content %}
+{% endblock mainContent %}

@@ -70,7 +70,7 @@ a:link, a:visited {
 }
 
 .main {
-	padding: 40px 20px;
+
 }
 
 h1 {
@@ -188,8 +188,19 @@ ul {
 	text-decoration: none;
 }
 
-.componentNav {
+main {
+	width: 100%;
+    display: flex;
+}
 
+.componentNav {
+	border-right: 2px solid #f5f7fa;
+	height: 100%;
+	width: 15rem;
+}
+
+.componentNav-inner {
+	padding: 40px 25px;
 }
 
 .componentNav p {
@@ -204,4 +215,32 @@ ul {
 
 .componentNav li {
 	margin-bottom: 6px;
+}
+
+.mainContent {
+    width: 100%;
+    margin-left: 0;
+    transition: 250ms ease;
+    overflow-x: hidden;
+    width: calc(100% - 15rem);
+    overflow-x: hidden;
+}
+
+.pageHeader {
+	padding: 70px 150px 100px;
+    background-color: #f5f7fa;
+    border-bottom: 1px solid #5596e6;
+    padding-bottom: 1rem;
+}
+
+.pageHeader h1 {
+
+}
+
+.pageContent {
+	padding: 70px 150px;
+}
+
+.pageContent p {
+	max-width: 40em;
 }

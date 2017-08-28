@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "autocomplete" %}
 
 {% import "macros/headings.html" as headings %}
@@ -12,13 +12,11 @@
 	</script>
 {% endblock pageScript %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Add another'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Add another')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
 
 	<div class="example">
 		<form method="post" action="/add-another/">
@@ -60,4 +58,4 @@
 		</form>
 	</div>
 
-{% endblock content %}
+{% endblock mainContent %}

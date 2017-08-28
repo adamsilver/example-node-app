@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "stepper" %}
 
 {% import "macros/headings.html" as headings %}
@@ -11,13 +11,11 @@
 	</script>
 {% endblock pageScript %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Stepper'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Stepper')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
 
 	<div class="example">
 		{{formElements.textBox('adults', 'How many people aged 16 and over are flying?', type='number', {
@@ -28,4 +26,4 @@
 	{{headings.h2('Description')}}
 	<p>Use this when.</p>
 
-{% endblock content %}
+{% endblock mainContent %}

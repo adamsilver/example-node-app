@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "autocomplete" %}
 
 {% import "macros/headings.html" as headings %}
@@ -11,13 +11,11 @@
 	</script>
 {% endblock pageScript %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Autocomplete'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Autocomplete')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
 
 	<div class="example">
 		{{formElements.selectBox('country', 'Country', [
@@ -275,4 +273,4 @@
 	{{headings.h2('Description')}}
 	<p>Use this when.</p>
 
-{% endblock content %}
+{% endblock mainContent %}

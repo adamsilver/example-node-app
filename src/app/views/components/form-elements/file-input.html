@@ -1,17 +1,15 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "file-input" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'File input'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('File input')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
 
 	<div class="example">
 		{{formElements.fileInput('file', 'Attach document')}}
@@ -25,4 +23,4 @@
 	<pre>{{(""+formElements.fileInput('file', 'Document') )}}</pre>
 	</div>
 
-{% endblock content %}
+{% endblock mainContent %}

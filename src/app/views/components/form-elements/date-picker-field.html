@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "date-picker-field" %}
 
 {% import "macros/headings.html" as headings %}
@@ -25,13 +25,11 @@
 	</script>
 {% endblock pageScript %}
 
-{% block content %}
+{% block pageHeader %}
+	{{headings.h1('Date picker')}}
+{% endblock pageHeader %}
 
-	{{navigation.breadcrumb([{
-		text: 'Date picker field'
-	}])}}
-
-	{{headings.h1('Date picker field')}}
+{% block mainContent %}
 
 	<div class="example">
 		{{formElements.textBox('date', 'Date', type='date')}}
@@ -44,4 +42,4 @@
 	{{headings.h2('Description')}}
 	<p>Use this when...</p>
 
-{% endblock content %}
+{% endblock mainContent %}

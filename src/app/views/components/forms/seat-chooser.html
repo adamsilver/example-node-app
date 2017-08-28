@@ -1,5 +1,5 @@
-{% extends 'layout.html' %}
-{% set cnav = "validation" %}
+{% extends 'layouts/component.html' %}
+{% set cnav = "seat" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
@@ -12,14 +12,11 @@
 	</script>
 {% endblock pageScript %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Seat chooser'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Seat chooser')}}
+{% endblock pageHeader %}
 
+{% block mainContent %}
 
 	<form novalidate>
 
@@ -111,4 +108,4 @@
 	</form>
 
 
-{% endblock content %}
+{% endblock mainContent %}

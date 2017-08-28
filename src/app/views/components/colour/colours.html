@@ -1,16 +1,15 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
+{% set cnav = "colours" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Colours'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Colours')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
 
 	<div class="example">
 		<div style="display: inline-block;height: 100px; width: 100px; border-radius: 50%; background-color: #000"></div>
@@ -18,4 +17,4 @@
 		<div style="display: inline-block;height: 100px; width: 100px; border-radius: 50%; background-color: #fd0ede"></div>
 	</div>
 
-{% endblock content %}
+{% endblock mainContent %}

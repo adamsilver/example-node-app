@@ -6,11 +6,13 @@
 
 {% block content %}
 
-<div style="overflow: hidden">
-	<div style="float: left; width: 250px;">
-		{% include "partials/component-nav.html" %}
+{% include "partials/component-nav.html" %}
+<div class="mainContent">
+	<div class="pageHeader">
+		{% block pageHeader %}
+		{% endblock %}
 	</div>
-	<div style="margin-left: 250px;">
+	<div class="pageContent">
 		{% block mainContent %}
 		{% endblock%}
 	</div>

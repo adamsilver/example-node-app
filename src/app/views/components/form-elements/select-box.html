@@ -1,18 +1,15 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/component.html' %}
 {% set cnav = "select-box" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/navigation.html" as navigation %}
 
-{% block content %}
-
-	{{navigation.breadcrumb([{
-		text: 'Select box'
-	}])}}
-
+{% block pageHeader %}
 	{{headings.h1('Select box')}}
+{% endblock pageHeader %}
 
+{% block mainContent %}
 
 	<div class="example">
 		{{formElements.selectBox('country', 'Country',[{
@@ -24,4 +21,4 @@
 			}])}}
 	</div>
 
-{% endblock content %}
+{% endblock mainContent %}
