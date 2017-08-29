@@ -130,6 +130,7 @@ ul {
 @media(min-width: 30em) {
 	.example {
 		padding-left: 55px;
+		padding-right: 55px;
 	}
 }
 
