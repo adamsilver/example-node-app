@@ -27,6 +27,14 @@
 	border: 2px solid #222;
 }
 
+.addAnother-removeButton path {
+	fill: #222;
+}
+
+.addAnother-removeButton:hover path {
+	fill: #fff;
+}
+
 .addAnother-addButton:hover,
 .addAnother-removeButton:hover {
 	background-color: #222;
