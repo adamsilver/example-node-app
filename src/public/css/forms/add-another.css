@@ -1,5 +1,5 @@
 .addAnother {
-	margin-bottom: 30px;
+	margin-bottom: 70px;
 }
 
 .addAnother-item {
@@ -21,22 +21,15 @@
 	border: none;
 	appearance: none;
 	-webkit-appearance: none;
-	color: #222;
-	font-size: 1.2em;
+	color: #444;
+	font-size: 1.1em;
 	padding: 8px 16px;
-	border: 2px solid #222;
-}
-
-.addAnother-removeButton path {
-	fill: #222;
-}
-
-.addAnother-removeButton:hover path {
-	fill: #fff;
+	border: 2px solid #ccc;
+	border-radius: 10px;
 }
 
 .addAnother-addButton:hover,
 .addAnother-removeButton:hover {
-	background-color: #222;
-	color: #fff;
+	background-color: #ccc;
+	
 }

@@ -11,7 +11,7 @@
 			<span class="field-error">{{options.error}}</span>
 		{% endif %}
 	</label>
-	<input class="field-textBox" type="{{type}}" id="{% if options.id %}{{options.id}}{%else%}{{name}}{%endif%}" name="{{name}}" value="{{options.value}}">
+	<input class="field-textBox" type="{{type}}" id="{% if options.id %}{{options.id}}{%else%}{{name}}{%endif%}" name="{{name}}" value="{{options.value}}" {% if options.attributes %}{{options.attributes | safe}}{%endif%}>
 </div>
 {% endmacro %}
 
@@ -110,6 +110,7 @@
 							value="{{choice.value}}"
 							id="{{choice.id}}"
 							{% if choice.disabled %}disabled{% endif%}
+							{% if choice.attributes %}{{choice.attributes | safe}}{%endif%}
 							{% if choice.checked %}checked{% endif%}>
 						{{choice.label}}
 					</label>

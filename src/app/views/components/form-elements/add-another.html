@@ -25,16 +25,18 @@
 			<div class="addAnother">
 				<div class="addAnother-items">
 					<div class="addAnother-item">
-						{{formElements.textBox('items[0][name]', 'Name', { id: 'items[0][name]'})}}
+						{{formElements.textBox('items[0][name]', 'Name', { id: 'items[0][name]', attributes: 'data-name="items[%index%][name]" data-id="items[%index%][name]"' })}}
 
 						{{formElements.checkboxes('items[0][things]', 'Things', [{
 							label: 'Chocolate',
 							id: 'items[0][things]',
-							value: 'chocolate'
+							value: 'chocolate',
+							attributes: 'data-name="items[%index%][things]" data-id="items[%index%][things]"'
 						}, {
 							label: 'Money',
 							id: 'items[0][things]1',
-							value: 'money'
+							value: 'money',
+							attributes: 'data-name="items[%index%][things]" data-id="items[%index%][things]1"'
 						}])}}
 					</div>
 					<!-- <div class="addAnother-item">
