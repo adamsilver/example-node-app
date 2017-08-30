@@ -38,6 +38,18 @@
 							value: 'money',
 							attributes: 'data-name="items[%index%][things]" data-id="items[%index%][things]1"'
 						}])}}
+
+						{{formElements.radioButtons('items[0][want]', 'You want this?', [{
+							label: 'Yes',
+							id: 'items[0][wan]',
+							value: 'yes',
+							attributes: 'data-name="items[%index%][want]" data-id="items[%index%][want]"'
+						}, {
+							label: 'No',
+							id: 'items[0][want]1',
+							value: 'no',
+							attributes: 'data-name="items[%index%][want]" data-id="items[%index%][want]1"'
+						}])}}
 					</div>
 					<!-- <div class="addAnother-item">
 						{{formElements.textBox('items[1][name]', 'Name', { id: 'items[1][name]'})}}

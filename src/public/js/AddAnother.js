@@ -45,9 +45,11 @@ AddAnother.prototype.updateItems = function() {
 			var label = $(el).parents('label');
 			if(label[0]) {
 				label[0].htmlFor = $(el)[0].id;
+				el.checked = false;
 			} else {
 				label = $(el).prev('label');
 				label[0].htmlFor = $(el)[0].id;
+				el.value = '';
 			}
 		});
 	});
