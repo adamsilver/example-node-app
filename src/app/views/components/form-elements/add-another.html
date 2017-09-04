@@ -1,5 +1,5 @@
 {% extends 'layouts/component.html' %}
-{% set cnav = "autocomplete" %}
+{% set cnav = "addanother" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
@@ -25,16 +25,30 @@
 			<div class="addAnother">
 				<div class="addAnother-items">
 					<div class="addAnother-item">
-						{{formElements.textBox('items[0][name]', 'Name', { id: 'items[0][name]'})}}
+						{{formElements.textBox('items[0][name]', 'Name', { id: 'items[0][name]', attributes: 'data-name="items[%index%][name]" data-id="items[%index%][name]"' })}}
 
 						{{formElements.checkboxes('items[0][things]', 'Things', [{
 							label: 'Chocolate',
 							id: 'items[0][things]',
-							value: 'chocolate'
+							value: 'chocolate',
+							attributes: 'data-name="items[%index%][things]" data-id="items[%index%][things]"'
 						}, {
 							label: 'Money',
 							id: 'items[0][things]1',
-							value: 'money'
+							value: 'money',
+							attributes: 'data-name="items[%index%][things]" data-id="items[%index%][things]1"'
+						}])}}
+
+						{{formElements.radioButtons('items[0][want]', 'You want this?', [{
+							label: 'Yes',
+							id: 'items[0][wan]',
+							value: 'yes',
+							attributes: 'data-name="items[%index%][want]" data-id="items[%index%][want]"'
+						}, {
+							label: 'No',
+							id: 'items[0][want]1',
+							value: 'no',
+							attributes: 'data-name="items[%index%][want]" data-id="items[%index%][want]1"'
 						}])}}
 					</div>
 					<!-- <div class="addAnother-item">
@@ -51,7 +65,7 @@
 						}])}}
 					</div> -->
 				</div>
-				<button type="button" class="addAnother-addButton">Add another</button>
+				
 			</div>
 
 			{{buttons.primaryButton('Submit')}}

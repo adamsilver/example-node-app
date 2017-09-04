@@ -1,3 +1,6 @@
+/*
+value.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
+*/
 function Autocomplete(control) {
 	this.control = control;
 	this.controlId = control.id;
