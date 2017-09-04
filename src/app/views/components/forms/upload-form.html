@@ -1,0 +1,58 @@
+{% extends 'layouts/component.html' %}
+{% set cnav = "upload" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/buttons.html" as buttons %}
+{% import "macros/navigation.html" as navigation %}
+
+{% block pageScript %}
+	<script>
+		new Dropzone($('.example'));
+	</script>
+{% endblock pageScript %}
+
+{% block pageHeader %}
+	{{headings.h1('Upload form')}}
+{% endblock pageHeader %}
+
+{% block mainContent %}
+
+
+	<!-- <p><strong>Files</strong></p>
+	<ul>
+		<li>File.pdf <progress value="70" max="100">70%</progress></li>
+		<li>Another.pdf <progress value="10" max="100">10%</progress></li>
+		<li>Yet.pdf <progress value="0" max="100">0%</progress></li>
+	</ul> -->
+
+	<form novalidate>
+
+		<div id="dropzone" class="dropzone">
+			<p>Drop files here or use file input...</p>
+
+			<br>
+			{{formElements.fileInput('file', 'Attach file', {
+			hint: 'Drag and drop files here or browse instead.'
+			})}}
+		</div>
+		<br>
+
+
+
+
+
+
+		<!-- {{formElements.radioButtons('same', 'Add another', [{
+			label: 'Yes',
+			id: 'same'
+		},{
+			label: 'No',
+			id: 'same1'
+		}])}} -->
+
+
+		{{buttons.primaryButton('Continue')}}
+	</form>
+
+{% endblock mainContent %}

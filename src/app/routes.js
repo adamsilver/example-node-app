@@ -28,6 +28,10 @@ module.exports = function( express, app ){
 		res.render('components/forms/seat-chooser.html');
 	});
 
+	app.get('/components/upload-form', function( req, res ){
+		res.render('components/forms/upload-form.html');
+	});
+
 
 	app.get('/components/text-box', function( req, res ){
 		res.render('components/form-elements/text-box.html');
