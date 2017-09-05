@@ -29,12 +29,14 @@
 	<form novalidate>
 
 		<div id="dropzone" class="dropzone">
-			<p>Drop files here or use file input...</p>
-
-			<br>
-			{{formElements.fileInput('file', 'Attach file', {
-			hint: 'Drag and drop files here or browse instead.'
-			})}}
+			<div>
+				{{formElements.fileInput('file', 'Attach file', {
+				hint: 'Drag and drop files here or browse instead.'
+				})}}
+				<div>
+					{{buttons.secondaryButton('Upload')}}
+				</div>
+			</div>
 		</div>
 		<br>
 
