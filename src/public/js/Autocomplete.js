@@ -3,11 +3,11 @@ value.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
 */
 function Autocomplete(control) {
 	this.control = control;
-	this.controlId = control.id;
 	this.container = $(control).parent();
 	this.wrapper = $('<div class="autocomplete"></div>');
 	this.container.append(this.wrapper);
 	this.createTextBox();
+	this.createHiddenInput();
 	this.createArrowIcon();
 	this.createOptionsUl();
 	this.removeSelectBox();
@@ -131,8 +131,6 @@ Autocomplete.prototype.onTextBoxType = function(e) {
 		} else {
 			this.buildNoResultsMenu();
 			this.showOptionsPanel();
-			// this.hideOptions();
-			// this.clearOptions();
 		}
 		this.updateStatus(options.length);
 	}
@@ -153,7 +151,9 @@ Autocomplete.prototype.focusTextBox = function() {
 };
 
 Autocomplete.prototype.onSuggestionClick = function(e) {
-	this.textBox.val($(e.currentTarget).text());
+	var suggestion = $(e.currentTarget);
+	this.textBox.val(suggestion.text());
+	this.hiddenInput.val(suggestion.attr('data-option-value'));
 	this.hideOptions();
 	this.focusTextBox();
 };
@@ -173,9 +173,11 @@ Autocomplete.prototype.onSuggestionSpace = function(e) {
 };
 
 Autocomplete.prototype.selectOption = function() {
-	this.textBox.val(this.getActiveOption().text());
-	this.focusTextBox();
+	var suggestion = this.getActiveOption();
+	this.textBox.val(suggestion.text());
+	this.hiddenInput.val(suggestion.attr('data-option-value'));
 	this.hideOptions();
+	this.focusTextBox();
 };
 
 Autocomplete.prototype.onTextBoxDownPressed = function(e) {
@@ -224,10 +226,6 @@ Autocomplete.prototype.onSuggestionUpArrow = function(e) {
 		}
 	}
 	e.preventDefault();
-};
-
-Autocomplete.prototype.isFirstOptionSelected = function() {
-	var selectedOption = this.getActiveOption();
 };
 
 Autocomplete.prototype.isOptionSelected = function() {
@@ -295,11 +293,13 @@ Autocomplete.prototype.clearOptions = function() {
 Autocomplete.prototype.getOptions = function(value) {
 	var options = [];
 	var selectOptions = this.control.options;
-	var text;
+	var optionText;
+	var optionValue;
 	for(var i = 0; i < selectOptions.length; i++) {
-		text = $(selectOptions[i]).text();
-		if(text.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-			options.push(text);
+		optionText = $(selectOptions[i]).text();
+		optionValue = $(selectOptions[i]).val();
+		if(optionText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+			options.push({ text: optionText, value: optionValue });
 		}
 	}
 	return options;
@@ -308,9 +308,11 @@ Autocomplete.prototype.getOptions = function(value) {
 Autocomplete.prototype.getAllOptions = function() {
 	var options = [];
 	var selectOptions = this.control.options;
-	var text;
 	for(var i = 0; i < selectOptions.length; i++) {
-		options.push($(selectOptions[i]).text());
+		options.push({
+			text: $(selectOptions[i]).text(),
+			value: $(selectOptions[i]).val()
+		});
 	}
 	return options;
 };
@@ -331,21 +333,12 @@ Autocomplete.prototype.buildNoResultsMenu = function() {
 	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
 };
 
-Autocomplete.prototype.buildAllOptions = function() {
-	this.clearOptions();
-	this.activeOptionId = null;
-	var options = this.control.options;
-	for(var i = 0; i < options.length; i++) {
-		this.optionsUl.append(this.getOptionHtml(i, $(options[i]).text()));
-	}
-};
-
 Autocomplete.prototype.getNoResultsOptionHtml = function() {
 	return '<li class="autocomplete-optionNoResults" role="option">' + 'No results' + '</li>';
 };
 
-Autocomplete.prototype.getOptionHtml = function(i, text) {
-	return '<li tabindex="-1" class="autocomplete-option" aria-selected="false" role="option" id="autocomplete-option--' + i + '">' + text + '</li>';
+Autocomplete.prototype.getOptionHtml = function(i, option) {
+	return '<li tabindex="-1" class="autocomplete-option" aria-selected="false" role="option" data-option-value="'+ option.value +'" id="autocomplete-option--' + i + '">' + option.text + '</li>';
 };
 
 Autocomplete.prototype.createStatusBox = function() {
@@ -359,9 +352,6 @@ Autocomplete.prototype.updateStatus = function(resultCount) {
 	} else {
 		this.status.text(resultCount + ' results available.');
 	}
-	// window.setTimeout($.proxy(function() {
-	// 	this.status.text('');
-	// }, this), 1000);
 };
 
 Autocomplete.prototype.removeSelectBox = function() {
@@ -375,28 +365,25 @@ Autocomplete.prototype.createTextBox = function() {
 	this.textBox.attr('aria-autocomplete', 'list');
 	this.textBox.attr('role', 'combobox');
 
-	this.textBox.prop('id', this.controlId);
+	this.textBox.prop('id', this.control.id);
+
+	this.textBox.val($(this.control).find('option:selected').text());
+
+
 	this.wrapper.append(this.textBox);
 	this.addTextBoxEvents();
 };
 
-Autocomplete.prototype.getOptionsId = function() {
-	return 'autocomplete-options--'+this.controlId;
+Autocomplete.prototype.createHiddenInput = function() {
+	this.hiddenInput = $('<input type="hidden">');
+	this.hiddenInput.prop('name', this.control.name);
+	this.hiddenInput.val(this.control.value);
+	this.wrapper.append(this.hiddenInput);
 };
 
-// Autocomplete.prototype.createButton = function() {
-// 	this.button = $('<button class="autocomplete-button" type="button" tabindex="-1"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg></button>');
-// 	this.wrapper.append(this.button);
-// 	this.button.on('click', $.proxy(this, 'onButtonClick'));
-// };
-// Autocomplete.prototype.onButtonClick = function(e) {
-// 	this.clearOptions();
-// 	var options = this.getAllOptions();
-// 	this.buildOptions(options);
-// 	this.updateStatus(options.length);
-// 	this.showOptionsPanel();
-// 	this.textBox.focus();
-// };
+Autocomplete.prototype.getOptionsId = function() {
+	return 'autocomplete-options--'+this.control.id;
+};
 
 Autocomplete.prototype.createArrowIcon = function() {
 	var arrow = $('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="autocomplete-downArrow"><g stroke="none" fill="none" fill-rule="evenodd"><polygon fill="#000000" points="0 0 22 0 11 17"></polygon></g></svg>');
