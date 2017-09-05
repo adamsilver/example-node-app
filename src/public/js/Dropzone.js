@@ -31,12 +31,46 @@ Dropzone.prototype.upload = function(files) {
 		formData.append('file[]', files[i]);
 	}
 
-	console.log(formData);
+	this.makeRequest(formData);
+};
 
-	xhr.onload = function() {
-		var data = this.responseText;
-		console.log(data);
-	};
-	xhr.open('post', '/path/');
-	xhr.send(formData);
+Dropzone.prototype.makeRequest = function(formData) {
+	$.ajax({
+      url: '/upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      error: function() {
+      	console.log(arguments);
+      },
+      success: function(data){
+          console.log('Upload successful!\n' + data);
+      },
+      xhr: function() {
+        var xhr = new XMLHttpRequest();
+
+        xhr.upload.addEventListener('progress', function(evt) {
+          if (evt.lengthComputable) {
+            // calculate the percentage of upload completed
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
+            console.log(percentComplete);
+
+            // update the Bootstrap progress bar with the new percentage
+            // $('.progress-bar').text(percentComplete + '%');
+            // $('.progress-bar').width(percentComplete + '%');
+
+            // once the upload reaches 100%, set the progress bar text to done
+            // if (percentComplete === 100) {
+            //   $('.progress-bar').html('Done');
+            // }
+
+          }
+
+        }, false);
+
+        return xhr;
+      }
+    });
 };

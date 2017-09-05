@@ -91,4 +91,11 @@ module.exports = function( express, app ){
 		console.log(util.inspect(req.body, { depth: 4 }));
 		res.redirect('/components/add-another');
 	});
+
+	app.post('/upload', function(req, res) {
+		console.log(req.file);
+		console.log(req.files);
+		console.log(req.body.file);
+		res.render('components/form-elements/add-another.html');
+	});
 };
