@@ -1,49 +1,42 @@
 function Dropzone(container) {
-	var dropzone = document.getElementById('dropzone');
-
-	dropzone.ondragover = function(e) {
-		e.preventDefault();
-		$(dropzone).addClass('dropzone--dragOver');
-	}
-
-	dropzone.ondragleave = function(e) {
-		$(dropzone).removeClass('dropzone--dragOver');
-	}
-
-	dropzone.ondrop = function(e) {
-		e.preventDefault();
-		console.log(e.dataTransfer.files);
-		$(dropzone).removeClass('dropzone--dragOver');
-	}
-
+	this.dropzone = container;
+	this.dropzone.on('dragover', $.proxy(this, 'onDragOver'));
+	this.dropzone.on('dragleave', $.proxy(this, 'onDragLeave'));
+	this.dropzone.on('drop', $.proxy(this, 'onDrop'));
 }
 
+Dropzone.prototype.onDragOver = function(e) {
+	e.preventDefault();
+	this.dropzone.addClass('dropzone--dragOver');
+};
 
+Dropzone.prototype.onDragLeave = function() {
+	this.removeHighlight();
+};
 
-// var dropzone = ...;
-// dropzone.ondragover...
-// dropzone.ondragleave...
-// dropzone.ondrop = function (e) {
-// 	e.preventDefault();
-// 	// remove dragover state too
+Dropzone.prototype.onDrop = function(e) {
+	e.preventDefault();
+	this.removeHighlight();
+	this.upload(e.originalEvent.dataTransfer.files);
+};
 
-// 	// upload
-// 	e.dataTransfer.files
-// };
+Dropzone.prototype.removeHighlight = function() {
+	$(dropzone).removeClass('dropzone--dragOver');
+};
 
-// function upload(files) {
-// 	var formData = new FormData();
-// 	var xhr = new XMLHttpRequest();
-// 	var i;
-// 	for(i=0; i < files.length; i++) {
-// 		formData.append('file[]', files[i]);
-// 	}
+Dropzone.prototype.upload = function(files) {
+	var formData = new FormData();
+	var xhr = new XMLHttpRequest();
+	for(var i=0; i < files.length; i++) {
+		formData.append('file[]', files[i]);
+	}
 
-// 	xhr.onload = function() {
-// 		var data = this.responseText;
+	console.log(formData);
 
-// 	};
-
-// 	xhr.open('post', '/path/');
-// 	xhr.send(formData);
-// }
+	xhr.onload = function() {
+		var data = this.responseText;
+		console.log(data);
+	};
+	xhr.open('post', '/path/');
+	xhr.send(formData);
+};

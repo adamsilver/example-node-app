@@ -27,7 +27,7 @@
 			<span class="field-error">{{options.error}}</span>
 		{% endif %}
 	</label>
-	<input class="field-file" type="file" id="{{name}}" name="{{name}}" value="{{options.value}}">
+	<input class="field-file" type="file" id="{{name}}" name="{{name}}" value="{{options.value}}" {% if options.multiple %}multiple{%endif%}>
 </div>
 {% endmacro %}
 

@@ -8,7 +8,7 @@
 
 {% block pageScript %}
 	<script>
-		new Dropzone($('.example'));
+		new Dropzone($('.dropzone'));
 	</script>
 {% endblock pageScript %}
 
@@ -31,7 +31,8 @@
 		<div id="dropzone" class="dropzone">
 			<div>
 				{{formElements.fileInput('file', 'Attach file', {
-				hint: 'You can drag and drop files into the box if you prefer'
+					hint: 'You can drag and drop files into the box if you prefer',
+					multiple: true
 				})}}
 				<div>
 					{{buttons.secondaryButton('Upload')}}
