@@ -247,17 +247,37 @@ main {
 }
 
 .dropzone {
-	border: 2px dashed #ccc;
-	
-	max-width: 400px;
-	padding: 20px;
-	background-color: #f9f9f9;
+	padding: 40px;
+	max-width: 500px;
+	margin-bottom: 70px;
+	background-color: #e5e5e5;
+
+}
+
+.dropzone .field {
+	margin-bottom: 20px;
+}
+
+.dropzone--enhanced {
+	outline: 3px dashed #333;
+    outline-offset: -10px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.dropzone--enhanced .secondaryButton {
+	display: none;
 }
 
 .dropzone .field-file {
-	background: transparent;
 	border: none;
-	padding: 0;
+	text-align: center;
+}
+
+.dropzone--enhanced .field-file {
+	position: absolute;
+	left: -9999em;
 }
 
 .dropzone--dragOver {

@@ -8,7 +8,9 @@
 
 {% block pageScript %}
 	<script>
-		new Dropzone($('.dropzone'));
+		if(typeof Dropzone != 'undefined') {
+			new Dropzone($('.dropzone'));
+		}
 	</script>
 {% endblock pageScript %}
 
@@ -31,33 +33,18 @@
 
 	<form novalidate enctype="multipart/form-data" method="post" action="/upload">
 
-		<div id="dropzone" class="dropzone">
-			<div>
+		<div class="dropzone">
+			<div>		
 				{{formElements.fileInput('file', 'Attach file', {
 					multiple: true
 				})}}
-				
-					<!-- {{buttons.secondaryButton('Upload')}} -->
-				
+				{{buttons.secondaryButton('Upload', 'upload')}}
 			</div>
 		</div>
-		<br>
+		
 
 
-
-
-
-
-		<!-- {{formElements.radioButtons('same', 'Add another', [{
-			label: 'Yes',
-			id: 'same'
-		},{
-			label: 'No',
-			id: 'same1'
-		}])}} -->
-
-
-		{{buttons.primaryButton('Continue')}}
+		{{buttons.primaryButton('Continue', 'continue')}}
 	</form>
 
 {% endblock mainContent %}
