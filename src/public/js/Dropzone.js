@@ -1,49 +1,76 @@
 function Dropzone(container) {
-	var dropzone = document.getElementById('dropzone');
-
-	dropzone.ondragover = function(e) {
-		e.preventDefault();
-		$(dropzone).addClass('dropzone--dragOver');
-	}
-
-	dropzone.ondragleave = function(e) {
-		$(dropzone).removeClass('dropzone--dragOver');
-	}
-
-	dropzone.ondrop = function(e) {
-		e.preventDefault();
-		console.log(e.dataTransfer.files);
-		$(dropzone).removeClass('dropzone--dragOver');
-	}
-
+	this.dropzone = container;
+	this.dropzone.on('dragover', $.proxy(this, 'onDragOver'));
+	this.dropzone.on('dragleave', $.proxy(this, 'onDragLeave'));
+	this.dropzone.on('drop', $.proxy(this, 'onDrop'));
 }
 
+Dropzone.prototype.onDragOver = function(e) {
+	e.preventDefault();
+	this.dropzone.addClass('dropzone--dragOver');
+};
 
+Dropzone.prototype.onDragLeave = function() {
+	this.removeHighlight();
+};
 
-// var dropzone = ...;
-// dropzone.ondragover...
-// dropzone.ondragleave...
-// dropzone.ondrop = function (e) {
-// 	e.preventDefault();
-// 	// remove dragover state too
+Dropzone.prototype.onDrop = function(e) {
+	e.preventDefault();
+	this.removeHighlight();
+	this.upload(e.originalEvent.dataTransfer.files);
+};
 
-// 	// upload
-// 	e.dataTransfer.files
-// };
+Dropzone.prototype.removeHighlight = function() {
+	$(dropzone).removeClass('dropzone--dragOver');
+};
 
-// function upload(files) {
-// 	var formData = new FormData();
-// 	var xhr = new XMLHttpRequest();
-// 	var i;
-// 	for(i=0; i < files.length; i++) {
-// 		formData.append('file[]', files[i]);
-// 	}
+Dropzone.prototype.upload = function(files) {
+	var formData = new FormData();
+	var xhr = new XMLHttpRequest();
+	for(var i=0; i < files.length; i++) {
+		formData.append('file[]', files[i]);
+	}
 
-// 	xhr.onload = function() {
-// 		var data = this.responseText;
+	this.makeRequest(formData);
+};
 
-// 	};
+Dropzone.prototype.makeRequest = function(formData) {
+	$.ajax({
+      url: '/upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      error: function() {
+      	console.log(arguments);
+      },
+      success: function(data){
+          console.log('Upload successful!\n' + data);
+      },
+      xhr: function() {
+        var xhr = new XMLHttpRequest();
 
-// 	xhr.open('post', '/path/');
-// 	xhr.send(formData);
-// }
+        xhr.upload.addEventListener('progress', function(evt) {
+          if (evt.lengthComputable) {
+            // calculate the percentage of upload completed
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
+            console.log(percentComplete);
+
+            // update the Bootstrap progress bar with the new percentage
+            // $('.progress-bar').text(percentComplete + '%');
+            // $('.progress-bar').width(percentComplete + '%');
+
+            // once the upload reaches 100%, set the progress bar text to done
+            // if (percentComplete === 100) {
+            //   $('.progress-bar').html('Done');
+            // }
+
+          }
+
+        }, false);
+
+        return xhr;
+      }
+    });
+};
