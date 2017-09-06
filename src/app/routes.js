@@ -1,3 +1,25 @@
+const multer = require( 'multer' );
+const bodyParser = require('body-parser');
+
+const upload = multer( {
+	dest: './tmp-uploads',
+	limits: '1mb',
+	fileFilter: function( req, file, cb ){
+
+		let ok = false;
+
+		if( file.mimetype === 'img/jpeg' ){
+			ok = true;
+		}
+
+		cb( null, ok );
+	}
+} );
+
+const urlBodyParser = bodyParser.urlencoded({ extended: true, limit: '1mb' });
+const jsonBodyParser = bodyParser.json();
+const defaultBodyParser = bodyParser();
+
 module.exports = function( express, app ){
 
 	// app.get('/', function( req, res ){
@@ -32,6 +54,17 @@ module.exports = function( express, app ){
 		res.render('components/forms/upload-form.html');
 	});
 
+	app.post('/multi-file-upload/', function( req, res ){
+
+		upload( req, res, function( err ){
+
+			if( err ){
+				res.send( 'error with file' );
+			} else {
+				res.redirect( '/components/forms/upload-form' );
+			}
+		} );
+	} );
 
 	app.get('/components/text-box', function( req, res ){
 		res.render('components/form-elements/text-box.html');
@@ -40,7 +73,6 @@ module.exports = function( express, app ){
 	app.get('/components/file-input', function( req, res ){
 		res.render('components/form-elements/file-input.html');
 	});
-
 
 	app.get('/components/select-box', function( req, res ){
 		res.render('components/form-elements/select-box.html');
@@ -86,7 +118,7 @@ module.exports = function( express, app ){
 		res.render('components/form-elements/add-another.html');
 	});
 
-	app.post('/add-another', function( req, res ){
+	app.post('/add-another', urlBodyParser, jsonBodyParser, defaultBodyParser, function( req, res ){
 		var util = require('util');
 		console.log(util.inspect(req.body, { depth: 4 }));
 		res.redirect('/components/add-another');

@@ -37,8 +37,9 @@
     "body-parser": "*",
     "express": "*",
     "morgan": "*",
-    "serve-static": "*",
-    "nunjucks": "*"
+    "multer": "1.3.0",
+    "nunjucks": "*",
+    "serve-static": "*"
   },
   "devDependencies": {
     "grunt": "*",
