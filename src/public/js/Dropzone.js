@@ -3,6 +3,10 @@ function Dropzone(container) {
 	this.dropzone.on('dragover', $.proxy(this, 'onDragOver'));
 	this.dropzone.on('dragleave', $.proxy(this, 'onDragLeave'));
 	this.dropzone.on('drop', $.proxy(this, 'onDrop'));
+
+  this.fileInput = this.dropzone.find('.field-file');
+  this.fileInput.on('change', $.proxy(this, 'onFileChange'));
+
 }
 
 Dropzone.prototype.onDragOver = function(e) {
@@ -29,9 +33,17 @@ Dropzone.prototype.upload = function(files) {
 	var xhr = new XMLHttpRequest();
 	for(var i=0; i < files.length; i++) {
 		formData.append('file[]', files[i]);
-	}
-
+    // console.log(files[i]);
+    $('.files').append('<p>'+ files[i].name +'</p>');
+  }
 	this.makeRequest(formData);
+};
+
+Dropzone.prototype.onFileChange = function(e) {
+  var files = e.currentTarget.files;
+  for(var i=0; i < files.length; i++) {
+    $('.files').append('<p>'+ files[i].name +'</p>');
+  }
 };
 
 Dropzone.prototype.makeRequest = function(formData) {

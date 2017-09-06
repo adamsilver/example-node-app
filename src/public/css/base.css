@@ -248,7 +248,7 @@ main {
 
 .dropzone {
 	border: 2px dashed #ccc;
-	height: 300px;
+	
 	max-width: 400px;
 	padding: 20px;
 	background-color: #f9f9f9;
