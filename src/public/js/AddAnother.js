@@ -1,9 +1,15 @@
 function AddAnother(container) {
 	this.container = $(container);
 	this.container.on('click', '.addAnother-removeButton', $.proxy(this, 'onRemoveButtonClick'));
+	this.container.on('click', '.addAnother-addButton', $.proxy(this, 'onAddButtonClick'));
 	this.addRemoveButtons();
-	this.createAddButton();
+	this.createStatusBox();
 }
+
+AddAnother.prototype.createStatusBox = function() {
+	this.status = $('<div role="status" aria-live="polite"></div>');
+	this.container.append(this.status);
+};
 
 AddAnother.prototype.addRemoveButtons = function(e) {
 	var items = this.container.find('.addAnother-item');
@@ -15,6 +21,7 @@ AddAnother.prototype.addRemoveButtons = function(e) {
 };
 
 AddAnother.prototype.onAddButtonClick = function(e) {
+	e.preventDefault();
 	this.cloneItem();
 	this.updateItems();
 	this.focusLastItem();
@@ -32,7 +39,7 @@ AddAnother.prototype.cloneItem = function() {
 };
 
 AddAnother.prototype.appendRemoveButton = function(item) {
-	item.append('<button class="addAnother-removeButton" type="button">- Remove</button>');
+	item.append('<input type="submit" class="secondaryButton addAnother-removeButton" value="Remove">');
 };
 
 AddAnother.prototype.updateItems = function() {
@@ -60,18 +67,16 @@ AddAnother.prototype.focusLastItem = function() {
 };
 
 AddAnother.prototype.onRemoveButtonClick = function(e) {
+	e.preventDefault();
 	var items = this.container.find('.addAnother-item');
 	$(e.currentTarget).parents('.addAnother-item').remove();
 	if(items.length == 2) {
 		items.find('.addAnother-removeButton').remove();
 	}
 	this.updateItems();
-	this.focusLastItem();
+	this.focusHeading();
 };
 
-AddAnother.prototype.createAddButton = function() {
-	this.addButton = $('<button type="button" class="addAnother-addButton">+ Add another</button>');
-	this.container.append(this.addButton);
-
-	this.addButton.on('click', $.proxy(this, 'onAddButtonClick'));
+AddAnother.prototype.focusHeading = function() {
+	this.container.find('.addAnother-heading').focus();
 };

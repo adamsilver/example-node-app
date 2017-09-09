@@ -2,6 +2,10 @@
 	margin-bottom: 70px;
 }
 
+.addAnother-heading {
+	outline: none;
+}
+
 .addAnother-item {
 	position: relative;
 	border: 1px dashed #ddd;
@@ -13,23 +17,4 @@
 	position: absolute;
 	top: 20px;
 	right: 20px;
-}
-
-.addAnother-addButton,
-.addAnother-removeButton {
-	background-color: #fff;
-	border: none;
-	appearance: none;
-	-webkit-appearance: none;
-	color: #444;
-	font-size: 1.1em;
-	padding: 8px 16px;
-	border: 2px solid #ccc;
-	border-radius: 10px;
-}
-
-.addAnother-addButton:hover,
-.addAnother-removeButton:hover {
-	background-color: #ccc;
-	
 }

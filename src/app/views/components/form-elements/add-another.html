@@ -20,14 +20,16 @@
 
 	<div class="example">
 		<form method="post" action="/add-another/">
-
-
 			<div class="addAnother">
+				<h2 tabindex="-1" class="addAnother-heading">Expenses</h2>
+				<p>Enter your expenses for the month.</p>
 				<div class="addAnother-items">
 					<div class="addAnother-item">
 						{{formElements.textBox('items[0][name]', 'Name', { id: 'items[0][name]', attributes: 'data-name="items[%index%][name]" data-id="items[%index%][name]"' })}}
 
-						{{formElements.checkboxes('items[0][things]', 'Things', [{
+						{{formElements.textBox('items[0][amount]', 'Amount', { id: 'items[0][amount]', attributes: 'data-name="items[%index%][amount]" data-id="items[%index%][amount]"' })}}
+
+						<!-- {{formElements.checkboxes('items[0][things]', 'Things', [{
 							label: 'Chocolate',
 							id: 'items[0][things]',
 							value: 'chocolate',
@@ -49,7 +51,7 @@
 							id: 'items[0][want]1',
 							value: 'no',
 							attributes: 'data-name="items[%index%][want]" data-id="items[%index%][want]1"'
-						}])}}
+						}])}} -->
 					</div>
 					<!-- <div class="addAnother-item">
 						{{formElements.textBox('items[1][name]', 'Name', { id: 'items[1][name]'})}}
@@ -65,10 +67,12 @@
 						}])}}
 					</div> -->
 				</div>
-				
+				{{buttons.secondaryButton('Add another', 'add', {
+					class: 'addAnother-addButton'
+				})}}
 			</div>
 
-			{{buttons.primaryButton('Submit')}}
+			{{buttons.primaryButton('Submit expenses', 'submitExpenses')}}
 		</form>
 	</div>
 
