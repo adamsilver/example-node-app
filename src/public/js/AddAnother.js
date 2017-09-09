@@ -36,6 +36,15 @@ AddAnother.prototype.cloneItem = function() {
 		this.appendRemoveButton($(item));
 	}
 	this.container.find('.addAnother-items').append(newItem);
+
+	// reset value and checked states
+	newItem.find('[data-name], [data-id]').each(function(index, el) {
+		if(el.type == 'checkbox' || el.type == 'radio') {
+			el.checked = false;
+		} else {
+			el.value = '';
+		}
+	});
 };
 
 AddAnother.prototype.appendRemoveButton = function(item) {
@@ -52,11 +61,11 @@ AddAnother.prototype.updateItems = function() {
 			var label = $(el).parents('label');
 			if(label[0]) {
 				label[0].htmlFor = $(el)[0].id;
-				el.checked = false;
+				// el.checked = false;
 			} else {
 				label = $(el).prev('label');
 				label[0].htmlFor = $(el)[0].id;
-				el.value = '';
+				// el.value = '';
 			}
 		});
 	});
