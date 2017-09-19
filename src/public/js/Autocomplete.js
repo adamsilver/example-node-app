@@ -29,7 +29,9 @@ Autocomplete.prototype.setupKeys = function() {
 		space: 32,
 		up: 38,
 		down: 40,
-		tab: 9
+		tab: 9,
+		left: 37,
+		right: 39
    };
 };
 
@@ -68,6 +70,12 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			// we ignore when users presses escape
 			break;
 		case this.keys.up:
+			// we ignore when the user presses up when on textbox
+			break;
+		case this.keys.left:
+			// we ignore when the user presses up when on textbox
+			break;
+		case this.keys.right:
 			// we ignore when the user presses up when on textbox
 			break;
 		case this.keys.down:
@@ -183,8 +191,10 @@ Autocomplete.prototype.selectOption = function() {
 Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 	var option;
 	var options;
-	// No chars typed
-	if(this.textBox.val().trim().length === 0) {
+	var value = this.textBox.val().trim();
+	// Empty value or exactly matches an option 
+	// then show all the options
+	if(value.length === 0 || this.isMatching(value)) {
 		options = this.getAllOptions();
 		this.buildOptions(options);
 		this.showOptionsPanel();
@@ -192,7 +202,6 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 		if(option[0]) {
 			this.highlightOption(option);
 		}
-	// Chars typed
 	} else {
 		options = this.getOptions(this.textBox.val().trim());
 		if(options.length > 0) {
@@ -298,8 +307,11 @@ Autocomplete.prototype.getOptions = function(value) {
 	for(var i = 0; i < selectOptions.length; i++) {
 		optionText = $(selectOptions[i]).text();
 		optionValue = $(selectOptions[i]).val();
-		if(optionText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-			options.push({ text: optionText, value: optionValue });
+		if(optionValue.trim().length > 0 && optionText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+			options.push({ 
+				text: optionText, 
+				value: optionValue 
+			});
 		}
 	}
 	return options;
@@ -309,12 +321,27 @@ Autocomplete.prototype.getAllOptions = function() {
 	var options = [];
 	var selectOptions = this.control.options;
 	for(var i = 0; i < selectOptions.length; i++) {
-		options.push({
-			text: $(selectOptions[i]).text(),
-			value: $(selectOptions[i]).val()
-		});
+		var value = $(selectOptions[i]).val();
+		if(value.trim().length > 0) {
+			options.push({
+				text: $(selectOptions[i]).text(),
+				value: $(selectOptions[i]).val()
+			});
+		}
 	}
 	return options;
+};
+
+Autocomplete.prototype.isMatching = function(value) {
+	var matches = false;
+	var options = this.control.options;
+	for(var i = 0; i < options.length; i++) {
+		if(options[i].text == value) {
+			matches = true;
+			break;
+		}
+	}
+	return matches;
 };
 
 Autocomplete.prototype.buildOptions = function(options) {
@@ -367,8 +394,11 @@ Autocomplete.prototype.createTextBox = function() {
 
 	this.textBox.prop('id', this.control.id);
 
-	this.textBox.val($(this.control).find('option:selected').text());
+	var selectedVal = $(this.control).find('option:selected').val();
 
+	if(selectedVal.trim().length > 0) {
+		this.textBox.val($(this.control).find('option:selected').text());
+	}
 
 	this.wrapper.append(this.textBox);
 	this.addTextBoxEvents();
