@@ -57,6 +57,9 @@ Autocomplete.prototype.onTextBoxClick = function(e) {
 	this.buildOptions(options);
 	this.updateStatus(options.length);
 	this.showOptionsPanel();
+	if(typeof e.currentTarget.select === 'function') {
+        e.currentTarget.select();
+    }
 };
 
 Autocomplete.prototype.addSuggestionEvents = function() {
