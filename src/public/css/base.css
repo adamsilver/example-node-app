@@ -190,8 +190,8 @@ ul {
 }
 
 main {
-	width: 100%;
-    display: flex;
+	/*width: 100%;*/
+    /*display: flex;*/
 }
 
 .componentNav {
@@ -222,8 +222,7 @@ main {
     width: 100%;
     margin-left: 0;
     transition: 250ms ease;
-    overflow-x: hidden;
-    width: calc(100% - 15rem);
+    /*width: calc(100% - 15rem);*/
     overflow-x: hidden;
 }
 
