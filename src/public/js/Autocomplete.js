@@ -1,16 +1,15 @@
 /*
 value.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
 */
-function Autocomplete(control) {
-	this.control = control;
-	this.container = $(control).parent();
+function Autocomplete(select) {
+	this.select = select;
+	this.container = $(select).parent();
 	this.wrapper = $('<div class="autocomplete"></div>');
 	this.container.append(this.wrapper);
 	this.createTextBox();
-	this.createHiddenInput();
 	this.createArrowIcon();
 	this.createOptionsUl();
-	this.removeSelectBox();
+	this.hideSelectBox();
 	this.createStatusBox();
 	this.setupKeys();
 	$(document).on('click', $.proxy(this, 'onDocumentClick'));
@@ -29,7 +28,9 @@ Autocomplete.prototype.setupKeys = function() {
 		space: 32,
 		up: 38,
 		down: 40,
-		tab: 9
+		tab: 9,
+		left: 37,
+		right: 39
    };
 };
 
@@ -55,6 +56,9 @@ Autocomplete.prototype.onTextBoxClick = function(e) {
 	this.buildOptions(options);
 	this.updateStatus(options.length);
 	this.showOptionsPanel();
+	if(typeof e.currentTarget.select === 'function') {
+        e.currentTarget.select();
+    }
 };
 
 Autocomplete.prototype.addSuggestionEvents = function() {
@@ -68,6 +72,12 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			// we ignore when users presses escape
 			break;
 		case this.keys.up:
+			// we ignore when the user presses up when on textbox
+			break;
+		case this.keys.left:
+			// we ignore when the user presses up when on textbox
+			break;
+		case this.keys.right:
 			// we ignore when the user presses up when on textbox
 			break;
 		case this.keys.down:
@@ -153,7 +163,7 @@ Autocomplete.prototype.focusTextBox = function() {
 Autocomplete.prototype.onSuggestionClick = function(e) {
 	var suggestion = $(e.currentTarget);
 	this.textBox.val(suggestion.text());
-	this.hiddenInput.val(suggestion.attr('data-option-value'));
+	$(this.select).val(suggestion.attr('data-option-value'));
 	this.hideOptions();
 	this.focusTextBox();
 };
@@ -175,7 +185,7 @@ Autocomplete.prototype.onSuggestionSpace = function(e) {
 Autocomplete.prototype.selectOption = function() {
 	var suggestion = this.getActiveOption();
 	this.textBox.val(suggestion.text());
-	this.hiddenInput.val(suggestion.attr('data-option-value'));
+	$(this.select).val(suggestion.attr('data-option-value'));
 	this.hideOptions();
 	this.focusTextBox();
 };
@@ -183,8 +193,10 @@ Autocomplete.prototype.selectOption = function() {
 Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 	var option;
 	var options;
-	// No chars typed
-	if(this.textBox.val().trim().length === 0) {
+	var value = this.textBox.val().trim();
+	// Empty value or exactly matches an option 
+	// then show all the options
+	if(value.length === 0 || this.isMatching(value)) {
 		options = this.getAllOptions();
 		this.buildOptions(options);
 		this.showOptionsPanel();
@@ -192,7 +204,6 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 		if(option[0]) {
 			this.highlightOption(option);
 		}
-	// Chars typed
 	} else {
 		options = this.getOptions(this.textBox.val().trim());
 		if(options.length > 0) {
@@ -292,14 +303,17 @@ Autocomplete.prototype.clearOptions = function() {
 
 Autocomplete.prototype.getOptions = function(value) {
 	var options = [];
-	var selectOptions = this.control.options;
+	var selectOptions = this.select.options;
 	var optionText;
 	var optionValue;
 	for(var i = 0; i < selectOptions.length; i++) {
 		optionText = $(selectOptions[i]).text();
 		optionValue = $(selectOptions[i]).val();
-		if(optionText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-			options.push({ text: optionText, value: optionValue });
+		if(optionValue.trim().length > 0 && optionText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+			options.push({ 
+				text: optionText, 
+				value: optionValue 
+			});
 		}
 	}
 	return options;
@@ -307,14 +321,29 @@ Autocomplete.prototype.getOptions = function(value) {
 
 Autocomplete.prototype.getAllOptions = function() {
 	var options = [];
-	var selectOptions = this.control.options;
+	var selectOptions = this.select.options;
 	for(var i = 0; i < selectOptions.length; i++) {
-		options.push({
-			text: $(selectOptions[i]).text(),
-			value: $(selectOptions[i]).val()
-		});
+		var value = $(selectOptions[i]).val();
+		if(value.trim().length > 0) {
+			options.push({
+				text: $(selectOptions[i]).text(),
+				value: $(selectOptions[i]).val()
+			});
+		}
 	}
 	return options;
+};
+
+Autocomplete.prototype.isMatching = function(value) {
+	var matches = false;
+	var options = this.select.options;
+	for(var i = 0; i < options.length; i++) {
+		if(options[i].text == value) {
+			matches = true;
+			break;
+		}
+	}
+	return matches;
 };
 
 Autocomplete.prototype.buildOptions = function(options) {
@@ -354,8 +383,11 @@ Autocomplete.prototype.updateStatus = function(resultCount) {
 	}
 };
 
-Autocomplete.prototype.removeSelectBox = function() {
-	$(this.control).remove();
+Autocomplete.prototype.hideSelectBox = function() {
+	$(this.select).attr('aria-hidden', 'true');
+	$(this.select).attr('tabindex', '-1');
+	$(this.select).addClass('vh');
+	this.select.id = '';
 };
 
 Autocomplete.prototype.createTextBox = function() {
@@ -365,24 +397,20 @@ Autocomplete.prototype.createTextBox = function() {
 	this.textBox.attr('aria-autocomplete', 'list');
 	this.textBox.attr('role', 'combobox');
 
-	this.textBox.prop('id', this.control.id);
+	this.textBox.prop('id', this.select.id);
 
-	this.textBox.val($(this.control).find('option:selected').text());
+	var selectedVal = $(this.select).find('option:selected').val();
 
+	if(selectedVal.trim().length > 0) {
+		this.textBox.val($(this.select).find('option:selected').text());
+	}
 
 	this.wrapper.append(this.textBox);
 	this.addTextBoxEvents();
 };
 
-Autocomplete.prototype.createHiddenInput = function() {
-	this.hiddenInput = $('<input type="hidden">');
-	this.hiddenInput.prop('name', this.control.name);
-	this.hiddenInput.val(this.control.value);
-	this.wrapper.append(this.hiddenInput);
-};
-
 Autocomplete.prototype.getOptionsId = function() {
-	return 'autocomplete-options--'+this.control.id;
+	return 'autocomplete-options--'+this.select.id;
 };
 
 Autocomplete.prototype.createArrowIcon = function() {
