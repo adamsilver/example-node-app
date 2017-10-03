@@ -37,17 +37,17 @@ Autocomplete.prototype.setupKeys = function() {
 Autocomplete.prototype.addTextBoxEvents = function() {
 	this.textBox.on('click', $.proxy(this, 'onTextBoxClick'));
 	this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'));
-	this.textBox.on('blur', $.proxy(this, 'onTextBoxBlur'));
-};
-
-Autocomplete.prototype.onTextBoxBlur = function(e) {
-	// this is to make sure when the user leaves the field
-	// by pressing down, then the menu stays open and
-	// focus is moved to that option
-	if(!this.downPressed) {
-		this.hideOptions();
-	}
-	this.downPressed = false;
+	this.textBox.on('keydown', $.proxy(function(e) {
+		switch (e.keyCode) {
+			// this ensures that when users tabs away
+			// from textbox that the normal tab sequence
+			// is adhered to. We hide the options, which
+			// removes the ability to focus the options
+			case this.keys.tab:
+				this.hideOptions();
+				break;
+		}
+	}, this));
 };
 
 Autocomplete.prototype.onTextBoxClick = function(e) {
@@ -82,8 +82,10 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			break;
 		case this.keys.down:
 			// we want to handle this one
-			this.downPressed = true;;
 			this.onTextBoxDownPressed(e);
+			break;
+		case this.keys.tab:
+			this.hideOptions();
 			break;
 		case this.keys.space:
 			// ignore this because otherwise the
