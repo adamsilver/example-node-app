@@ -38,18 +38,6 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 	this.textBox.on('click', $.proxy(this, 'onTextBoxClick'));
 	this.textBox.on('keyup', $.proxy(this, 'onTextBoxKeyUp'));
 	this.textBox.on('blur', $.proxy(this, 'onTextBoxBlur'));
-
-	// this.textBox.on('keydown', $.proxy(function(e) {
-	// 	switch (e.keyCode) {
-	// 		// this ensures that when users tabs away
-	// 		// from textbox that the normal tab sequence
-	// 		// is adhered to. We hide the options, which
-	// 		// removes the ability to focus the options
-	// 		case this.keys.tab:
-	// 			this.hideOptions();
-	// 			break;
-	// 	}
-	// }, this));
 };
 
 Autocomplete.prototype.onTextBoxBlur = function(e) {
@@ -97,9 +85,6 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			this.downPressed = true;;
 			this.onTextBoxDownPressed(e);
 			break;
-		// case this.keys.tab:
-			// this.hideOptions();
-			// break;
 		case this.keys.space:
 			// ignore this because otherwise the
 			// the menu will show again.
