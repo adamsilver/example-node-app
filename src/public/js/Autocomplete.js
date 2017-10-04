@@ -75,17 +75,14 @@ Autocomplete.prototype.onTextBoxKeyUp = function(e) {
 			// we ignore when the user presses up when on textbox
 			break;
 		case this.keys.left:
-			// we ignore when the user presses up when on textbox
+			// we ignore when the user presses left when on textbox
 			break;
 		case this.keys.right:
-			// we ignore when the user presses up when on textbox
+			// we ignore when the user presses right when on textbox
 			break;
 		case this.keys.down:
 			// we want to handle this one
 			this.onTextBoxDownPressed(e);
-			break;
-		case this.keys.tab:
-			this.hideOptions();
 			break;
 		case this.keys.space:
 			// ignore this because otherwise the
@@ -144,6 +141,17 @@ Autocomplete.prototype.onTextBoxType = function(e) {
 		}
 		this.updateStatus(options.length);
 	}
+	this.updateSelectBox();
+};
+
+Autocomplete.prototype.updateSelectBox = function() {
+	var value = this.textBox.val().trim();
+	var option = this.getMatchingOption(value);
+	if(option) {
+		$(this.select).val(option.value);
+	} else {
+		$(this.select).val('');
+	}
 };
 
 Autocomplete.prototype.onSuggestionEscape = function(e) {
@@ -160,32 +168,36 @@ Autocomplete.prototype.focusTextBox = function() {
 	this.textBox.focus();
 };
 
-Autocomplete.prototype.onSuggestionClick = function(e) {
-	var suggestion = $(e.currentTarget);
-	this.textBox.val(suggestion.text());
-	$(this.select).val(suggestion.attr('data-option-value'));
-	this.hideOptions();
-	this.focusTextBox();
-};
-
 Autocomplete.prototype.onSuggestionEnter = function(e) {
 	if(this.isOptionSelected()) {
 		this.selectOption();
 	}
+	// we don't want form to submit
 	e.preventDefault();
 };
 
 Autocomplete.prototype.onSuggestionSpace = function(e) {
 	if(this.isOptionSelected()) {
 		this.selectOption();
+		// we don't want a space to be added to text box
 		e.preventDefault();
 	}
 };
 
+Autocomplete.prototype.onSuggestionClick = function(e) {
+	var suggestion = $(e.currentTarget);
+	this.selectSuggestion(suggestion);
+};
+
 Autocomplete.prototype.selectOption = function() {
 	var suggestion = this.getActiveOption();
-	this.textBox.val(suggestion.text());
-	$(this.select).val(suggestion.attr('data-option-value'));
+	this.selectSuggestion(suggestion);
+};
+
+Autocomplete.prototype.selectSuggestion = function(suggestion) {
+	var value = suggestion.attr('data-option-value');
+	this.textBox.val(value);
+	this.setValue(value);
 	this.hideOptions();
 	this.focusTextBox();
 };
@@ -196,7 +208,7 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 	var value = this.textBox.val().trim();
 	// Empty value or exactly matches an option 
 	// then show all the options
-	if(value.length === 0 || this.isMatching(value)) {
+	if(value.length === 0 || this.isExactMatch(value)) {
 		options = this.getAllOptions();
 		this.buildOptions(options);
 		this.showOptionsPanel();
@@ -334,16 +346,20 @@ Autocomplete.prototype.getAllOptions = function() {
 	return options;
 };
 
-Autocomplete.prototype.isMatching = function(value) {
-	var matches = false;
+Autocomplete.prototype.isExactMatch = function(value) {
+	return this.getMatchingOption(value);
+};
+
+Autocomplete.prototype.getMatchingOption = function(value) {
+	var option = null;
 	var options = this.select.options;
 	for(var i = 0; i < options.length; i++) {
-		if(options[i].text == value) {
-			matches = true;
+		if(options[i].text.toLowerCase() === value.toLowerCase()) {
+			option = options[i];
 			break;
 		}
 	}
-	return matches;
+	return option;
 };
 
 Autocomplete.prototype.buildOptions = function(options) {
@@ -449,4 +465,18 @@ Autocomplete.prototype.isElementVisible = function(container, element) {
 		visible = true;
     }
     return visible;
+};
+
+Autocomplete.prototype.getOption = function(value) {
+	return $(this.select).find('option[value="'+value+'"]');
+};
+
+Autocomplete.prototype.setValue = function(val) {
+	$(this.select).val(val);
+	var text = this.getOption(val).text();
+	if(val.trim().length > 0) {
+		this.textBox.val(text);
+	} else {
+		this.textBox.val('');
+	}
 };
