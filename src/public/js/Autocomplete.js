@@ -53,9 +53,9 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 Autocomplete.prototype.onTextBoxClick = function(e) {
 	this.clearOptions();
 	var options = this.getAllOptions();
-	this.buildOptions(options);
+	this.buildMenu(options);
 	this.updateStatus(options.length);
-	this.showOptionsPanel();
+	this.showMenu();
 	if(typeof e.currentTarget.select === 'function') {
         e.currentTarget.select();
     }
@@ -132,13 +132,8 @@ Autocomplete.prototype.onSuggestionsKeyDown = function(e) {
 Autocomplete.prototype.onTextBoxType = function(e) {
 	if(this.textBox.val().trim().length > 0) {
 		var options = this.getOptions(this.textBox.val().trim().toLowerCase());
-		if(options.length > 0) {
-			this.buildOptions(options);
-			this.showOptionsPanel();
-		} else {
-			this.buildNoResultsMenu();
-			this.showOptionsPanel();
-		}
+		this.buildMenu(options);
+		this.showMenu();
 		this.updateStatus(options.length);
 	}
 	this.updateSelectBox();
@@ -210,17 +205,15 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 	// then show all the options
 	if(value.length === 0 || this.isExactMatch(value)) {
 		options = this.getAllOptions();
-		this.buildOptions(options);
-		this.showOptionsPanel();
+		this.buildMenu(options);
+		this.showMenu();
 		option = this.getFirstOption();
-		if(option[0]) {
-			this.highlightOption(option);
-		}
+		this.highlightOption(option);
 	} else {
 		options = this.getOptions(this.textBox.val().trim());
 		if(options.length > 0) {
-			this.buildOptions(options);
-			this.showOptionsPanel();
+			this.buildMenu(options);
+			this.showMenu();
 			option = this.getFirstOption();
 			if(option[0]) {
 				this.highlightOption(option);
@@ -293,7 +286,7 @@ Autocomplete.prototype.getOptionById = function(id) {
 	return $('#'+id);
 };
 
-Autocomplete.prototype.showOptionsPanel = function() {
+Autocomplete.prototype.showMenu = function() {
 	this.optionsUl.removeClass('autocomplete-options-isHidden');
 	this.optionsUl.attr('aria-hidden', 'false');
 	this.textBox.attr('aria-expanded', 'true');
@@ -362,19 +355,17 @@ Autocomplete.prototype.getMatchingOption = function(value) {
 	return option;
 };
 
-Autocomplete.prototype.buildOptions = function(options) {
+Autocomplete.prototype.buildMenu = function(options) {
 	this.clearOptions();
 	this.activeOptionId = null;
-	for(var i = 0; i < options.length; i++) {
-		this.optionsUl.append(this.getOptionHtml(i, options[i]));
-	}
-	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
-};
 
-Autocomplete.prototype.buildNoResultsMenu = function() {
-	this.clearOptions();
-	this.activeOptionId = null;
-	this.optionsUl.append(this.getNoResultsOptionHtml());
+	if(options.length) {
+		for(var i = 0; i < options.length; i++) {
+			this.optionsUl.append(this.getOptionHtml(i, options[i]));
+		}
+	} else {
+		this.optionsUl.append(this.getNoResultsOptionHtml());
+	}
 	this.optionsUl.scrollTop(this.optionsUl.scrollTop());
 };
 
@@ -438,9 +429,9 @@ Autocomplete.prototype.createArrowIcon = function() {
 Autocomplete.prototype.onArrowClick = function(e) {
 	this.clearOptions();
 	var options = this.getAllOptions();
-	this.buildOptions(options);
+	this.buildMenu(options);
 	this.updateStatus(options.length);
-	this.showOptionsPanel();
+	this.showMenu();
 	this.textBox.focus();
 };
 
