@@ -16,7 +16,7 @@ FormValidator.prototype.onErrorClicked = function(e) {
 
 FormValidator.prototype.showSummary = function () {
   this.summary.html(this.getSummaryHtml());
-  this.summary[0].hidden = false;
+  this.summary.removeClass('hidden');
   this.summary.focus();
 };
 
@@ -36,7 +36,7 @@ FormValidator.prototype.getSummaryHtml = function() {
 };
 
 FormValidator.prototype.hideSummary = function() {
-    this.summary[0].hidden = true;
+    this.summary.addClass('hidden');
 };
 
 FormValidator.prototype.onFormSubmit = function (e) {

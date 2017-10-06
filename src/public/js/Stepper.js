@@ -29,11 +29,15 @@ Stepper.prototype.getInputValue = function() {
 };
 
 Stepper.prototype.onDecrementClick = function(e) {
-	var val = this.getInputValue();
-	this.input.val(val-1);
+	var newVal = this.getInputValue() - 1;
+	if(newVal >= parseInt(this.input.attr('min'), 10)) {
+		this.input.val(newVal);
+	}
 };
 
 Stepper.prototype.onIncrementClick = function(e) {
-	var val = this.getInputValue();
-	this.input.val(val+1);
+	var newVal = this.getInputValue() + 1;
+	if(newVal <= parseInt(this.input.attr('max'), 10)) {
+		this.input.val(newVal);
+	}
 };

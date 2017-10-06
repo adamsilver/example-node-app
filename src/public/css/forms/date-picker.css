@@ -26,10 +26,6 @@
 	margin-top: 1em;
 }
 
-.datepicker-wrapper-isHidden {
-	display: none;
-}
-
 .datepicker-calendar {
 	border: 3px solid #222;
 	padding: 10px;
