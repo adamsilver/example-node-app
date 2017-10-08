@@ -7,7 +7,10 @@
 
 {% block pageScript %}
 	<script>
-		new Stepper(document.getElementById('adults'));
+		new Stepper(document.getElementById('adults'), {
+			decrementLabel: 'Decrement travelers aged 16 and over',
+			incrementLabel: 'Increment travelers aged 16 and over'
+		});
 	</script>
 {% endblock pageScript %}
 

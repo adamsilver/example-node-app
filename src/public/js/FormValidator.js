@@ -1,4 +1,4 @@
-function FormValidator(form, options) {
+function FormValidator(form) {
   this.form = form;
   this.errors = [];
   this.validators = [];
