@@ -28,6 +28,10 @@ module.exports = function( express, app ){
 		res.render('components/forms/seat-chooser.html');
 	});
 
+	app.get('/components/seat-chooser-nested', function( req, res ){
+		res.render('components/forms/seat-chooser-nested.html');
+	});
+
 	app.get('/components/upload-form', function( req, res ){
 		res.render('components/forms/upload-form.html');
 	});

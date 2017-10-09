@@ -127,24 +127,6 @@ ul {
 	background: transparent url( /public/img/wifi_icon.png ) 0 0 no-repeat;
 }
 
-.example {
-	position: relative;
-    border: 1px solid #bfc1c3;
-    margin-top: 15px;
-    margin-bottom: 40px;
-    padding-top: 40px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-    padding-left: 15px;
-}
-
-@media(min-width: 30em) {
-	.example {
-		padding-left: 55px;
-		padding-right: 55px;
-	}
-}
-
 .example:before {
 	/*content: "Example";*/
     position: absolute;
@@ -158,6 +140,12 @@ ul {
     line-height: 1.25;
     background: #bfc1c3;
     color: white;
+}
+
+.example {
+	
+	border-bottom: 2px solid #ccc;
+	margin-bottom: 40px;
 }
 
 .html {
@@ -238,18 +226,14 @@ main {
 }
 
 .pageHeader {
-	padding: 70px 150px 100px;
+	padding: 50px 20px 90px;
     background-color: #f5f7fa;
     border-bottom: 1px solid #5596e6;
     padding-bottom: 1rem;
 }
 
-.pageHeader h1 {
-
-}
-
 .pageContent {
-	padding: 70px 150px;
+	padding: 20px;
 }
 
 .pageContent p {

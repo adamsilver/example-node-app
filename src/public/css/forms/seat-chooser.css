@@ -1,3 +1,9 @@
+.firstClass .field-legend,
+.economyClass .field-legend {
+	font-weight: normal;
+	font-style: italic;
+}
+
 .plane-row {
 	overflow: hidden;
 	margin-bottom: 10px;
@@ -8,8 +14,12 @@
 	margin-right: 3px;
 }
 
-.plane-seat:nth-child(3) {
+.plane-seat--economyclass:nth-child(3) {
 	margin-right: 10px;
+}
+
+.plane-seat--firstClass:nth-child(2) {
+	margin-right: 30px;
 }
 
 .plane-seat label {
