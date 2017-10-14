@@ -22,7 +22,7 @@ Menu.prototype.setupResponsiveChecks = function() {
 
 Menu.prototype.createToggleButton = function() {
 	this.menuButton = $('<button class="secondaryButton" type="button" aria-haspopup="true" aria-expanded="false">Actions<span aria-hidden="true">&#x25be;</span></button>');
-	this.menuButton.on('click', $.proxy(this, 'onMenuButtonclick'));
+	this.menuButton.on('click', $.proxy(this, 'onMenuButtonClick'));
 };
 
 Menu.prototype.checkMode = function(mq) {
@@ -36,31 +36,27 @@ Menu.prototype.checkMode = function(mq) {
 Menu.prototype.enableSmallMode = function() {
 	this.container.prepend(this.menuButton);
 	this.hideMenu();
-	this.menu[0].setAttribute('role', 'menu');
-	this.setupTabIndex();
+	this.menu.attr('role', 'menu');
 };
 
 Menu.prototype.enableBigMode = function() {
 	this.menuButton.detach();
 	this.showMenu();
-	this.menu[0].setAttribute('role', 'menubar');
-	this.resetTabIndex();
+	this.menu.attr('role', 'menubar');
 };
 
 Menu.prototype.hideMenu = function() {
-	this.menu[0].hidden = true;
-	this.menuButton[0].setAttribute('aria-expanded', 'false');
+	this.menuButton.attr('aria-expanded', 'false');
 };
 
 Menu.prototype.showMenu = function(first_argument) {
-	this.menu[0].hidden = false;
-	this.menuButton[0].setAttribute('aria-expanded', 'true');
+	this.menuButton.attr('aria-expanded', 'true');
 };
 
-Menu.prototype.onMenuButtonclick = function(e) {
-	if(this.menu[0].hidden) {
+Menu.prototype.onMenuButtonClick = function() {
+	if(this.menuButton.attr('aria-expanded') == 'false') {
 		this.showMenu();
-		this.menu.find('input')[0].focus();
+		this.menu.find('input').first().focus();
 	} else {
 		this.hideMenu();
 		this.menuButton.focus();
@@ -80,24 +76,8 @@ Menu.prototype.setupKeys = function() {
    };
 };
 
-Menu.prototype.setupTabIndex = function() {
-	this.container.find('input').each($.proxy(function(index, el) {
-		el.tabIndex = -1;
-	}, this));
-};
-
-Menu.prototype.resetTabIndex = function() {
-	this.container.find('input').each($.proxy(function(index, el) {
-		el.tabIndex = 0;
-	}, this));
-};
-
 Menu.prototype.onButtonKeydown = function(e) {
 	switch (e.keyCode) {
-		case this.keys.right:
-			e.preventDefault();
-			this.focusNext(e.currentTarget);
-			break;
 		case this.keys.up:
 			e.preventDefault();
 			this.focusPrevious(e.currentTarget);
@@ -106,11 +86,6 @@ Menu.prototype.onButtonKeydown = function(e) {
 			e.preventDefault();
 			this.focusNext(e.currentTarget);
 			break;
-		case this.keys.left:
-			e.preventDefault();
-			this.focusPrevious(e.currentTarget);
-			break;
-
 		case this.keys.esc:
 			if(!this.mq.matches) {
 				this.menuButton.focus();

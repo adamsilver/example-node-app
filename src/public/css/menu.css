@@ -41,3 +41,11 @@
 		width: auto;
 	}
 }
+
+[aria-expanded="true"] + .menu-items {
+	display: block;
+}
+
+[aria-expanded="false"] + .menu-items {
+	display: none;
+}
