@@ -85,20 +85,6 @@ a:link, a:visited {
 }
 
 h1 {
-	font-size: 2em;
-	line-height: 1;
-	color: #222;
-	letter-spacing: -1px;
-	margin-bottom: 40px;
-}
-
-@media(min-width: 30em) {
-	h1 {
-		font-size: 3.5em;
-	}
-}
-
-h2 {
 	font-size: 1.5em;
 	line-height: 1;
 	color: #222;
@@ -106,18 +92,31 @@ h2 {
 }
 
 @media(min-width: 30em) {
-	h2 {
+	h1 {
 		font-size: 2.5em;
+	}
+}
+
+h2 {
+	font-size: 1.2em;
+	line-height: 1;
+	color: #222;
+	margin-bottom: 20px;
+}
+
+@media(min-width: 30em) {
+	h2 {
+		font-size: 1.8em;
 	}
 }
 
 
 p {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 ul {
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	margin-left: 25px;
 }
 
@@ -127,25 +126,13 @@ ul {
 	background: transparent url( /public/img/wifi_icon.png ) 0 0 no-repeat;
 }
 
-.example:before {
-	/*content: "Example";*/
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.2105263158em 0.7894736842em 0.2105263158em 0.7894736842em;
-    font-family: "nta", Arial, sans-serif;
-    font-weight: 400;
-    text-transform: none;
-    font-size: 1em;
-    line-height: 1.25;
-    background: #bfc1c3;
-    color: white;
+.example {
+	margin-bottom: 20px;
+	overflow: hidden;
 }
 
-.example {
-	
-	border-bottom: 2px solid #ccc;
-	margin-bottom: 40px;
+.example iframe {
+	width: 100%;
 }
 
 .html {
@@ -161,9 +148,9 @@ ul {
 }
 
 .primaryNav {
-	float: right;
-	margin-top: 0.4em;
-	display: none;
+	border-top: 7px solid #0074D9; 
+	padding: 20px 20px 25px;
+	background-color: #f5f5f5;
 }
 
 .primaryNav ul {
@@ -174,13 +161,12 @@ ul {
 
 .primaryNav li {
 	display: inline-block;
-	font-size: 1em;
-	margin-right: 5px;
-	text-transform: uppercase;
+	font-size: 1.2em;
+	margin-right: 15px;
 }
 
 .primaryNav a {
-	color: #fff;
+	text-decoration: none;
 }
 
 .active {
@@ -226,14 +212,14 @@ main {
 }
 
 .pageHeader {
-	padding: 50px 20px 90px;
+	padding: 30px 20px 50px;
     background-color: #f5f7fa;
     border-bottom: 1px solid #5596e6;
     padding-bottom: 1rem;
 }
 
 .pageContent {
-	padding: 20px;
+	padding: 50px 20px;
 }
 
 .pageContent p {

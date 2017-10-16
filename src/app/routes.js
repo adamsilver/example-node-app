@@ -102,4 +102,23 @@ module.exports = function( express, app ){
 		console.log(req.body.file);
 		res.render('components/form-elements/add-another.html');
 	});
+
+	// Pages
+
+	app.get('/', function(req, res) {
+		res.render('index.html');
+	});
+
+	app.get('/components/', function(req, res) {
+		res.render('components/index.html');
+	});
+
+	app.get('/patterns/', function(req, res) {
+		res.render('patterns/index.html');
+	});
+
+	app.get('/patterns/add-another', function(req, res) {
+		res.render('patterns/add-another.html');
+	});
+
 };
