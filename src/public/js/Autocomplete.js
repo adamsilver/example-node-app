@@ -155,10 +155,6 @@ Autocomplete.prototype.onSuggestionEscape = function(e) {
 	this.focusTextBox();
 };
 
-Autocomplete.prototype.isShowingMenu = function() {
-	return this.textBox.attr('aria-expanded', 'true');
-};
-
 Autocomplete.prototype.focusTextBox = function() {
 	this.textBox.focus();
 };
@@ -215,9 +211,7 @@ Autocomplete.prototype.onTextBoxDownPressed = function(e) {
 			this.buildMenu(options);
 			this.showMenu();
 			option = this.getFirstOption();
-			if(option[0]) {
-				this.highlightOption(option);
-			}
+			this.highlightOption(option);
 		}
 	}
 };
