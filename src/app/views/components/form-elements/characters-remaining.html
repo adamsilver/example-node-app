@@ -3,7 +3,6 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
 	<script>
@@ -11,14 +10,8 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Characters remaining')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
-
-	<div class="example">
-		{{formElements.textarea('notes', 'Delivery notes')}}
-	</div>
+	{{headings.h1('Character Countdown')}}
+	{{formElements.textarea('notes', 'Delivery notes')}}
 
 {% endblock mainContent %}

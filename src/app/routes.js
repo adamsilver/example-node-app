@@ -110,7 +110,9 @@ module.exports = function( express, app ){
 	});
 
 	app.get('/components/', function(req, res) {
-		res.render('components/index.html');
+		res.render('components/index.html', {
+			hidden: (req.query.hidden ? '':'hidden')
+		});
 	});
 
 	app.get('/patterns/', function(req, res) {

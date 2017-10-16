@@ -3,22 +3,15 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
-
-{% block pageHeader %}
-	{{headings.h1('Select box')}}
-{% endblock pageHeader %}
 
 {% block mainContent %}
-
-	<div class="example">
-		{{formElements.selectBox('country', 'Country',[{
-				text: 'Select',
-				value: ''
-			}, {
-				text: 'Brazil',
-				value: 'Brazil'
-			}])}}
-	</div>
+	{{headings.h1('Select box')}}
+	{{formElements.selectBox('country', 'Country',[{
+		text: 'Select',
+		value: ''
+	}, {
+		text: 'Brazil',
+		value: 'Brazil'
+	}])}}
 
 {% endblock mainContent %}

@@ -3,7 +3,6 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
 {% import "macros/buttons.html" as buttons %}
 
 {% block pageScript %}
@@ -11,10 +10,6 @@
 		new AddAnother($('.addAnother'));
 	</script>
 {% endblock pageScript %}
-
-{% block pageHeader %}
-	{{headings.h1('Add another')}}
-{% endblock pageHeader %}
 
 {% block mainContent %}
 

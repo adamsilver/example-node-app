@@ -3,7 +3,6 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
 	<script>
@@ -15,19 +14,14 @@
 {% endblock pageScript %}
 
 {% block pageHeader %}
-	{{headings.h1('Stepper')}}
 {% endblock pageHeader %}
 
 {% block mainContent %}
+	{{headings.h1('Stepper')}}
 
-	<div class="example">
-		{{formElements.textBox('adults', 'How many people aged 16 and over are flying?', type='number', {
-			value: '0',
-			attributes: 'min="0" max="9"'
-		})}}
-	</div>
-
-	{{headings.h2('Description')}}
-	<p>Use this when.</p>
+	{{formElements.textBox('adults', 'How many people aged 16 and over are flying?', type='number', {
+		value: '0',
+		attributes: 'min="0" max="9"'
+	})}}
 
 {% endblock mainContent %}

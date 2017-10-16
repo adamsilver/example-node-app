@@ -4,7 +4,6 @@
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/buttons.html" as buttons %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
 	<script>
@@ -13,11 +12,8 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Seat chooser')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
+	{{headings.h1('Choose seat')}}
 
 	<form novalidate>
 
