@@ -20,14 +20,6 @@ module.exports = function( express, app ){
 		res.render('components/forms/validation.html');
 	});
 
-	app.get('/components/seat-chooser', function( req, res ){
-		res.render('components/forms/seat-chooser.html');
-	});
-
-	app.get('/components/seat-chooser-nested', function( req, res ){
-		res.render('components/forms/seat-chooser-nested.html');
-	});
-
 	app.get('/components/upload-form', function( req, res ){
 		res.render('components/forms/upload-form.html');
 	});
@@ -105,7 +97,7 @@ module.exports = function( express, app ){
 
 	app.get('/components/', function(req, res) {
 		res.render('components/index.html', {
-			hidden: (req.query.hidden ? '':'hidden')
+			
 		});
 	});
 
@@ -131,6 +123,10 @@ module.exports = function( express, app ){
 		res.render('patterns/dates.html');
 	});
 
+	app.get('/patterns/seats', function( req, res ){
+		res.render('patterns/seats.html');
+	});
+
 	// Examples
 
 	app.get('/examples/payment', function( req, res ){
@@ -139,6 +135,18 @@ module.exports = function( express, app ){
 
 	app.get('/examples/validation', function( req, res ){
 		res.render('examples/validation.html');
+	});
+
+	app.get('/examples/seat-chooser', function( req, res ){
+		res.render('examples/seat-chooser.html');
+	});
+
+	app.get('/examples/seat-chooser-nested', function( req, res ){
+		res.render('examples/seat-chooser-nested.html');
+	});
+
+	app.get('/examples/seat-chooser-nested', function( req, res ){
+		res.render('examples/seat-chooser-nested.html');
 	});
 
 };
