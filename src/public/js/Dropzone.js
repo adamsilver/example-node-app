@@ -39,24 +39,19 @@ if(isAdvancedUpload) {
 
   Dropzone.prototype.upload = function(files) {
   	var formData = new FormData();
-  	var xhr = new XMLHttpRequest();
   	for(var i=0; i < files.length; i++) {
-  		formData.append('documents[]', files[i]);
-      $('.files').append('<p>'+ files[i].name +'</p>');
+  		formData.append('documents', files[i]);
+      this.makeRequest(formData);
     }
-  	this.makeRequest(formData);
   };
 
   Dropzone.prototype.onFileChange = function(e) {
-    var files = e.currentTarget.files;
-    for(var i=0; i < files.length; i++) {
-      $('.files').append('<p>'+ files[i].name +'</p>');
-    }
+    this.upload(e.currentTarget.files);
   };
 
   Dropzone.prototype.makeRequest = function(formData) {
   	$.ajax({
-        url: '/upload',
+        url: '/ajax-upload',
         type: 'post',
         data: formData,
         processData: false,
@@ -71,6 +66,7 @@ if(isAdvancedUpload) {
           var xhr = new XMLHttpRequest();
 
           xhr.upload.addEventListener('progress', function(evt) {
+            console.log(evt);
             if (evt.lengthComputable) {
               // calculate the percentage of upload completed
               var percentComplete = evt.loaded / evt.total;

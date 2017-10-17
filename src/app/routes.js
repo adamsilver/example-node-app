@@ -60,6 +60,13 @@ module.exports = function( express, app ){
 		res.render( 'components/forms/upload-form.html', { files: req.files } );
 	} );
 
+	app.post('/ajax-upload', upload.array( 'documents', 10 ), function( req, res ){
+		console.log(req.files);
+
+		res.json({ files: req.files });
+
+	} );
+
 	app.get('/components/text-box', function( req, res ){
 		res.render('components/form-elements/text-box.html');
 	});
