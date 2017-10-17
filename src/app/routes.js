@@ -3,17 +3,17 @@ const bodyParser = require('body-parser');
 
 const upload = multer( {
 	dest: './tmp-uploads',
-	limits: '1mb',
-	fileFilter: function( req, file, cb ){
+	// limits: '1mb',
+	// fileFilter: function( req, file, cb ){
 
-		let ok = false;
+	// 	let ok = false;
 
-		if( file.mimetype === 'image/jpeg' ){
-			ok = true;
-		}
+	// 	if( file.mimetype === 'image/jpeg' ){
+	// 		ok = true;
+	// 	}
 
-		cb( null, ok );
-	}
+	// 	cb( null, ok );
+	// }
 } );
 
 const urlBodyParser = bodyParser.urlencoded({ extended: true, limit: '1mb' });
@@ -56,7 +56,7 @@ module.exports = function( express, app ){
 
 
 	app.post('/components/upload-form', upload.array( 'documents', 10 ), function( req, res ){
-
+		console.log(req.files);
 		res.render( 'components/forms/upload-form.html', { files: req.files } );
 	} );
 

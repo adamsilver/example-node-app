@@ -20,17 +20,13 @@
 
 {% block mainContent %}
 
-
-	<div class="files">
-		{{ files | dump }}
-	</div>
-
-	<!-- <p><strong>Files</strong></p>
-	<ul>
-		<li>File.pdf <progress value="70" max="100">70%</progress></li>
-		<li>Another.pdf <progress value="10" max="100">10%</progress></li>
-		<li>Yet.pdf <progress value="0" max="100">0%</progress></li>
-	</ul> -->
+	{% if files.length > 0 %}
+		<ul class="files">
+			{% for file in files %}
+				<li><a href="{{file.path}}">{{file.originalname}}</a> <progress></progress value="100" max="100">100%</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 
 	<form novalidate enctype="multipart/form-data" method="post" action="/components/upload-form">
 
