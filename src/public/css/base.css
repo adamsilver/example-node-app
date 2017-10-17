@@ -51,6 +51,17 @@ a:link, a:visited {
 	color: #0074D9;
 }
 
+.vh {
+	border: 0!important;
+    clip: rect(0 0 0 0)!important;
+    height: 1px!important;
+    margin: -1px!important;
+    overflow: hidden!important;
+    padding: 0!important;
+    position: absolute!important;
+    width: 1px!important;
+}
+
 
 .header {
 	background-color: #222;
@@ -74,20 +85,6 @@ a:link, a:visited {
 }
 
 h1 {
-	font-size: 2em;
-	line-height: 1;
-	color: #222;
-	letter-spacing: -1px;
-	margin-bottom: 40px;
-}
-
-@media(min-width: 30em) {
-	h1 {
-		font-size: 3.5em;
-	}
-}
-
-h2 {
 	font-size: 1.5em;
 	line-height: 1;
 	color: #222;
@@ -95,18 +92,31 @@ h2 {
 }
 
 @media(min-width: 30em) {
-	h2 {
+	h1 {
 		font-size: 2.5em;
+	}
+}
+
+h2 {
+	font-size: 1.2em;
+	line-height: 1;
+	color: #222;
+	margin-bottom: 20px;
+}
+
+@media(min-width: 30em) {
+	h2 {
+		font-size: 1.8em;
 	}
 }
 
 
 p {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 ul {
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	margin-left: 25px;
 }
 
@@ -117,36 +127,12 @@ ul {
 }
 
 .example {
-	position: relative;
-    border: 1px solid #bfc1c3;
-    margin-top: 15px;
-    margin-bottom: 40px;
-    padding-top: 40px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-    padding-left: 15px;
+	margin-bottom: 20px;
+	overflow: hidden;
 }
 
-@media(min-width: 30em) {
-	.example {
-		padding-left: 55px;
-		padding-right: 55px;
-	}
-}
-
-.example:before {
-	/*content: "Example";*/
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.2105263158em 0.7894736842em 0.2105263158em 0.7894736842em;
-    font-family: "nta", Arial, sans-serif;
-    font-weight: 400;
-    text-transform: none;
-    font-size: 1em;
-    line-height: 1.25;
-    background: #bfc1c3;
-    color: white;
+.example iframe {
+	width: 100%;
 }
 
 .html {
@@ -162,9 +148,9 @@ ul {
 }
 
 .primaryNav {
-	float: right;
-	margin-top: 0.4em;
-	display: none;
+	border-top: 7px solid #0074D9; 
+	padding: 20px 20px 25px;
+	background-color: #f5f5f5;
 }
 
 .primaryNav ul {
@@ -175,13 +161,12 @@ ul {
 
 .primaryNav li {
 	display: inline-block;
-	font-size: 1em;
-	margin-right: 5px;
-	text-transform: uppercase;
+	font-size: 1.2em;
+	margin-right: 15px;
 }
 
 .primaryNav a {
-	color: #fff;
+	text-decoration: none;
 }
 
 .active {
@@ -190,8 +175,8 @@ ul {
 }
 
 main {
-	width: 100%;
-    display: flex;
+	/*width: 100%;*/
+    /*display: flex;*/
 }
 
 .componentNav {
@@ -222,24 +207,19 @@ main {
     width: 100%;
     margin-left: 0;
     transition: 250ms ease;
-    overflow-x: hidden;
-    width: calc(100% - 15rem);
+    /*width: calc(100% - 15rem);*/
     overflow-x: hidden;
 }
 
 .pageHeader {
-	padding: 70px 150px 100px;
+	padding: 30px 20px 50px;
     background-color: #f5f7fa;
     border-bottom: 1px solid #5596e6;
     padding-bottom: 1rem;
 }
 
-.pageHeader h1 {
-
-}
-
 .pageContent {
-	padding: 70px 150px;
+	padding: 50px 20px;
 }
 
 .pageContent p {
@@ -247,17 +227,37 @@ main {
 }
 
 .dropzone {
-	border: 2px dashed #ccc;
-	height: 300px;
-	max-width: 400px;
-	padding: 20px;
-	background-color: #f9f9f9;
+	padding: 40px;
+	max-width: 500px;
+	margin-bottom: 70px;
+	background-color: #e5e5e5;
+
+}
+
+.dropzone .field {
+	margin-bottom: 20px;
+}
+
+.dropzone--enhanced {
+	outline: 3px dashed #333;
+    outline-offset: -10px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.dropzone--enhanced .secondaryButton {
+	display: none;
 }
 
 .dropzone .field-file {
-	background: transparent;
 	border: none;
-	padding: 0;
+	text-align: center;
+}
+
+.dropzone--enhanced .field-file {
+	position: absolute;
+	left: -9999em;
 }
 
 .dropzone--dragOver {
@@ -265,3 +265,6 @@ main {
 	border: 2px dashed #ccc;
 }
 
+.hidden {
+	display: none;
+}

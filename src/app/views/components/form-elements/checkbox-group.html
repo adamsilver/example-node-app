@@ -3,25 +3,18 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
-
-{% block pageHeader %}
-	{{headings.h1('Checkboxes')}}
-{% endblock pageHeader %}
 
 {% block mainContent %}
-
-	<div class="example">
-		{{formElements.checkboxes('things', 'Things you like', [{
-			label: 'Chocolate',
-			id: 'things'
-		}, {
-			label: 'Money',
-			id: 'things1'
-		},  {
-			label: 'Sleep',
-			id: 'things2'
-		}])}}
-	</div>
+	{{headings.h1('Checkboxes')}}
+	{{formElements.checkboxes('things', 'Things you like', [{
+		label: 'Chocolate',
+		id: 'things'
+	}, {
+		label: 'Money',
+		id: 'things1'
+	},  {
+		label: 'Sleep',
+		id: 'things2'
+	}])}}
 
 {% endblock mainContent %}

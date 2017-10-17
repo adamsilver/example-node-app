@@ -3,7 +3,6 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
 	<script>
@@ -11,17 +10,14 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Autocomplete')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
+	{{headings.h1('Autocomplete')}}
 
-	<div class="example">
 		{{formElements.selectBox('country', 'Country', [
+{ value: "", text: "Select" },
 { value: "1", alt:"AF", text: "Afghanistan" },
 { value: "2", alt:"AX Aaland Aland" , text: "Åland Islands" },
-{ value: "3", alt:"AL", text: "Albania", selected: true },
+{ value: "3", alt:"AL", text: "Albania" },
 { value: "4", alt:"DZ", text: "Algeria" },
 { value: "5", alt:"AS" , text: "American Samoa" },
 { value: "6", alt:"AD" , text: "Andorra" },
@@ -268,9 +264,7 @@
 { value: "x1Yemen", alt:"YE", text: "Yemen" },
 { value: "x1Zambia", alt:"ZM", text: "Zambia" },
 { value: "x1Zimbabwe", alt:"ZW", text: "Zimbabwe" }])}}
-	</div>
 
-	{{headings.h2('Description')}}
-	<p>Use this when.</p>
+	<p>Use this when <a href="http://google.co.uk">Google</a>.</p>
 
 {% endblock mainContent %}

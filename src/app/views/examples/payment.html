@@ -18,19 +18,16 @@
 {% endblock pageHeader %}
 
 {% block mainContent %}
-
+	<h1>Payment details</h2>
 		<form novalidate>
-			{{formElements.textBox('nameoncard', 'Name on card', {
-
+			{{formElements.textBox('cardnumber', 'Card number', {
+				hint: 'The long number on the front of your card'
 			})}}
-			{{formElements.textBox('cardnumber', 'Card number', type='number', {
-
-			})}}
-			{{formElements.textBox('expiry', 'Expiry date', type='number', {
+			{{formElements.textBox('expiry', 'Expiry date', {
 				hint: 'MMYY'
 			})}}
-			{{formElements.textBox('cvc', 'Security code', type='number', {
-				hint: 'The last 3 numbers on the back of your card.'
+			{{formElements.textBox('cvc', 'Card', {
+				hint: 'The last 3 numbers on the back of your card'
 			})}}
 
 			{{formElements.checkboxes('same', 'Is your billing address the same as delivery?', [{

@@ -8,7 +8,9 @@
 
 {% block pageScript %}
 	<script>
-		new Dropzone($('.dropzone'));
+		if(typeof Dropzone != 'undefined') {
+			new Dropzone($('.dropzone'));
+		}
 	</script>
 {% endblock pageScript %}
 
@@ -19,6 +21,9 @@
 {% block mainContent %}
 
 
+	<div class="files">
+	</div>
+
 	<!-- <p><strong>Files</strong></p>
 	<ul>
 		<li>File.pdf <progress value="70" max="100">70%</progress></li>
@@ -26,36 +31,17 @@
 		<li>Yet.pdf <progress value="0" max="100">0%</progress></li>
 	</ul> -->
 
-	<form novalidate action="/">
+	<form novalidate enctype="multipart/form-data" method="post" action="/upload">
 
-		<div id="dropzone" class="dropzone">
-			<div>
+		<div class="dropzone">
+			<div>		
 				{{formElements.fileInput('file', 'Attach file', {
-					hint: 'You can drag and drop files into the box if you prefer',
 					multiple: true
 				})}}
-				<div>
-					{{buttons.secondaryButton('Upload')}}
-				</div>
+				{{buttons.secondaryButton('Upload', 'upload')}}
 			</div>
 		</div>
-		<br>
-
-
-
-
-
-
-		<!-- {{formElements.radioButtons('same', 'Add another', [{
-			label: 'Yes',
-			id: 'same'
-		},{
-			label: 'No',
-			id: 'same1'
-		}])}} -->
-
-
-		{{buttons.primaryButton('Continue')}}
+		{{buttons.primaryButton('Continue', 'continue')}}
 	</form>
 
 {% endblock mainContent %}

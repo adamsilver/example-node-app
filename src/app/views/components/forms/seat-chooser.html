@@ -4,19 +4,16 @@
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 {% import "macros/buttons.html" as buttons %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
 	<script>
-		new SeatEnhancer();
+		new SeatLimiter(2);
+		new SeatLayoutEnhancer();
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Seat chooser')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
+	{{headings.h1('Choose seat')}}
 
 	<form novalidate>
 
@@ -100,9 +97,9 @@
 				value: '3F'
 			}]
 		}], {
-			hint: 'A&amp;F are window seats, C&amp;D are isle seats.'
+			hint: 'A&amp;F are window seats, C&amp;D are isle seats.',
+			seatModifier: 'plane-seat--economyclass'
 		})}}
-
 
 		{{buttons.primaryButton('Continue')}}
 	</form>

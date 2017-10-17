@@ -1,6 +1,6 @@
 function CheckboxCollapser(checkbox, element) {
 	this.checkbox = checkbox;
-	this.element = element;
+	this.element = $(element);
 	this.check();
 	$(this.checkbox).on('click', $.proxy(this, 'onCheckboxClick'));
 };
@@ -11,8 +11,10 @@ CheckboxCollapser.prototype.onCheckboxClick = function(e) {
 
 CheckboxCollapser.prototype.check = function() {
 	if(this.checkbox.checked) {
-		$(this.element).hide();
+		this.element.hide();
+		this.element.attr('aria-hidden', 'true');
 	} else {
-		$(this.element).show();
+		this.element.show();
+		this.element.attr('aria-hidden', 'false');
 	}
 };

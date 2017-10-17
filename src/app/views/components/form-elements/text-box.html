@@ -1,34 +1,32 @@
 {% extends 'layouts/component.html' %}
-{% set cnav = "text-box" %}
+{% set cnav = "" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
-
-{% block pageHeader %}
-	{{headings.h1('Text box')}}
-{% endblock pageHeader %}
 
 {% block mainContent %}
+	
+	{{headings.h1('Text input')}}
+	<p>Use this to create different types of text input.</p>
 
-	<div class="example">
-		{{formElements.textBox('email', 'Email address', type='email')}}
+	<h2>Text box</h2>
+	{{formElements.textBox('text', 'Username')}}
+	<div class="html">
+	<pre>{{(""+formElements.textBox('username', 'Username address') )}}</pre>
 	</div>
 
-	{{headings.h2('Description')}}
-	<p>Use this when you need to store a piece of text such as first name.</p>
-
-	{{headings.h2('HTML')}}
+	<h2>Email</h2>
+	{{formElements.textBox('email', 'Email address', type='email')}}
 	<div class="html">
 	<pre>{{(""+formElements.textBox('email', 'Email address', type='email') )}}</pre>
 	</div>
 
-	{{headings.h2('Variants')}}
+	<!-- {{headings.h2('Variants')}}
 	<ul>
 		<li><a href="">With hint</a></li>
 		<li><a href="">With error</a></li>
 		<li><a href="">With hint and error</a></li>
-	</ul>
+	</ul> -->
 
 	<!-- <div class="example example--html">
 		<pre><code>{% raw %}formElements.textBox('email', 'Email address'){% endraw %}</code></pre>

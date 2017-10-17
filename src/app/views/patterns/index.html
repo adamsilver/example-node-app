@@ -1,0 +1,14 @@
+{% extends 'layouts/default.html' %}
+{% set nav = "patterns" %}
+
+{% import "macros/headings.html" as headings %}
+
+{% block mainContent %}
+	<h1>Patterns</h1>
+	<ul>
+		<li><a href="/patterns/add-another/">Adding another</a></li>
+		<li><a href="/patterns/payment/">Asking for payment</a></li>
+		<li><a href="/patterns/dates/">Asking for dates</a></li>
+		<li><a href="/patterns/validation/">Handling form errors</a></li>
+	</ul>
+{% endblock mainContent %}

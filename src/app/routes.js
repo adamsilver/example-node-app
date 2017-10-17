@@ -22,11 +22,11 @@ const defaultBodyParser = bodyParser();
 
 module.exports = function( express, app ){
 
-	// app.get('/', function( req, res ){
-	// 	res.render('index.html');
-	// });
+	app.get('/contents', function( req, res ){
+		res.render('index.html');
+	});
 
-	app.get( '/components/menus/action-menu', function( req, res ){
+	app.get( '/components/action-menu', function( req, res ){
 		res.render('components/menus/action-menu.html');
 	});
 
@@ -42,17 +42,18 @@ module.exports = function( express, app ){
 		res.render('components/forms/validation.html');
 	});
 
-	app.get('/components/payment', function( req, res ){
-		res.render('components/forms/payment.html');
-	});
-
 	app.get('/components/seat-chooser', function( req, res ){
 		res.render('components/forms/seat-chooser.html');
+	});
+
+	app.get('/components/seat-chooser-nested', function( req, res ){
+		res.render('components/forms/seat-chooser-nested.html');
 	});
 
 	app.get('/components/upload-form', function( req, res ){
 		res.render('components/forms/upload-form.html');
 	});
+
 
 	app.post('/multi-file-upload/', function( req, res ){
 
@@ -94,11 +95,11 @@ module.exports = function( express, app ){
 		res.render('components/form-elements/checkbox-group.html');
 	});
 
-	app.get('/components/memorable-date-field', function( req, res ){
+	app.get('/components/memorable-date', function( req, res ){
 		res.render('components/form-elements/memorable-date-field.html');
 	});
 
-	app.get('/components/date-picker-field', function( req, res ){
+	app.get('/components/date-picker', function( req, res ){
 		res.render('components/form-elements/date-picker-field.html');
 	});
 
@@ -130,5 +131,49 @@ module.exports = function( express, app ){
 		console.log(req.body.file);
 		res.render('components/form-elements/add-another.html');
 	});
-};
 
+	// Pages
+
+	app.get('/', function(req, res) {
+		res.render('index.html');
+	});
+
+	app.get('/components/', function(req, res) {
+		res.render('components/index.html', {
+			hidden: (req.query.hidden ? '':'hidden')
+		});
+	});
+
+	app.get('/patterns/', function(req, res) {
+		res.render('patterns/index.html');
+	});
+
+	// Patterns
+
+	app.get('/patterns/add-another', function(req, res) {
+		res.render('patterns/add-another.html');
+	});
+
+	app.get('/patterns/validation', function( req, res ){
+		res.render('patterns/validation.html');
+	});
+
+	app.get('/patterns/payment', function( req, res ){
+		res.render('patterns/payment.html');
+	});
+
+	app.get('/patterns/dates', function( req, res ){
+		res.render('patterns/dates.html');
+	});
+
+	// Examples
+
+	app.get('/examples/payment', function( req, res ){
+		res.render('examples/payment.html');
+	});
+
+	app.get('/examples/validation', function( req, res ){
+		res.render('examples/validation.html');
+	});
+
+};

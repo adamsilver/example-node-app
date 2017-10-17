@@ -1,4 +1,4 @@
-function FormValidator(form, options) {
+function FormValidator(form) {
   this.form = form;
   this.errors = [];
   this.validators = [];
@@ -15,29 +15,28 @@ FormValidator.prototype.onErrorClicked = function(e) {
 };
 
 FormValidator.prototype.showSummary = function () {
-    this.summary.html(this.getSummaryHtml());
-    this.summary.removeClass('errorSummary-isHidden');
-    this.summary.focus();
+  this.summary.html(this.getSummaryHtml());
+  this.summary.removeClass('hidden');
+  this.summary.focus();
 };
 
 FormValidator.prototype.getSummaryHtml = function() {
-  var errors = this.getErrors();
-    var html = '<h2>Fix the following errors</h2>';
-    html += '<ul>';
-    for (var i = 0, j = errors.length; i < j; i++) {
-        var error = errors[i];
-        html += '<li>';
-        html +=   '<a href="#' + error.fieldName + '">';
-        html +=     error.message;
-        html +=   '</a>';
-        html += '</li>';
-    }
-    html += '</ul>';
-    return html;
+  var html = '<h2>Fix the following errors</h2>';
+  html += '<ul>';
+  for (var i = 0, j = this.errors.length; i < j; i++) {
+    var error = this.errors[i];
+    html += '<li>';
+    html +=   '<a href="#' + error.fieldName + '">';
+    html +=     error.message;
+    html +=   '</a>';
+    html += '</li>';
+  }
+  html += '</ul>';
+  return html;
 };
 
 FormValidator.prototype.hideSummary = function() {
-    this.summary.addClass('errorSummary-isHidden');
+    this.summary.addClass('hidden');
 };
 
 FormValidator.prototype.onFormSubmit = function (e) {
@@ -51,15 +50,15 @@ FormValidator.prototype.onFormSubmit = function (e) {
 };
 
 FormValidator.prototype.showInlineErrors = function() {
-  var errors = this.getErrors();
-  for (var i = 0, j = errors.length; i < j; i++) {
-    this.showInlineError(errors[i]);
+  for (var i = 0, j = this.errors.length; i < j; i++) {
+    this.showInlineError(this.errors[i]);
   }
 };
 
 FormValidator.prototype.showInlineError = function (error) {
   var errorSpan = '<span class="field-error">'+error.message+'</span>';
   var fieldContainer = $("#" + error.fieldName).parents(".field");
+  fieldContainer.addClass('field-hasError');
   var label = fieldContainer.find('label');
   var legend = fieldContainer.find("legend");
   var errorContainer = fieldContainer.find(".error");
@@ -104,9 +103,5 @@ FormValidator.prototype.validate = function() {
       }
     }
   }
-  return this.getErrors().length === 0;
-};
-
-FormValidator.prototype.getErrors = function() {
-  return this.errors;
+  return this.errors.length === 0;
 };

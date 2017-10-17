@@ -3,16 +3,10 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
-
-{% block pageHeader %}
-	{{headings.h1('Textarea')}}
-{% endblock pageHeader %}
 
 {% block mainContent %}
+	{{headings.h1('Textarea')}}
 
-	<div class="example">
-		{{formElements.textarea('notes', 'Delivery notes')}}
-	</div>
+	{{formElements.textarea('notes', 'Delivery notes')}}
 
 {% endblock mainContent %}

@@ -3,7 +3,6 @@
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block pageScript %}
 	<script>
@@ -25,21 +24,13 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Date picker')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
+	{{headings.h1('Date picker')}}
 
-	<div class="example">
-		{{formElements.textBox('date', 'Date', type='date')}}
-	</div>
+	{{formElements.textBox('date', 'Date', type='date')}}
 
-	<div class="example">
-		{{formElements.textBox('tdate', 'Date', type='text')}}
-	</div>
+	{{formElements.textBox('tdate', 'Date', type='text')}}
 
-	{{headings.h2('Description')}}
-	<p>Use this when...</p>
+	<p>Use this when <a href="http://google.co.uk">Google</a></p>
 
 {% endblock mainContent %}
