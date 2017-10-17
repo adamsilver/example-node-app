@@ -8,7 +8,7 @@ const upload = multer( {
 
 		let ok = false;
 
-		if( file.mimetype === 'img/jpeg' ){
+		if( file.mimetype === 'image/jpeg' ){
 			ok = true;
 		}
 
@@ -55,16 +55,9 @@ module.exports = function( express, app ){
 	});
 
 
-	app.post('/multi-file-upload/', function( req, res ){
+	app.post('/components/upload-form', upload.array( 'documents', 10 ), function( req, res ){
 
-		upload( req, res, function( err ){
-
-			if( err ){
-				res.send( 'error with file' );
-			} else {
-				res.redirect( '/components/forms/upload-form' );
-			}
-		} );
+		res.render( 'components/forms/upload-form.html', { files: req.files } );
 	} );
 
 	app.get('/components/text-box', function( req, res ){

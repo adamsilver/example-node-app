@@ -41,7 +41,7 @@ if(isAdvancedUpload) {
   	var formData = new FormData();
   	var xhr = new XMLHttpRequest();
   	for(var i=0; i < files.length; i++) {
-  		formData.append('file[]', files[i]);
+  		formData.append('documents[]', files[i]);
       $('.files').append('<p>'+ files[i].name +'</p>');
     }
   	this.makeRequest(formData);

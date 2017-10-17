@@ -22,6 +22,7 @@
 
 
 	<div class="files">
+		{{ files | dump }}
 	</div>
 
 	<!-- <p><strong>Files</strong></p>
@@ -31,11 +32,11 @@
 		<li>Yet.pdf <progress value="0" max="100">0%</progress></li>
 	</ul> -->
 
-	<form novalidate enctype="multipart/form-data" method="post" action="/upload">
+	<form novalidate enctype="multipart/form-data" method="post" action="/components/upload-form">
 
 		<div class="dropzone">
-			<div>		
-				{{formElements.fileInput('file', 'Attach file', {
+			<div>
+				{{formElements.fileInput('documents', 'Attach file', {
 					multiple: true
 				})}}
 				{{buttons.secondaryButton('Upload', 'upload')}}

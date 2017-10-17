@@ -5,3 +5,4 @@ src/config/config.json
 npm-debug.log
 dist
 .env
+tmp-uploads
