@@ -15,7 +15,8 @@ if(isAdvancedUpload) {
 
     this.fileInput = this.dropzone.find('.field-file');
     this.fileInput.on('change', $.proxy(this, 'onFileChange'));
-
+    this.fileInput.on('focus', $.proxy(this, 'onFileFocus'));
+    this.fileInput.on('blur', $.proxy(this, 'onFileBlur'));
   }
 
   Dropzone.prototype.onDragOver = function(e) {
@@ -38,18 +39,31 @@ if(isAdvancedUpload) {
   };
 
   Dropzone.prototype.upload = function(files) {
-  	var formData = new FormData();
-  	for(var i=0; i < files.length; i++) {
-  		formData.append('documents', files[i]);
+    for(var i = 0; i < files.length; i++) {
+      var formData = new FormData();
+      formData.append('documents', files[i]);
       this.makeRequest(formData);
     }
+    $('.files').removeClass('hidden');
   };
 
   Dropzone.prototype.onFileChange = function(e) {
     this.upload(e.currentTarget.files);
   };
 
+  Dropzone.prototype.onFileFocus = function(e) {
+    this.dropzone.find('label').addClass('focus');
+  };
+
+  Dropzone.prototype.onFileBlur = function(e) {
+    this.dropzone.find('label').removeClass('focus');
+  };
+
   Dropzone.prototype.makeRequest = function(formData) {
+    var li = $('<li>'+ formData.get('documents').name +'<br><progress value="0" max="100">0%</progress></li>');
+    $('.files').append(li);
+
+    // use closure
   	$.ajax({
         url: '/ajax-upload',
         type: 'post',
@@ -66,22 +80,13 @@ if(isAdvancedUpload) {
           var xhr = new XMLHttpRequest();
 
           xhr.upload.addEventListener('progress', function(evt) {
-            console.log(evt);
             if (evt.lengthComputable) {
               // calculate the percentage of upload completed
               var percentComplete = evt.loaded / evt.total;
               percentComplete = parseInt(percentComplete * 100);
-              console.log(percentComplete);
 
-              // update the Bootstrap progress bar with the new percentage
-              // $('.progress-bar').text(percentComplete + '%');
-              // $('.progress-bar').width(percentComplete + '%');
-
-              // once the upload reaches 100%, set the progress bar text to done
-              // if (percentComplete === 100) {
-              //   $('.progress-bar').html('Done');
-              // }
-
+              li.find('progress').text(percentComplete + '%');
+              li.find('progress')[0].value = percentComplete;
             }
 
           }, false);

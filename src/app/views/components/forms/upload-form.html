@@ -19,14 +19,14 @@
 {% endblock pageHeader %}
 
 {% block mainContent %}
-
-	{% if files.length > 0 %}
-		<ul class="files">
+	{{files.length | dump}}
+	<ul class="files {% if not files.length %}hidden{% endif%}">
+		{% if files.length > 0 %}
 			{% for file in files %}
-				<li><a href="{{file.path}}">{{file.originalname}}</a> <progress></progress value="100" max="100">100%</li>
+				<li><a href="{{file.path}}">{{file.originalname}}</a> <progress value="100" max="100">100%</progress></li>
 			{% endfor %}
-		</ul>
-	{% endif %}
+		{% endif %}
+	</ul>
 
 	<form novalidate enctype="multipart/form-data" method="post" action="/components/upload-form">
 
