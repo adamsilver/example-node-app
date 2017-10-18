@@ -1,11 +1,10 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layouts/raw.html' %}
 {% set cnav = "select-box" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 
 {% block mainContent %}
-	{{headings.h1('Select box')}}
 	{{formElements.selectBox('country', 'Country',[{
 		text: 'Select',
 		value: ''

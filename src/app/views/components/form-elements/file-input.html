@@ -1,11 +1,9 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layouts/raw.html' %}
 {% set cnav = "file-input" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/form-elements.html" as formElements %}
 
 {% block mainContent %}
-	{{headings.h1('File input')}}
-
 	{{formElements.fileInput('file', 'Attach document')}}
 {% endblock mainContent %}

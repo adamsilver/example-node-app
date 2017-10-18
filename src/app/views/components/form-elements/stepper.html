@@ -1,4 +1,4 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layouts/raw.html' %}
 {% set cnav = "stepper" %}
 
 {% import "macros/headings.html" as headings %}
@@ -17,11 +17,8 @@
 {% endblock pageHeader %}
 
 {% block mainContent %}
-	{{headings.h1('Passengers')}}
-
 	{{formElements.textBox('adults', 'How many people aged 16 and over are flying?', type='number', {
 		value: '0',
 		attributes: 'min="0" max="9"'
 	})}}
-
 {% endblock mainContent %}

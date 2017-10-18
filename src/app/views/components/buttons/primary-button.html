@@ -1,17 +1,9 @@
-{% extends 'layouts/component.html' %}
+{% extends 'layouts/raw.html' %}
 {% set cnav = "primary-button" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/buttons.html" as buttons %}
-{% import "macros/navigation.html" as navigation %}
 
 {% block mainContent %}
-	<h1>Primary Button</h1>
-	<p>Buttons express what action will occur when the user clicks or touches it. Buttons are used to initialize an action, either in the background or foreground of an experience.<p>
-
 	{{buttons.primaryButton('Save', 'save')}}
-
-	<div class="html">
-	<pre>{{""+buttons.primaryButton('Save', 'save')}}</pre>
-	</div>
 {% endblock mainContent %}
