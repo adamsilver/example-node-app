@@ -204,11 +204,6 @@ main {
 }
 
 .mainContent {
-    width: 100%;
-    margin-left: 0;
-    transition: 250ms ease;
-    /*width: calc(100% - 15rem);*/
-    overflow-x: hidden;
 }
 
 .pageHeader {

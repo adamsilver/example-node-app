@@ -17,7 +17,7 @@ function Autocomplete(select) {
 
 Autocomplete.prototype.onDocumentClick = function(e) {
 	if(!$.contains(this.container[0], e.target)) {
-        this.hideOptions();
+        this.hideMenu();
     }
 };
 
@@ -44,7 +44,7 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 			// is adhered to. We hide the options, which
 			// removes the ability to focus the options
 			case this.keys.tab:
-				this.hideOptions();
+				this.hideMenu();
 				break;
 		}
 	}, this));
@@ -122,7 +122,7 @@ Autocomplete.prototype.onSuggestionsKeyDown = function(e) {
 			this.onSuggestionEscape(e);
 			break;
 		case this.keys.tab:
-			this.hideOptions();
+			this.hideMenu();
 			break;
 		default:
 			this.textBox.focus();
@@ -135,6 +135,8 @@ Autocomplete.prototype.onTextBoxType = function(e) {
 		this.buildMenu(options);
 		this.showMenu();
 		this.updateStatus(options.length);
+	} else {
+		this.hideMenu();
 	}
 	this.updateSelectBox();
 };
@@ -151,7 +153,7 @@ Autocomplete.prototype.updateSelectBox = function() {
 
 Autocomplete.prototype.onSuggestionEscape = function(e) {
 	this.clearOptions();
-	this.hideOptions();
+	this.hideMenu();
 	this.focusTextBox();
 };
 
@@ -189,7 +191,7 @@ Autocomplete.prototype.selectSuggestion = function(suggestion) {
 	var value = suggestion.attr('data-option-value');
 	this.textBox.val(value);
 	this.setValue(value);
-	this.hideOptions();
+	this.hideMenu();
 	this.focusTextBox();
 };
 
@@ -232,7 +234,7 @@ Autocomplete.prototype.onSuggestionUpArrow = function(e) {
 
 		} else {
 			this.focusTextBox();
-			this.hideOptions();
+			this.hideMenu();
 		}
 	}
 	e.preventDefault();
@@ -287,7 +289,7 @@ Autocomplete.prototype.showMenu = function() {
 	this.textBox.attr('tabindex', '0');
 };
 
-Autocomplete.prototype.hideOptions = function() {
+Autocomplete.prototype.hideMenu = function() {
 	this.optionsUl.addClass('autocomplete-options-isHidden');
 	this.optionsUl.attr('aria-hidden', 'true');
 	this.textBox.attr('aria-expanded', 'false');
