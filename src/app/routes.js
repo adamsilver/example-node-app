@@ -2,7 +2,7 @@ const multer = require( 'multer' );
 const bodyParser = require('body-parser');
 
 const upload = multer( {
-	dest: './tmp-uploads',
+	dest: './tmp-uploads'//,
 	// limits: '1mb',
 	// fileFilter: function( req, file, cb ){
 

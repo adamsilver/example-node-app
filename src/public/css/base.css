@@ -267,3 +267,13 @@ main {
 .hidden {
 	display: none;
 }
+
+.fileList {
+	max-width: 600px;
+	list-style: none;
+	margin-left: 0;
+}
+
+.fileList-file a {
+	display: block;
+}

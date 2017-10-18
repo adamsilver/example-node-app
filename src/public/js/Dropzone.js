@@ -44,7 +44,7 @@ if(isAdvancedUpload) {
       formData.append('documents', files[i]);
       this.makeRequest(formData);
     }
-    $('.files').removeClass('hidden');
+    $('.fileList').removeClass('hidden');
   };
 
   Dropzone.prototype.onFileChange = function(e) {
@@ -61,7 +61,7 @@ if(isAdvancedUpload) {
 
   Dropzone.prototype.makeRequest = function(formData) {
     var li = $('<li>'+ formData.get('documents').name +'<br><progress value="0" max="100">0%</progress></li>');
-    $('.files').append(li);
+    $('.fileList ul').append(li);
 
     // use closure
   	$.ajax({
