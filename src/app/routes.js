@@ -22,51 +22,177 @@ const defaultBodyParser = bodyParser();
 
 module.exports = function( express, app ){
 
-	app.get('/contents', function( req, res ){
+	app.get('/', function(req, res) {
 		res.render('index.html');
 	});
 
-	app.get( '/examples/action-menu', function( req, res ){
-		res.render('examples/action-menu.html');
-	});
+	//
+	//
+	// Styles
+	//
+	//
 
-	app.get( '/components/buttons', function( req, res ){
-		res.render('components/buttons.html');
+	app.get( '/styles/', function( req, res ){
+		res.render('styles/index.html');
 	});
 
 	app.get( '/styles/colours', function( req, res ){
 		res.render('styles/colours.html');
 	});
 
-	app.get('/examples/dropzone', function( req, res ){
-		res.render('examples/dropzone.html');
+	//
+	//
+	// Components
+	//
+	//
+
+	app.get('/components/', function(req, res) {
+		res.render('components/index.html');
 	});
 
-	app.post('/examples/upload', upload.array( 'documents', 10 ), function( req, res ){
-		console.log(req.files);
-		res.render( 'examples/dropzone.html', { files: req.files } );
-	} );
+	app.get( '/components/autocomplete', function( req, res ){
+		res.render('components/autocomplete.html');
+	});
 
-	app.post('/ajax-upload', upload.array( 'documents', 10 ), function( req, res ){
-		console.log(req.files);
+	app.get( '/components/buttons', function( req, res ){
+		res.render('components/buttons.html');
+	});
 
-		res.json({ files: req.files });
+	app.get( '/components/character-countdown', function( req, res ){
+		res.render('components/character-countdown.html');
+	});
 
-	} );
+	app.get( '/components/checkbox-group', function( req, res ){
+		res.render('components/checkbox-group.html');
+	});
+
+	app.get( '/components/date-picker', function( req, res ){
+		res.render('components/date-picker.html');
+	});
+
+	app.get( '/components/file-picker', function( req, res ){
+		res.render('components/file-picker.html');
+	});
+
+	app.get( '/components/memorable-date', function( req, res ){
+		res.render('components/memorable-date.html');
+	});
+
+	app.get( '/components/menu', function( req, res ){
+		res.render('components/menu.html');
+	});
+
+	app.get( '/components/radio-buttons', function( req, res ){
+		res.render('components/radio-buttons.html');
+	});
+
+	app.get( '/components/search-box', function( req, res ){
+		res.render('components/search-box.html');
+	});
+
+	app.get( '/components/select-box', function( req, res ){
+		res.render('components/select-box.html');
+	});
+
+	app.get( '/components/stepper', function( req, res ){
+		res.render('components/stepper.html');
+	});
+
+	app.get( '/components/textarea', function( req, res ){
+		res.render('components/textarea.html');
+	});
+
+	app.get( '/components/text-box', function( req, res ){
+		res.render('components/text-box.html');
+	});
+
+	//
+	//
+	// Patterns
+	//
+	//
+
+	app.get('/patterns/', function(req, res) {
+		res.render('patterns/index.html');
+	});
+
+
+	app.get('/patterns/add-another', function(req, res) {
+		res.render('patterns/add-another.html');
+	});
+
+	app.get('/patterns/validation', function( req, res ){
+		res.render('patterns/validation.html');
+	});
+
+	app.get('/patterns/payment', function( req, res ){
+		res.render('patterns/payment.html');
+	});
+
+	app.get('/patterns/dates', function( req, res ){
+		res.render('patterns/dates.html');
+	});
+
+	app.get('/patterns/seats', function( req, res ){
+		res.render('patterns/seats.html');
+	});
+
+	//
+	//
+	// Examples
+	//
+	//
+
+	app.get('/examples/add-another', function( req, res ){
+		res.render('examples/add-another.html');
+	});
+
+	app.post('/examples/add-another', urlBodyParser, jsonBodyParser, defaultBodyParser, function( req, res ){
+		console.log(require('util').inspect(req.body, { depth: 4 }));
+		res.redirect('/components/add-another');
+	});
+
+	app.get('/examples/primary-button', function( req, res ){
+		res.render('examples/primary-button.html');
+	});
+
+	app.get('/examples/payment', function( req, res ){
+		res.render('examples/payment.html');
+	});
+
+	app.get('/examples/validation', function( req, res ){
+		res.render('examples/validation.html');
+	});
+
+	app.get('/examples/seat-chooser', function( req, res ){
+		res.render('examples/seat-chooser.html');
+	});
+
+	app.get('/examples/seat-chooser-nested', function( req, res ){
+		res.render('examples/seat-chooser-nested.html');
+	});
+
+	app.get('/examples/seat-chooser-nested', function( req, res ){
+		res.render('examples/seat-chooser-nested.html');
+	});
+
+	app.get( '/examples/menu', function( req, res ){
+		res.render('examples/menu.html');
+	});
 
 	app.get('/examples/text-box', function( req, res ){
 		res.render('examples/text-box.html');
 	});
 
-	app.get('/examples/file-input', function( req, res ){
-		res.render('examples/file-input.html');
+	app.get('/examples/file-picker', function( req, res ){
+		res.render('examples/file-picker.html');
 	});
 
 	app.get('/examples/select-box', function( req, res ){
 		res.render('examples/select-box.html');
 	});
 
-	app.get('/examples/search-box', function( req, res ){
+	app.get('/examples/select-box', function( req, res ){
 		res.render('examples/search-box.html');
 	});
 
@@ -94,86 +220,28 @@ module.exports = function( express, app ){
 		res.render('examples/autocomplete.html');
 	});
 
-	app.get('/examples/characters-remaining', function( req, res ){
-		res.render('examples/characters-remaining.html');
+	app.get('/examples/character-countdown', function( req, res ){
+		res.render('examples/character-countdown.html');
 	});
 
 	app.get('/examples/stepper', function( req, res ){
 		res.render('examples/stepper.html');
 	});
 
-	// Pages
-
-	app.get('/', function(req, res) {
-		res.render('index.html');
+		app.get('/examples/dropzone', function( req, res ){
+		res.render('examples/dropzone.html');
 	});
 
-	app.get('/components/', function(req, res) {
-		res.render('components/index.html', {
-			
-		});
-	});
+	app.post('/examples/upload', upload.array( 'documents', 10 ), function( req, res ){
+		console.log(req.files);
+		res.render( 'examples/dropzone.html', { files: req.files } );
+	} );
 
-	app.get('/patterns/', function(req, res) {
-		res.render('patterns/index.html');
-	});
+	app.post('/ajax-upload', upload.array( 'documents', 10 ), function( req, res ){
+		console.log(req.files);
 
-	// Patterns
+		res.json({ files: req.files });
 
-	app.get('/patterns/add-another', function(req, res) {
-		res.render('patterns/add-another.html');
-	});
-
-	app.get('/patterns/validation', function( req, res ){
-		res.render('patterns/validation.html');
-	});
-
-	app.get('/patterns/payment', function( req, res ){
-		res.render('patterns/payment.html');
-	});
-
-	app.get('/patterns/dates', function( req, res ){
-		res.render('patterns/dates.html');
-	});
-
-	app.get('/patterns/seats', function( req, res ){
-		res.render('patterns/seats.html');
-	});
-
-	// Examples
-
-	app.get('/examples/add-another', function( req, res ){
-		res.render('examples/add-another.html');
-	});
-
-	app.post('/add-another', urlBodyParser, jsonBodyParser, defaultBodyParser, function( req, res ){
-		var util = require('util');
-		console.log(util.inspect(req.body, { depth: 4 }));
-		res.redirect('/components/add-another');
-	});
-
-	app.get('/examples/primary-button', function( req, res ){
-		res.render('examples/primary-button.html');
-	});
-
-	app.get('/examples/payment', function( req, res ){
-		res.render('examples/payment.html');
-	});
-
-	app.get('/examples/validation', function( req, res ){
-		res.render('examples/validation.html');
-	});
-
-	app.get('/examples/seat-chooser', function( req, res ){
-		res.render('examples/seat-chooser.html');
-	});
-
-	app.get('/examples/seat-chooser-nested', function( req, res ){
-		res.render('examples/seat-chooser-nested.html');
-	});
-
-	app.get('/examples/seat-chooser-nested', function( req, res ){
-		res.render('examples/seat-chooser-nested.html');
-	});
+	} );
 
 };

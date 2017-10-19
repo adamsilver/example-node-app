@@ -5,21 +5,9 @@
 {% import "macros/form-elements.html" as formElements %}
 
 {% block mainContent %}
-	
-	{{headings.h1('Text input')}}
-	<p>Use this to create different types of text input.</p>
 
-	<h2>Text box</h2>
-	{{formElements.textBox('text', 'Username')}}
-	<div class="html">
-	<pre>{{(""+formElements.textBox('username', 'Username address') )}}</pre>
-	</div>
-
-	<h2>Email</h2>
 	{{formElements.textBox('email', 'Email address', type='email')}}
-	<div class="html">
-	<pre>{{(""+formElements.textBox('email', 'Email address', type='email') )}}</pre>
-	</div>
+	
 
 	<!-- {{headings.h2('Variants')}}
 	<ul>

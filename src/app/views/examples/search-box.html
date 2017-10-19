@@ -5,16 +5,5 @@
 {% import "macros/form-elements.html" as formElements %}
 
 {% block mainContent %}
-	{{headings.h1('Search box')}}
-
 	{{formElements.textBox('search', 'Search products', type='search')}}
-	<div class="html">
-	<pre>{{(""+formElements.textBox('search', 'Search products', type='search') )}}</pre>
-	</div>
-
-	{{headings.h2('Description')}}
-	<p>Use this when the user needs to search for something with a huge amount of dynamic results.</p>
-
-	
-
 {% endblock mainContent %}

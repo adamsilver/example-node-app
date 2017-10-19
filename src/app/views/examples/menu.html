@@ -1,5 +1,4 @@
 {% extends 'layouts/raw.html' %}
-{% set cnav = "action-menu" %}
 
 {% import "macros/headings.html" as headings %}
 {% import "macros/menus.html" as menus %}
@@ -10,14 +9,8 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Action menu')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
 
-	<div class="example">
-		{{menus.actionMenu()}}
-	</div>
+	{{menus.actionMenu()}}
 
 {% endblock mainContent %}
