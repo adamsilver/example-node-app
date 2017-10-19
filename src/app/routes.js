@@ -26,30 +26,26 @@ module.exports = function( express, app ){
 		res.render('index.html');
 	});
 
-	app.get( '/components/action-menu', function( req, res ){
-		res.render('components/menus/action-menu.html');
+	app.get( '/examples/action-menu', function( req, res ){
+		res.render('examples/action-menu.html');
 	});
 
-	app.get( '/components/buttons/primary-button', function( req, res ){
-		res.render('components/buttons/primary-button.html');
+	app.get( '/components/buttons', function( req, res ){
+		res.render('components/buttons.html');
 	});
 
-	app.get( '/components/colours', function( req, res ){
-		res.render('components/colour/colours.html');
+	app.get( '/examples/colours', function( req, res ){
+		res.render('examples/colour/colours.html');
 	});
 
-	app.get('/components/validation', function( req, res ){
-		res.render('components/forms/validation.html');
-	});
-
-	app.get('/components/upload-form', function( req, res ){
+	app.get('/examples/upload-form', function( req, res ){
 		res.render('components/forms/upload-form.html');
 	});
 
 
-	app.post('/components/upload-form', upload.array( 'documents', 10 ), function( req, res ){
+	app.post('/examples/upload-form', upload.array( 'documents', 10 ), function( req, res ){
 		console.log(req.files);
-		res.render( 'components/forms/upload-form.html', { files: req.files } );
+		res.render( 'examples/forms/upload-form.html', { files: req.files } );
 	} );
 
 	app.post('/ajax-upload', upload.array( 'documents', 10 ), function( req, res ){
@@ -59,69 +55,52 @@ module.exports = function( express, app ){
 
 	} );
 
-	app.get('/components/text-box', function( req, res ){
-		res.render('components/form-elements/text-box.html');
+	app.get('/examples/text-box', function( req, res ){
+		res.render('examples/text-box.html');
 	});
 
-	app.get('/components/file-input', function( req, res ){
-		res.render('components/form-elements/file-input.html');
+	app.get('/examples/file-input', function( req, res ){
+		res.render('examples/file-input.html');
 	});
 
-	app.get('/components/select-box', function( req, res ){
-		res.render('components/form-elements/select-box.html');
+	app.get('/examples/select-box', function( req, res ){
+		res.render('examples/select-box.html');
 	});
 
-	app.get('/components/search-box', function( req, res ){
-		res.render('components/form-elements/search-box.html');
+	app.get('/examples/search-box', function( req, res ){
+		res.render('examples/search-box.html');
 	});
 
-	app.get('/components/textarea', function( req, res ){
-		res.render('components/form-elements/textarea.html');
+	app.get('/examples/textarea', function( req, res ){
+		res.render('examples/textarea.html');
 	});
 
-	app.get('/components/radio-buttons', function( req, res ){
-		res.render('components/form-elements/radio-buttons.html');
+	app.get('/examples/radio-buttons', function( req, res ){
+		res.render('examples/radio-buttons.html');
 	});
 
-	app.get('/components/checkbox-group', function( req, res ){
-		res.render('components/form-elements/checkbox-group.html');
+	app.get('/examples/checkbox-group', function( req, res ){
+		res.render('examples/checkbox-group.html');
 	});
 
-	app.get('/components/memorable-date', function( req, res ){
-		res.render('components/form-elements/memorable-date-field.html');
+	app.get('/examples/memorable-date', function( req, res ){
+		res.render('examples/memorable-date-field.html');
 	});
 
-	app.get('/components/date-picker', function( req, res ){
-		res.render('components/form-elements/date-picker-field.html');
+	app.get('/examples/date-picker', function( req, res ){
+		res.render('examples/date-picker-field.html');
 	});
 
-	app.get('/components/autocomplete', function( req, res ){
-		res.render('components/form-elements/autocomplete.html');
+	app.get('/examples/autocomplete', function( req, res ){
+		res.render('examples/autocomplete.html');
 	});
 
-	app.get('/components/characters-remaining', function( req, res ){
-		res.render('components/form-elements/characters-remaining.html');
+	app.get('/examples/characters-remaining', function( req, res ){
+		res.render('examples/characters-remaining.html');
 	});
 
-	app.get('/components/stepper', function( req, res ){
-		res.render('components/form-elements/stepper.html');
-	});
-
-	app.get('/components/add-another', function( req, res ){
-		res.render('components/form-elements/add-another.html');
-	});
-
-	app.post('/add-another', urlBodyParser, jsonBodyParser, defaultBodyParser, function( req, res ){
-		var util = require('util');
-		console.log(util.inspect(req.body, { depth: 4 }));
-		res.redirect('/components/add-another');
-	});
-
-	app.post('/upload', function(req, res) {
-		console.log(req.file);
-		console.log(req.files);
-		console.log(req.body.file);
-		res.render('components/form-elements/add-another.html');
+	app.get('/examples/stepper', function( req, res ){
+		res.render('examples/stepper.html');
 	});
 
 	// Pages
@@ -163,6 +142,20 @@ module.exports = function( express, app ){
 	});
 
 	// Examples
+
+	app.get('/examples/add-another', function( req, res ){
+		res.render('examples/add-another.html');
+	});
+
+	app.post('/add-another', urlBodyParser, jsonBodyParser, defaultBodyParser, function( req, res ){
+		var util = require('util');
+		console.log(util.inspect(req.body, { depth: 4 }));
+		res.redirect('/components/add-another');
+	});
+
+	app.get('/examples/primary-button', function( req, res ){
+		res.render('examples/primary-button.html');
+	});
 
 	app.get('/examples/payment', function( req, res ){
 		res.render('examples/payment.html');
