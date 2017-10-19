@@ -1,0 +1,52 @@
+{% extends 'layouts/base.html' %}
+{% set cnav = "search-box" %}
+
+{% import "macros/headings.html" as headings %}
+{% import "macros/form-elements.html" as formElements %}
+{% import "macros/buttons.html" as buttons %}
+
+{% block header %}
+	<header>
+		<div>Logo</div>
+	</header>
+	<form class="searchForm">
+		{{formElements.textBox('search', 'Search products', type='search', {
+			modifierClasses: 'field--inline',
+			hint: 'For example, “black wallet”'
+		})}}
+		{{buttons.primaryButton('Search')}}
+	</form>
+{% endblock header %}
+
+{% block pageCss %}
+	<style>
+		header {
+			padding: 20px;
+			background-color: #000;
+			color: #fff;
+			overflow: hidden;
+		}
+
+		header div {
+			font-size: 1.5em;
+			float: left;
+		}
+
+		header button {
+			float: right;
+		}
+
+		.searchForm {
+			padding: 20px 20px 25px;
+			border-bottom: 2px solid #000;
+			background-color: #ddd;
+		}
+
+	</style>
+{% endblock pageCss %}
+
+{% block pageScript %}
+	<script>
+		new SearchForm();
+	</script>
+{% endblock pageScript %}

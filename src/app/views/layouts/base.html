@@ -24,12 +24,11 @@
 			<link rel="stylesheet" href="/public/css/forms/add-another.css">
 		<!-- endbuild -->
 		{% endblock css %}
+		{% block pageCss %}
+		{% endblock pageCss %}
 	</head>
 	<body>
-		<!--<header role="banner" class="header">
-			<div class="logo"><a href="/">Pattern library</a></div>
-
-		</header>-->
+		{% block header %}{% endblock header%}
 		<main class="main">
 			{% block content %}
 			{% endblock content %}
@@ -49,6 +48,7 @@
 			<script src="/public/js/Menu.js"></script>
 			<script src="/public/js/AddAnother.js"></script>
 			<script src="/public/js/Dropzone.js"></script>
+			<script src="/public/js/SearchForm.js"></script>
 		<!-- endbuild -->
 		{% endblock script %}
 

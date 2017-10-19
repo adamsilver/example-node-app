@@ -12,6 +12,11 @@ fieldset {
 	margin-bottom: 2em;
 }
 
+.field--inline {
+    margin-bottom: 0;
+    display: inline-block;
+}
+
 .field label,
 .field legend {
 	font-size: 1.2em;
@@ -30,7 +35,7 @@ fieldset {
 }
 
 .field-hint {
-	color: #666;
+	color: #000;
 	margin-bottom: 2px;
 	display: block;
 }

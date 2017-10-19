@@ -228,7 +228,11 @@ module.exports = function( express, app ){
 		res.render('examples/stepper.html');
 	});
 
-		app.get('/examples/dropzone', function( req, res ){
+	app.get('/examples/search-form', function( req, res ){
+		res.render('examples/search-form.html');
+	});
+
+	app.get('/examples/dropzone', function( req, res ){
 		res.render('examples/dropzone.html');
 	});
 
