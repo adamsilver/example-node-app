@@ -34,18 +34,17 @@ module.exports = function( express, app ){
 		res.render('components/buttons.html');
 	});
 
-	app.get( '/examples/colours', function( req, res ){
-		res.render('examples/colour/colours.html');
+	app.get( '/styles/colours', function( req, res ){
+		res.render('styles/colours.html');
 	});
 
-	app.get('/examples/upload-form', function( req, res ){
-		res.render('components/forms/upload-form.html');
+	app.get('/examples/dropzone', function( req, res ){
+		res.render('examples/dropzone.html');
 	});
 
-
-	app.post('/examples/upload-form', upload.array( 'documents', 10 ), function( req, res ){
+	app.post('/examples/upload', upload.array( 'documents', 10 ), function( req, res ){
 		console.log(req.files);
-		res.render( 'examples/forms/upload-form.html', { files: req.files } );
+		res.render( 'examples/dropzone.html', { files: req.files } );
 	} );
 
 	app.post('/ajax-upload', upload.array( 'documents', 10 ), function( req, res ){
