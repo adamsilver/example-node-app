@@ -11,7 +11,6 @@
 	</header>
 	<form class="searchForm">
 		{{formElements.textBox('search', 'Search products', type='search', {
-			modifierClasses: 'field--inline',
 			hint: 'For example, “black wallet”'
 		})}}
 		{{buttons.primaryButton('Search')}}
@@ -21,19 +20,25 @@
 {% block pageCss %}
 	<style>
 		header {
-			padding: 20px;
+			padding: 10px 15px 10px 20px;
 			background-color: #000;
 			color: #fff;
 			overflow: hidden;
 		}
 
 		header div {
-			font-size: 1.5em;
+			font-size: 1.2em;
 			float: left;
+			line-height: 1em;
+			padding: 7px 0;
 		}
 
 		header button {
 			float: right;
+			background: none;
+			border: none;
+			padding: 5px 7px;
+			border: 1px solid #fff;
 		}
 
 		.searchForm {

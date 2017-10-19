@@ -15,6 +15,7 @@ fieldset {
 .field--inline {
     margin-bottom: 0;
     display: inline-block;
+    max-width: auto;
 }
 
 .field label,

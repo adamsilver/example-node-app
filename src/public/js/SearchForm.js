@@ -6,7 +6,7 @@ function SearchForm() {
 }
 
 SearchForm.prototype.createButton = function() {
-	this.button = $('<button class="secondaryButton" type="button" aria-haspopup="true" aria-expanded="false">Search</button>');
+	this.button = $('<button type="button" aria-haspopup="true" aria-expanded="false"><img src="/public/img/magnifying-glass.png" width="20" height="20"></button>');
 	this.button.on('click', $.proxy(this, 'onButtonClick'));
 	this.header.append(this.button);
 };
