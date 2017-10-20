@@ -232,11 +232,11 @@ main {
 
 .dropzone--enhanced {
 	outline: 3px dashed #333;
-    outline-offset: -10px;
+  outline-offset: -10px;
 	display: flex;
 	justify-content: center;
 	text-align: center;
-	padding: 40px;
+	padding: 70px 40px 55px;
 	max-width: 500px;
 	
 	background-color: #f5f5f5;
@@ -256,13 +256,13 @@ main {
 	left: -9999em;
 }
 
+.dropzone--enhanced .field-label {
+	line-height: 1.6em;
+}
+
 .dropzone--dragOver {
 	background: #eee;
 	border: 2px dashed #ccc;
-}
-
-.focus {
-	border: 1px solid red;
 }
 
 .hidden {
@@ -277,4 +277,21 @@ main {
 
 .fileList-file a {
 	display: block;
+}
+
+.focus .attach {
+	outline: 3px solid yellow;
+}
+
+.attach {
+	border: 1px solid #333;
+	box-shadow: 1px 1px 0 currentColor,1px 1px 0 currentColor;
+	border-radius: 3px;
+	background-color: #eee;
+	padding: 3px 7px;
+	display: inline-block;
+}
+
+.attach:hover {
+	background-color: #d5d5d5;
 }
