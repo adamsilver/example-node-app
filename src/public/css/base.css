@@ -85,15 +85,16 @@ a:link, a:visited {
 }
 
 h1 {
-	font-size: 1.5em;
+	font-size: 2.2em;
 	line-height: 1;
 	color: #222;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 
 @media(min-width: 30em) {
 	h1 {
-		font-size: 2.5em;
+		font-size: 2.8em;
+		margin-bottom: 60px;
 	}
 }
 
@@ -101,12 +102,12 @@ h2 {
 	font-size: 1.2em;
 	line-height: 1;
 	color: #222;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 @media(min-width: 30em) {
 	h2 {
-		font-size: 1.8em;
+		font-size: 1.6em;
 	}
 }
 

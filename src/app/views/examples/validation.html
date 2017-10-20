@@ -23,28 +23,24 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Validation')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
 
 	{{navigation.breadcrumb([{
 		text: 'Validation'
 	}])}}
 
-	{{headings.h1('Validation')}}
+	{{headings.h1('Questions')}}
 
 		<form novalidate>
 			{{formElements.errorSummary('Fix the following errors', [{
 				fieldName: 'email',
 				message: 'Enter your email address.'
 			}, {
-				fieldName: 'choice',
-				message: 'Choose your favourite colour.'
+				fieldName: 'like',
+				message: 'Select your favourite item.'
 			}, {
-				fieldName: 'things',
-				message: 'Choose at least 1 thing you like.'
+				fieldName: 'colours',
+				message: 'Select at least one favourite colour.'
 			}, {
 				fieldName: 'country',
 				message: 'Choose a country.'
@@ -52,24 +48,24 @@
 
 			{{formElements.textBox('email', 'Email address', {error: 'Enter your email address.'})}}
 
-			{{formElements.radioButtons('choice', 'Favourite colour', [{
-				label: 'Blue',
-				id: 'choice'
-			}, {
-				label: 'Red',
-				id: 'choice1'
-			}], {error: 'Choose your favourite colour.'})}}
-
-			{{formElements.checkboxes('things', 'Things you like', [{
+			{{formElements.radioButtons('like', 'What do you like the most?', [{
 				label: 'Chocolate',
-				id: 'things'
+				id: 'like'
 			}, {
-				label: 'Money',
-				id: 'things1'
+				label: 'Beer',
+				id: 'like1'
+			}], {error: 'Select your favourite item.'})}}
+
+			{{formElements.checkboxes('colours', 'Favourite colours', [{
+				label: 'Red',
+				id: 'colours'
+			}, {
+				label: 'Blue',
+				id: 'colours1'
 			},  {
-				label: 'Sleep',
-				id: 'things2'
-			}], {error: 'Choose at least 1 thing you like.'})}}
+				label: 'Green',
+				id: 'colours2'
+			}], { error: 'Select at least one favourite colour.'})}}
 
 			{{formElements.selectBox('country', 'Country',[{
 				text: 'Select',

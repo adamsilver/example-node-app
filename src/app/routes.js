@@ -137,6 +137,10 @@ module.exports = function( express, app ){
 		res.render('patterns/seats.html');
 	});
 
+	app.get('/patterns/upload', function( req, res ){
+		res.render('patterns/upload.html');
+	});
+
 	//
 	//
 	// Examples
