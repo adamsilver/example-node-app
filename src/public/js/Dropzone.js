@@ -62,8 +62,6 @@ if(isAdvancedUpload) {
   Dropzone.prototype.makeRequest = function(formData) {
     var li = $('<li>'+ formData.get('documents').name +'<br><progress value="0" max="100">0%</progress></li>');
     $('.fileList ul').append(li);
-
-    // use closure
   	$.ajax({
         url: '/ajax-upload',
         type: 'post',
