@@ -6,30 +6,14 @@
 
 {% block pageScript %}
 	<script>
-		function supportsDateInput() {
-			var el = document.createElement('input');
-			try {
-				el.type = 'date';
-			} catch(e) {
-
-			}
-			return el.type == 'date';
-		}
-
-		if(!supportsDateInput()) {
-			new DatePicker(document.getElementById('date'));
-		}
-
 		new DatePicker(document.getElementById('tdate'));
 	</script>
 {% endblock pageScript %}
 
 {% block mainContent %}
 
-	{{formElements.textBox('date', 'Date', type='date')}}
-
 	{{formElements.textBox('tdate', 'Date', type='text')}}
 
-	<p>Use this when <a href="http://google.co.uk">Google</a></p>
+	<p><a href="http://google.co.uk">Raise issue</a></p>
 
 {% endblock mainContent %}

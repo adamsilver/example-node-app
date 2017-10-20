@@ -212,8 +212,12 @@ module.exports = function( express, app ){
 		res.render('examples/memorable-date-field.html');
 	});
 
-	app.get('/examples/date-picker', function( req, res ){
-		res.render('examples/date-picker-field.html');
+	app.get('/examples/date-picker-always', function( req, res ){
+		res.render('examples/date-picker-always.html');
+	});
+
+	app.get('/examples/date-picker-detect', function( req, res ){
+		res.render('examples/date-picker-detect.html');
 	});
 
 	app.get('/examples/autocomplete', function( req, res ){
