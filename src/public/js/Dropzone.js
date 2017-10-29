@@ -63,34 +63,34 @@ if(isAdvancedUpload) {
     var li = $('<li>'+ formData.get('documents').name +'<br><progress value="0" max="100">0%</progress></li>');
     $('.fileList ul').append(li);
   	$.ajax({
-        url: '/ajax-upload',
-        type: 'post',
-        data: formData,
-        processData: false,
-        contentType: false,
-        error: function() {
-        	console.log(arguments);
-        },
-        success: function(data){
-            console.log('Upload successful!\n' + data);
-        },
-        xhr: function() {
-          var xhr = new XMLHttpRequest();
+      url: '/ajax-upload',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      error: function() {
+      	console.log(arguments);
+      },
+      success: function(data){
+          console.log('Upload successful!\n' + data);
+      },
+      xhr: function() {
+        var xhr = new XMLHttpRequest();
 
-          xhr.upload.addEventListener('progress', function(evt) {
-            if (evt.lengthComputable) {
-              // calculate the percentage of upload completed
-              var percentComplete = evt.loaded / evt.total;
-              percentComplete = parseInt(percentComplete * 100);
+        xhr.upload.addEventListener('progress', function(evt) {
+          if (evt.lengthComputable) {
+            // calculate the percentage of upload completed
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
 
-              li.find('progress').text(percentComplete + '%');
-              li.find('progress')[0].value = percentComplete;
-            }
+            li.find('progress').text(percentComplete + '%');
+            li.find('progress')[0].value = percentComplete;
+          }
 
-          }, false);
+        }, false);
 
-          return xhr;
-        }
-      });
+        return xhr;
+      }
+    });
   };
 }
