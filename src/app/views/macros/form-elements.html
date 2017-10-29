@@ -144,7 +144,7 @@
 									id="{{choice.id}}"
 									{% if choice.disabled %}disabled{% endif%}
 									{% if choice.checked %}checked{% endif%}>
-								{{choice.label}}
+								{{choice.label | safe}}
 							</label>
 						</div>
 					{% endfor %}

@@ -295,3 +295,10 @@ main {
 .attach:hover {
 	background-color: #d5d5d5;
 }
+
+
+#adults,
+#children,
+#infants {
+	width: 50px;
+}
