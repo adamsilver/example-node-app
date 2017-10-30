@@ -45,9 +45,15 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 			// removes the ability to focus the options
 			case this.keys.tab:
 				this.hideMenu();
+				this.textBox.removeClass('autocomplete-isFocused');
 				break;
 		}
 	}, this));
+	this.textBox.on('focus', $.proxy(this, 'onTextBoxFocus'));
+};
+
+Autocomplete.prototype.onTextBoxFocus = function() {
+	this.textBox.addClass('autocomplete-isFocused');
 };
 
 Autocomplete.prototype.onTextBoxClick = function(e) {
@@ -123,6 +129,7 @@ Autocomplete.prototype.onSuggestionsKeyDown = function(e) {
 			break;
 		case this.keys.tab:
 			this.hideMenu();
+			this.textBox.removeClass('autocomplete-isFocused');
 			break;
 		default:
 			this.textBox.focus();

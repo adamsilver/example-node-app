@@ -3,19 +3,19 @@
 **************************************/
 
 .primaryButton {
-	background-color: #00823B;
+	background-color: #0074D9;
 	border: none;
 	appearance: none;
 	-webkit-appearance: none;
 	color: white;
 	font-size: 1.2em;
 	padding: 8px 16px;
-	border-bottom: 2px solid #044426;
-	border-right: 2px solid #044426;
+	border-bottom: 2px solid #005096;
+	border-right: 2px solid #005096;
 }
 
 .primaryButton:hover {
-	background-color: #006435;
+	background-color: #005096;
 }
 
 /**************************************

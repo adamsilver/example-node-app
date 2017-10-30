@@ -16,7 +16,7 @@
     border: 2px solid #222;
 }
 
-.autocomplete-textBox:focus {
+.autocomplete-isFocused {
     outline-offset: 0;
     outline: 3px solid #ffbf47;
 }
@@ -79,6 +79,7 @@
     padding: 0.5em;
     display: block;
     border-bottom: 2px solid #ccc;
+    outline: none;
 }
 
 .autocomplete-optionNoResults {

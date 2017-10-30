@@ -14,7 +14,7 @@
 	margin-right: 3px;
 }
 
-.plane-seat--economyclass:nth-child(3) {
+.plane-seat--economyClass:nth-child(3) {
 	margin-right: 10px;
 }
 
@@ -73,12 +73,14 @@
 }
 
 .enhanced .plane-seat-isSelected label {
-	background: #111 !important;
-	border-color: #111;
-	color: #fff;
+	background-color: #005EA5;
+    border-color: #005EA5;
+    color: white;
 }
 
 .enhanced .plane-seat-isFocussed label {
-	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  	border: 3px solid rgba(81, 203, 238, 1);
+	box-shadow: 0 0 5px #ffbf47;
+  	border: 3px solid #ffbf47;
+
+  	
 }

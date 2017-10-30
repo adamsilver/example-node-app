@@ -32,6 +32,11 @@
 	max-width: 400px;
 }
 
+.datepicker-calendar:focus {
+	outline-offset: 0;
+    outline: 3px solid #ffbf47;
+}
+
 .datepicker-actions {
 	text-align: center;
 	padding-top: 10px;
@@ -70,8 +75,19 @@
     color: #fff;
 }
 
+.datepicker-next:focus,
+.datepicker-back:focus {
+	outline-offset: 0;
+    outline: 3px solid #ffbf47;
+}
+
 .datepicker-day {
 	border: 2px solid white;
+}
+
+.datepicker-day:focus {
+	outline-offset: 0;
+    outline: 3px solid #ffbf47;
 }
 
 .datepicker-previousMonthDay,
