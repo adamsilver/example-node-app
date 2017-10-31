@@ -18,6 +18,7 @@ function Autocomplete(select) {
 Autocomplete.prototype.onDocumentClick = function(e) {
 	if(!$.contains(this.container[0], e.target)) {
         this.hideMenu();
+        this.removeTextBoxFocus();
     }
 };
 
@@ -45,7 +46,7 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 			// removes the ability to focus the options
 			case this.keys.tab:
 				this.hideMenu();
-				this.textBox.removeClass('autocomplete-isFocused');
+				this.removeTextBoxFocus();
 				break;
 		}
 	}, this));
@@ -54,6 +55,10 @@ Autocomplete.prototype.addTextBoxEvents = function() {
 
 Autocomplete.prototype.onTextBoxFocus = function() {
 	this.textBox.addClass('autocomplete-isFocused');
+};
+
+Autocomplete.prototype.removeTextBoxFocus = function() {
+	this.textBox.removeClass('autocomplete-isFocused');
 };
 
 Autocomplete.prototype.onTextBoxClick = function(e) {
@@ -129,7 +134,7 @@ Autocomplete.prototype.onSuggestionsKeyDown = function(e) {
 			break;
 		case this.keys.tab:
 			this.hideMenu();
-			this.textBox.removeClass('autocomplete-isFocused');
+			this.removeTextBoxFocus();
 			break;
 		default:
 			this.textBox.focus();
