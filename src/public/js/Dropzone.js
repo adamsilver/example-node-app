@@ -7,7 +7,7 @@ if(isAdvancedUpload) {
   function Dropzone(container) {
   	this.dropzone = container;
     this.dropzone.addClass('dropzone--enhanced');
-    this.dropzone.find('label span').html('Drag and drop files here or <span class="attach">Choose file</span>');
+    this.dropzone.find('label span').html('Drag and drop files here or <span class="attach">Browse...</span>');
 
   	this.dropzone.on('dragover', $.proxy(this, 'onDragOver'));
   	this.dropzone.on('dragleave', $.proxy(this, 'onDragLeave'));
@@ -60,7 +60,7 @@ if(isAdvancedUpload) {
   };
 
   Dropzone.prototype.makeRequest = function(formData) {
-    var li = $('<li>'+ formData.get('documents').name +'<br><progress value="0" max="100">0%</progress></li>');
+    var li = $('<li><span class="fileList-name">'+ formData.get('documents').name +'</span><progress value="0" max="100">0%</progress></li>');
     $('.fileList ul').append(li);
   	$.ajax({
       url: '/ajax-upload',
@@ -72,7 +72,7 @@ if(isAdvancedUpload) {
       	console.log(arguments);
       },
       success: function(data){
-          console.log('Upload successful!\n' + data);
+        li.append('<button type="button" class="secondaryButton">Remove</button>');
       },
       xhr: function() {
         var xhr = new XMLHttpRequest();

@@ -14,22 +14,19 @@
 	</script>
 {% endblock pageScript %}
 
-{% block pageHeader %}
-	{{headings.h1('Upload form')}}
-{% endblock pageHeader %}
-
 {% block mainContent %}
 
-	<h1>Upload a thing</h1>
+	<h1>Upload files</h1>
 	
 	<div class="fileList {% if not files.length %}hidden{% endif%}">
-		<p>Files:</p>
+		<h2>Files</h2>
 		<ul>
 			{% if files.length > 0 %}
 				{% for file in files %}
 					<li class="fileList-file">
-						<a href="{{file.path}}">{{file.originalname}}</a>
+						<a href="{{file.path}}" class="fileList-name">{{file.originalname}}</a>
 						<progress value="100" max="100">100%</progress>
+						<button class="secondaryButton">Delete</button>
 					</li>
 				{% endfor %}
 			{% endif %}
