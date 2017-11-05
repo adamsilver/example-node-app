@@ -16,12 +16,12 @@
 	<form method="post" action="/examples/add-another/">
 		<div class="addAnother">
 			<h1 tabindex="-1" class="addAnother-heading">Expenses</h1>
-			<p>Enter your expenses for the month.</p>
+			<!-- <p>Enter your expenses for the month.</p> -->
 			<div class="addAnother-items">
 				<div class="addAnother-item">
-					{{formElements.textBox('items[0][description]', 'Description', { id: 'items[0][name]', attributes: 'data-name="items[%index%][description]" data-id="items[%index%][description]"' })}}
+					{{formElements.textBox('items[0][description]', 'Description', { id: 'items[0][description]', attributes: 'data-name="items[%index%][description]" data-id="items[%index%][description]"' })}}
 
-					{{formElements.textBox('items[0][amount]', 'Amount', { id: 'items[0][amount]', attributes: 'data-name="items[%index%][amount]" data-id="items[%index%][amount]"' })}}
+					{{formElements.textBox('items[0][amount]', 'Amount (£)', type='number', { id: 'items[0][amount]', attributes: 'data-name="items[%index%][amount]" data-id="items[%index%][amount]"' })}}
 				</div>
 			</div>
 			{{buttons.secondaryButton('Add another', 'add', {

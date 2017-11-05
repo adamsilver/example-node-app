@@ -212,12 +212,12 @@ fieldset {
 	width: 4.5em;
 }
 
-input::-webkit-outer-spin-button,
+/*input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     appearance: none;
     margin: 0;
-}
+}*/
 
 /**************************************
 * Focus

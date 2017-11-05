@@ -348,3 +348,7 @@ main {
 #infants {
 	width: 50px;
 }
+
+input[id$="[amount]"] {
+	width: 100px;
+}

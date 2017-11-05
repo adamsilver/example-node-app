@@ -55,16 +55,16 @@ AddAnother.prototype.updateItems = function() {
 	this.container.find('.addAnother-item').each(function(index, el) {
 		$(el).find('[data-name], [data-id]').each(function(index2, el) {
 			// var idAttr = $(el).attr('data-name');
-			$(el)[0].name = $(el).attr('data-name').replace(/%index%/, index);
-			$(el)[0].id = $(el).attr('data-id').replace(/%index%/, index);
+			el.name = $(el).attr('data-name').replace(/%index%/, index);
+			el.id = $(el).attr('data-id').replace(/%index%/, index);
 
 			var label = $(el).parents('label');
 			if(label[0]) {
-				label[0].htmlFor = $(el)[0].id;
+				label[0].htmlFor = el.id;
 				// el.checked = false;
 			} else {
 				label = $(el).prev('label');
-				label[0].htmlFor = $(el)[0].id;
+				label[0].htmlFor = el.id;
 				// el.value = '';
 			}
 		});
