@@ -72,6 +72,8 @@ if(isAdvancedUpload) {
       	console.log(arguments);
       },
       success: function(data){
+        li.find('.fileList-name').remove();
+        li.prepend('<a class="fileList-name" href="/'+data.files[0].path+'">'+data.files[0].originalname+'</a>')
         li.append('<button type="button" class="secondaryButton">Remove</button>');
       },
       xhr: function() {
