@@ -12,11 +12,15 @@
     "test-client": "karma start",
     "start": "NODE_ENV=production node --use-strict dist/server.js",
     "app": "node --use-strict src/app/app.js",
-    "watch": "nodemon src/app/app.js --ignore 'src/public/**/*'",
-    "build:dist": "grunt dist && npm run dist-install",
+    "watch": "run-p watch:*",
+    "watch:node": "nodemon src/app/app.js --ignore 'src/public/**/*'",
+    "build:dist": "npm run sass:prod && grunt dist && npm run dist-install",
     "dist-install": "cd dist && npm install --production",
     "dist": "npm run build:dist && npm run start",
-    "heroku-postbuild": "npm run build:dist"
+    "heroku-postbuild": "npm run build:dist",
+    "watch:sass": "npm run sass:dev && node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./src/public/sass/ -w -r",
+    "sass:dev": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./src/public/sass/",
+    "sass:prod": "node-sass src/public/sass/main.scss src/public/css/main.css --include-path ./src/public/sass/ -x --output-style compressed"
   },
   "repository": {
     "type": "git",
@@ -59,7 +63,9 @@
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
-    "nodemon": "*"
+    "node-sass": "4.7.2",
+    "nodemon": "*",
+    "npm-run-all": "4.1.2"
   },
   "optionalDependencies": {
     "fsevents": "*"
